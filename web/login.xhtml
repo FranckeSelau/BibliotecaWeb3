@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Bootstrap Example Tabela</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+        <h:outputStylesheet name="bootstrap/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/estilos.css"/>
+        <h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/>
+        <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
+        <h:outputScript name="jquery/jquery-3.1.0.min.js"/>
+    </h:head>
+    <h:body>
+        <div class="jumbotron text-center">
+        <div class="container">
+            
+            <div class="login" >
+        <h:form>
+            <h:panelGrid columns="1" >
+                <h:inputText value="#{loginMB.login}" id="idUsuario" style="width: 220px" styleClass="form-control" a:placeholder="Usuário" />
+                <h:inputSecret value="#{loginMB.senha}" id="idSenha" style="width: 220px" styleClass="form-control" a:placeholder="Senha" />
+                <h:commandButton value="Entrar" style="width: 220px; margin-top: 15px" action="#{loginMB.verificaLogin()}" styleClass="btn btn-primary"/>
+            </h:panelGrid>
+            <div class="alerta">
+            <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
+            </div>
+            
+        </h:form>
+            </div>
+          </div>
+        </div>
+        
+    </h:body>
+</html> 
+
