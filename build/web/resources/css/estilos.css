@@ -7,11 +7,22 @@ and open the template in the editor.
     Created on : 16/09/2016, 10:20:26
     Author     : Francke
 */
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 10px;
+}
 
 .login{
     position:absolute; 
+    margin-top: 5%;
+    margin-right: 30%;
+    margin-left: 26%;
     width: 425px; 
     height: 422px;
+   
   }
 
 .loginLogo{
