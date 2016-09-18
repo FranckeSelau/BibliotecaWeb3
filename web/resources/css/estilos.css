@@ -9,19 +9,35 @@ and open the template in the editor.
 */
 
 .login{
-    position:relative; 
-    width: 350px; 
-    height: 170px;
-    border-radius: 25px;
-    border: 2px solid #a1a1a1;
-    padding: 20px 62px; 
-    background: #dddddd;   
+    position:absolute; 
+    width: 425px; 
+    height: 422px;
+  }
+
+.loginLogo{
+    position: absolute;
+    width: 350px;
+    height: 180px;
+    margin-left: 37px;
+    background: url(../imagens/logoLogin.png) no-repeat; 
+    z-index: 5;
+}
+
+.loginAcesso{
+    position:absolute; 
+    margin-top: 60px;
+    width: 425px; 
+    height: 300px;
+    border-radius: 20px;
+    border: 4px solid #a1a1a1;
+    padding: 140px 82px; 
+    background: #E6E7E8;   
 }
 
 .alerta{
-    position:relative; 
+    position:absolute; 
     width: 420px; 
-    padding-right: -20px;
-    margin-top: 15px;
+    text-align: center;
+    margin-top: 380px;
     
 }

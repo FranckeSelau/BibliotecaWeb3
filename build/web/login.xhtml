@@ -16,25 +16,25 @@
         <h:outputScript name="jquery/jquery-3.1.0.min.js"/>
     </h:head>
     <h:body>
-        <div class="jumbotron text-center">
-        <div class="container">
-            
-            <div class="login" >
+         <div class="container">
+             <div class="login">
+            <div class="loginLogo"></div>
+            <div class="loginAcesso" >
         <h:form>
             <h:panelGrid columns="1" >
-                <h:inputText value="#{loginMB.login}" id="idUsuario" style="width: 220px" styleClass="form-control" a:placeholder="Usuário" />
-                <h:inputSecret value="#{loginMB.senha}" id="idSenha" style="width: 220px" styleClass="form-control" a:placeholder="Senha" />
-                <h:commandButton value="Entrar" style="width: 220px; margin-top: 15px" action="#{loginMB.verificaLogin()}" styleClass="btn btn-primary"/>
-            </h:panelGrid>
+                <h:inputText value="#{loginMB.login}" id="idUsuario" style="width: 260px" styleClass="form-control" a:placeholder="Usuário" />
+                <h:inputSecret value="#{loginMB.senha}" id="idSenha" style="width: 260px" styleClass="form-control" a:placeholder="Senha" />
+                <h:commandButton value="Entrar" style="width: 260px; margin-top: 15px" action="#{loginMB.verificaLogin()}" styleClass="btn btn-primary"/>
+            </h:panelGrid>            
+        </h:form>
+                
+            </div>
             <div class="alerta">
             <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
             </div>
-            
-        </h:form>
-            </div>
           </div>
-        </div>
-        
+             </div>
+            
     </h:body>
 </html> 
 
