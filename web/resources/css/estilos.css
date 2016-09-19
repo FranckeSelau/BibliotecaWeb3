@@ -99,3 +99,17 @@ body {
         font-size: 13px;
     }
 }
+
+.cadastro{
+    position: relative;
+    width: 50%;
+    margin-left: 25%;
+    height: 350px;
+    border-radius: 20px;
+    border: 4px solid #a1a1a1;
+    background: #E6E7E8; 
+    padding: 25px;
+    font-size: 10pt;
+    font-style: normal;
+    
+}
