@@ -7,9 +7,10 @@
 
 #bottom {
     position: relative;
-    background-color: #c2dfef;
+    text-align: right;
+    
     padding: 5px;
-    margin: 10px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;   
 }
 
 #left {
@@ -30,7 +31,6 @@
     margin-right: 10%;
     margin-left: 10%;
     position: relative;
-    background-color: #dddddd;
     padding: 5px;
 }
 

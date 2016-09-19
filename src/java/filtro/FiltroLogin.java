@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author lhries
+ * @author
  */
 @WebFilter(filterName = "FiltroLogin", urlPatterns = {"/faces/login.xhtml"})
 public class FiltroLogin implements Filter {
