@@ -14,18 +14,16 @@
     <h:body>
 
         <div id="top">
-            <ui:insert name="top">Top</ui:insert>
+            <h:graphicImage style="width: 100%" value="/resources/imagens/topo.png" />
+            <ui:insert name="top">                
+            </ui:insert>
         </div>
-        <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
-            </div>
-            <div id="content" class="left_content">
-                <ui:insert name="content">Content</ui:insert>
-            </div>
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+
         </div>
         <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
+            <ui:insert name="bottom">Produzido por Luis Henrique Ries</ui:insert>
         </div>
 
     </h:body>

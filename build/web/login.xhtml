@@ -4,10 +4,9 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
-        <title>Bootstrap Example Tabela</title>
+        <title>Bilioteca Login</title>
         <meta charset="utf-8"></meta>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-
         <h:outputStylesheet name="bootstrap/css/bootstrap.min.css"/>
         <h:outputStylesheet name="css/estilos.css"/>
         <h:outputStylesheet name="css/default.css"/>
@@ -16,25 +15,23 @@
         <h:outputScript name="jquery/jquery-3.1.0.min.js"/>
     </h:head>
     <h:body>
-         <div class="container">
-             <div class="login">
-            <div class="loginLogo"></div>
-            <div class="loginAcesso" >
-        <h:form>
-            <h:panelGrid columns="1" >
-                <h:inputText value="#{loginMB.login}" id="idUsuario" style="width: 260px" styleClass="form-control" a:placeholder="Usuário" />
-                <h:inputSecret value="#{loginMB.senha}" id="idSenha" style="width: 260px" styleClass="form-control" a:placeholder="Senha" />
-                <h:commandButton value="Entrar" style="width: 260px; margin-top: 15px" action="#{loginMB.verificaLogin()}" styleClass="btn btn-primary"/>
-            </h:panelGrid>            
-        </h:form>
-                
+        <div class="container">
+            <div class="login">
+                <div class="loginLogo"></div>
+                <div class="loginAcesso" >
+                    <h:form>
+                        <h:panelGrid columns="1" >
+                            <h:inputText value="#{loginMB.login}" id="idUsuario" style="width: 280px" styleClass="form-control" a:placeholder="Usuário" />
+                            <h:inputSecret value="#{loginMB.senha}" id="idSenha" style="width: 280px" styleClass="form-control" a:placeholder="Senha" />
+                            <h:commandButton value="Entrar" style="width: 280px; margin-top: 15px" action="#{loginMB.verificaLogin()}" styleClass="btn btn-primary"/>
+                        </h:panelGrid>            
+                    </h:form>
+                </div>
+                <div class="alerta">
+                    <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
+                </div>
             </div>
-            <div class="alerta">
-            <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
-            </div>
-          </div>
-             </div>
-            
+        </div>
     </h:body>
 </html> 
 

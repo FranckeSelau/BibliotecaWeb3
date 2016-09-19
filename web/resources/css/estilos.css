@@ -8,10 +8,8 @@ and open the template in the editor.
     Author     : Francke
 */
 body {
-    background-color: #ffffff;
     font-size: 12px;
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    color: #000000;  
     margin: 10px;
 }
 
@@ -41,7 +39,7 @@ body {
     height: 300px;
     border-radius: 20px;
     border: 4px solid #a1a1a1;
-    padding: 140px 82px; 
+    padding: 140px 70px; 
     background: #E6E7E8;   
 }
 
