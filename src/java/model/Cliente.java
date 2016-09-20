@@ -14,6 +14,9 @@ public class Cliente {
     private String matricula, nome, telefone;
     private int retiradas, atrasos;
 
+    
+    public Cliente() {        
+    }
     /**
      * Construtor para inicializar cliente
      *
@@ -26,8 +29,7 @@ public class Cliente {
         this.matricula = matricula;
         this.nome = nome;
         this.telefone = telefone;
-    }
-    
+    }   
 
     /**
      * Retorna a matrícula
@@ -36,6 +38,10 @@ public class Cliente {
      */
     public String getMatricula() {
         return matricula;
+    }
+    
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     /**
@@ -46,6 +52,10 @@ public class Cliente {
     public String getNome() {
         return nome;
     }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     /**
      * Retorna o telefone
@@ -54,6 +64,10 @@ public class Cliente {
      */
     public String getTelefone() {
         return telefone;
+    }
+    
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public int getRetiradas() {
