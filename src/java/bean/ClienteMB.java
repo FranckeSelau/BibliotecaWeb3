@@ -51,7 +51,7 @@ public class ClienteMB {
 
     public String editarCliente(Cliente c){
         clienteSelecionado = c;
-        return("/admin/formularioEdicao?faces-redirect=true");
+        return("/admin/edicaoClientes?faces-redirect=true");
     }
     public String atualizarCliente()
     {
