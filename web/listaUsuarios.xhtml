@@ -1,11 +1,8 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version='1.0' encoding='ISO-8859-1' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<xhtml xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
     <h:head>
         <title>Projeto CRUD</title>       
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
@@ -16,16 +13,13 @@
         <h:outputScript name="jquery/jquery-3.1.0.min.js" />
         
     </h:head>
-
     <h:body>
-        <ui:composition template="/template.xhtml">
-            <ui:define name="top"></ui:define>
-            <ui:define name="content">
-                  <div class="tabelaUsuarios">
-           <h:form >
+        <div class="container">
+        <h1>Projeto CRUD</h1>
+        <h:form>
             <h:dataTable var="usuario" value="#{usuarioMB.listaUsuarios}" styleClass="table table-striped" >
                 <f:facet name="header">
-                    <h:outputText value="Tabela de Usuarios" style="font-size: 20px" />
+                    <h:outputText value="Tabela de Usuários" />
                 </f:facet>
 
                 <h:column>
@@ -66,25 +60,24 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Acesso admin" />
+                        <h:outputText value="É admin" />
                     </f:facet>
                     <h:outputText  value="#{usuario.adminString}" />
                 </h:column>
                 <h:column >
                     <f:facet name="header">
-                        <h:outputText value="Operacao" />
+                        <h:outputText value="Operação" />
                     </f:facet>
                         <h:commandLink value="Editar " action="#{usuarioMB.editarUsuario(usuario)}"/>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <h:commandLink value="Remover" action="#{usuarioMB.removerUsuario(usuario)}"/>
                 </h:column>
             </h:dataTable>
-            </h:form>
-                      <div class="btnVoltar">
-                          <h:button value="Voltar" style="width: auto; margin-top: 5px; margin-left: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
-                      </div>
+            <h:commandButton value="Novo Usuario" action="#{usuarioMB.novoUsuario()}"/>
+            <br/><br/>
+            <h:commandLink value="Logout" action="#{loginMB.realizaLogout()}"/>
+        </h:form>
         </div>
-            </ui:define>
-        </ui:composition>
     </h:body>
-</xhtml>
+</html>
+
