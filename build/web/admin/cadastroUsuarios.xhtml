@@ -9,6 +9,7 @@
         <ui:composition template="/template.xhtml">
             <ui:define name="top"></ui:define>
             <ui:define name="content">
+                <div class="tituloUsuarios">Novo Usuario</div>
                 <div class="cadastro">
                     <h:form>
                         <h:panelGrid columns="2" >
@@ -47,8 +48,8 @@
 
                         </h:panelGrid>
                         <div class="botaoCadastro">
-                            <h:commandButton value="Cadastrar" onclick="funcaoConfirmarCadastro()" style="width: auto; margin-top: 5px" styleClass="btn btn-primary" action="#{usuarioMB.adicionarUsuario()}"/>
-                            <h:button value="Voltar" style="width: auto; margin-top: 5px; margin-left: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
+                            <h:commandButton value="Cadastrar" onclick="funcaoConfirmarCadastro()" style="width: auto; margin-top: -11px" styleClass="btn btn-primary" action="#{usuarioMB.adicionarUsuario()}"/>
+                            <h:button value="Voltar" style="width: auto; margin-top: -11px; margin-left: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
                         </div>
                     </h:form>
                     <div class="alerta">
