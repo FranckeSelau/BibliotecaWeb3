@@ -9,19 +9,22 @@
         <ui:composition template="/template.xhtml">
             <ui:define name="top"></ui:define>
             <ui:define name="content">
+                <div class="logout">
+                <h:form>
+                    <h:commandLink value="Logout" action="#{loginMB.realizaLogout()}"/>                                   
+                </h:form>
+                        </div>
                 <div class="acessoADM">Acesso Administrador</div>
                 <h:form>
                     <h:panelGrid columns="1" >
-                        <h:commandButton value="Novo Usuario Sistema" style="width: 200px; margin: 10px; margin-top: 15px"  action="#{usuarioMB.novoUsuario()}" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Lista Usuarios" style="width: 200px; margin: 8px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Novo Cliente " style="width: 200px; margin: 8px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Novo Livro" style="width: 200px; margin: 8px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Funcionalidades" style="width: 200px; margin: 8px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/>
-                        
-                        <br/>
-                        <h:commandLink value="Logout" style="margin-left: 10px" action="#{loginMB.realizaLogout()}"/>
-                        
-
+                        <h:commandButton value="Novo Usuario Sistema" style="width: 200px; margin-top: 6px"  action="#{usuarioMB.novoUsuario()}" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Lista Usuarios" style="width: 200px; margin-top: 6px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/> 
+                        <p style="color: #269abc">_________________________</p>
+                        <h:commandButton value="Novo Cliente " style="width: 200px; margin-top: 0px" action="#{clienteMB.novoCliente()}" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Lista Clientes" style="width: 200px; margin-top: 6px" action="/admin/listaClientes" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Novo Livro" style="width: 200px; margin-top: 6px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Novo Livro" style="width: 200px; margin-top: 6px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Funcionalidades" style="width: 200px; margin-top: 6px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/>
                     </h:panelGrid>                    
                 </h:form>
             </ui:define>

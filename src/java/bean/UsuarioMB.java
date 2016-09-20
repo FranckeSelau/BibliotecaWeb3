@@ -40,7 +40,7 @@ public class UsuarioMB {
 
     public String novoUsuario(){
         usuarioSelecionado=new Usuario();
-        return("/admin/formularioCadastro?faces-redirect=true");
+        return("/admin/cadastroUsuarios?faces-redirect=true");
     }
 
     public String adicionarUsuario()
@@ -51,7 +51,7 @@ public class UsuarioMB {
 
     public String editarUsuario(Usuario u){
         usuarioSelecionado = u;
-        return("/admin/formularioEdicao?faces-redirect=true");
+        return("/admin/edicaoUsuarios?faces-redirect=true");
     }
     public String atualizarUsuario()
     {
