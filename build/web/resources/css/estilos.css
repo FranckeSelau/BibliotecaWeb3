@@ -211,3 +211,33 @@ body {
     z-index: 10;
 }
 
+.tituloLivros{
+    position: relative;
+    width: 20%;
+    margin-left: 31%;
+    height: 15%;
+    border-radius: 10px;
+    border: 3px solid #a1a1a1;
+    background: #E6E7E8; 
+    font-family: arial;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -52px;   
+    z-index: 10;
+}
+
+.cadastroLivros{
+    position: relative;
+    width: 44%;
+    margin-left: 28%;
+    height: 333px;
+    border-radius: 20px;
+    border: 4px solid #a1a1a1;
+    background: #E6E7E8; 
+    padding: 45px 51px;
+    font-family: verdana;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: -20px;        
+}
