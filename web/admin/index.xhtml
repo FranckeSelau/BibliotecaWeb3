@@ -14,7 +14,10 @@
                     <h:commandLink value="Logout" action="#{loginMB.realizaLogout()}"/>                                   
                 </h:form>
                         </div>
-                <div class="acessoADM">Acesso Administrador</div>
+                <div class="acessoADM">Acesso Administrador<br></br>
+                <h:outputText value="Seja bem vindo, 
+                      #{loginMB.usuarioLogado.nome}" />
+                </div>
                 <h:form>
                     <h:panelGrid columns="1" >
                         <h:commandButton value="Novo Usuario Sistema" style="width: 200px; margin-top: 6px"  action="#{usuarioMB.novoUsuario()}" styleClass="btn btn-primary"/>
@@ -24,7 +27,7 @@
                         <h:commandButton value="Lista Clientes" style="width: 200px; margin-top: 6px" action="/admin/listaClientes" styleClass="btn btn-primary"/>
                         <h:commandButton value="Novo Livro" style="width: 200px; margin-top: 6px" action="#{livroMB.novoLivro()}" styleClass="btn btn-primary"/>
                         <h:commandButton value="Lista Livros" style="width: 200px; margin-top: 6px" action="/admin/listaLivros" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Funcionalidades" style="width: 200px; margin-top: 6px" action="/admin/listaUsuarios" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Funcionalidades" style="width: 200px; margin-top: 6px" action="/admin/buscaClientes" styleClass="btn btn-primary"/>
                     </h:panelGrid>                    
                 </h:form>
             </ui:define>

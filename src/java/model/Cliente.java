@@ -108,6 +108,10 @@ public class Cliente {
         }
         return true;
     }
+    
+    public boolean verificaCliente(String nome){
+        return(this.nome.equals(nome));
+    }
 
     @Override
     public int hashCode() {

@@ -13,6 +13,15 @@ public class ClienteMB {
     //CRUD
     private List<Cliente> listaClientes;
     private Cliente clienteSelecionado;
+    private String matricula;
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
 
     public ClienteMB() {
         clienteSelecionado = new Cliente();
@@ -60,6 +69,16 @@ public class ClienteMB {
 
     public void removerCliente(Cliente cliente){
         listaClientes.remove(cliente);
+    }
+    
+    public Cliente buscarCliente(String matricula) {
+        
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getMatricula().equals(matricula)) {
+                return cliente;
+            }
+        }        
+        return null;
     }
 
 }
