@@ -25,6 +25,7 @@ public class RetiradasMB {
     public RetiradasMB() {
         retiradaSelecionada = new Retiradas();
         listaRetiradas = new ArrayList<Retiradas>();
+        listaRetiradas.add(new Retiradas(new Cliente("02", "Beltrano", "3444-4545"),new Livro("1", "Harry Potter I", "JK", "asd", "1995")));
         
     }
     
