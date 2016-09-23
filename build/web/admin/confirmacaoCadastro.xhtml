@@ -14,18 +14,18 @@
         <ui:composition template="/template.xhtml">
             <ui:define name="top"></ui:define>
             <ui:define name="content">
-                <div class="tituloClientes">Confirmação!</div>
-                <div class="cadastroClientes">
+                <div class="tituloConfirmacao">Confirmação!</div>
+                <div class="confirmacaoCadastro">
                     <h:form>
                         <h:panelGrid columns="1" >
-                            <h:outputLabel for="idConfirmacao" value="Cadastro #{usuarioMB.usuarioSelecionado.nome} realizado com sucesso! Deseja cadastrar outro Usurário?" style="font-weight: normal"/>
+                            <h:outputLabel for="idConfirmacao" value="Cadastro realizado com sucesso! Deseja realizar novo cadastro?" style="font-weight: normal"/>
                             
                             
 
                         </h:panelGrid>
-                        <div class="botaoCadastroClientes">
-                            <h:commandButton value="Cadastrar" style="width: auto; " styleClass="btn btn-primary" action="/admin/cadastroUsuarios"/>
-                            <h:button value="Voltar" style="width: auto; margin-left: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
+                        <div class="botaoConfirmacao">
+                            <h:commandButton value="Sim" style="width: 80px; " styleClass="btn btn-success" action="/admin/cadastroUsuarios"/>
+                            <h:button value="Não" style="width: 80px; margin-left: 5px" styleClass="btn btn-success" outcome="/admin/index"/>
                         </div>
                     </h:form>
                     <div class="alerta">
