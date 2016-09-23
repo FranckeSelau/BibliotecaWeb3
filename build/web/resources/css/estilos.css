@@ -52,6 +52,14 @@ body {
     
 }
 
+.alertaCadastroUsuario{
+    position:absolute; 
+    width: 420px; 
+    text-align: center;
+    margin-top: -150px;
+    
+}
+
 .acessoADM{
     position: relative;
     float: right;

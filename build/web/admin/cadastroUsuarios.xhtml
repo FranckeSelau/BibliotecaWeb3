@@ -3,7 +3,8 @@
 <xhtml xmlns="http://www.w3.org/1999/xhtml"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:f="http://xmlns.jcp.org/jsf/core">
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:body>
         <ui:composition template="/template.xhtml">
@@ -14,7 +15,7 @@
                     <h:form>
                         <h:panelGrid columns="2" >
                             <h:outputLabel for="idNome" value="Nome" style="font-weight: normal"/>
-                            <h:inputText id="idNome" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.nome}"  />
+                            <h:inputText id="idNome" required="true" requiredMessage="Erro! Preencha todos os campos obrigatorios!" style="width: 280px" styleClass="form-control" a:placeholder="Campo obrigatorio" value="#{usuarioMB.usuarioSelecionado.nome}"  />
 
                             <h:outputLabel for="idTelefone" value="Telefone" style="font-weight: normal"/>
                             <h:inputText id="idTelefone" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.telefone}" />
@@ -52,8 +53,8 @@
                             <h:button value="Voltar" style="width: auto; margin-top: -11px; margin-left: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
                         </div>
                     </h:form>
-                    <div class="alerta">
-                    <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
+                    <div class="alertaCadastroUsuario">
+                        <h:messages for="idNome" showDetail="false" styleClass= "alert alert-danger"/>
                 </div>
                 </div>
             </ui:define>

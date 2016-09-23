@@ -43,8 +43,7 @@ public class UsuarioMB {
         return("/admin/cadastroUsuarios?faces-redirect=true");
     }
 
-    public String adicionarUsuario()
-    {
+    public String adicionarUsuario(){
         listaUsuarios.add(usuarioSelecionado);
         return(this.novoUsuario());
     }
