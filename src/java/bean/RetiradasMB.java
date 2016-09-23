@@ -25,7 +25,7 @@ public class RetiradasMB {
     public RetiradasMB() {
         retiradaSelecionada = new Retiradas();
         listaRetiradas = new ArrayList<Retiradas>();
-        listaRetiradas.add(new Retiradas(new Cliente("02", "Beltrano", "3444-4545"),new Livro("1", "Harry Potter I", "JK", "asd", "1995")));
+        listaRetiradas.add(new Retiradas("Beltrano", "Harry Potter I"));
         
     }
     
@@ -49,7 +49,7 @@ public class RetiradasMB {
 
     public String novaRetirada(){
         retiradaSelecionada=new Retiradas();
-        return("/admin/cadastroUsuarios?faces-redirect=true");
+        return("/listaRetiradas?faces-redirect=true");
     }
 
     public String adicionarRetirada()

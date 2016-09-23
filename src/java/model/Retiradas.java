@@ -14,15 +14,15 @@ public class Retiradas{
     private Date retirada;    
     private Date devolvido;
     private Date entrega;
-    private Cliente cliente;
-    private Livro livro;
+    private String cliente;
+    private String livro;
     private Boolean livroDevolvido = false;
     
     public Retiradas() {
         
     }
 
-    public Retiradas(Cliente cliente, Livro livro) {
+    public Retiradas(String cliente, String livro) {
         this.cliente = cliente;
         this.livro = livro;
         long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -58,7 +58,7 @@ public class Retiradas{
      *
      * @return cliente que retirou um livro
      */
-    public Cliente getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
@@ -67,7 +67,7 @@ public class Retiradas{
      *
      * @param cliente que retira um livro.
      */
-    public void setCliente(Cliente cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
 
@@ -76,7 +76,7 @@ public class Retiradas{
      *
      * @return livro que foi retirado.
      */
-    public Livro getLivro() {
+    public String getLivro() {
         return livro;
     }
 
@@ -85,7 +85,7 @@ public class Retiradas{
      *
      * @param livro recebe novo livro retirado.
      */
-    public void setLivro(Livro livro) {
+    public void setLivro(String livro) {
         this.livro = livro;
     }
 
