@@ -53,13 +53,13 @@
 
                         </h:panelGrid>
                         <div class="botaoCadastro">
-                            <h:commandButton value="Cadastrar" onclick="funcaoConfirmarCadastro()" style="width: auto; margin-top: -11px" styleClass="btn btn-primary" action="#{usuarioMB.adicionarUsuario()}"/>
+                            <h:commandButton value="Cadastrar" style="width: auto; margin-top: -11px" styleClass="btn btn-primary" action="#{usuarioMB.adicionarUsuario()}"/>
                             <h:button value="Voltar" style="width: auto; margin-top: -11px; margin-left: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
                         </div>
                     </h:form>
                     <div class="alertaCadastroUsuario">
                         <h:messages id="messages"  showDetail="false" styleClass= "alert alert-danger"/>
-                </div>
+                    </div>                    
                 </div>
             </ui:define>
         </ui:composition>

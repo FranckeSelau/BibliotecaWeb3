@@ -4,6 +4,8 @@ import model.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named
@@ -39,13 +41,15 @@ public class UsuarioMB {
     
 
     public String novoUsuario(){
-        usuarioSelecionado=new Usuario();
+        usuarioSelecionado=new Usuario();        
         return("/admin/cadastroUsuarios?faces-redirect=true");
     }
 
     public String adicionarUsuario(){
+        
         listaUsuarios.add(usuarioSelecionado);
-        return(this.novoUsuario());
+        this.novoUsuario();
+        return("/admin/confirmacaoCadastro?faces-redirect=true");
     }
 
     public String editarUsuario(Usuario u){
