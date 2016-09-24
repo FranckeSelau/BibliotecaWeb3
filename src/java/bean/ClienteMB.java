@@ -52,10 +52,10 @@ public class ClienteMB {
         return("/admin/cadastroClientes?faces-redirect=true");
     }
 
-    public String adicionarCliente()
-    {
+    public String adicionarCliente(){        
         listaClientes.add(clienteSelecionado);
-        return(this.novoCliente());
+        this.novoCliente();
+        return("/admin/confirmaCadastroCliente?faces-redirect=true");
     }
 
     public String editarCliente(Cliente c){
