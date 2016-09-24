@@ -67,8 +67,16 @@ body {
     text-align: center;
     margin-top: -285px;
     margin-left: 60px;
-    z-index: 15;
-    
+    z-index: 15;    
+}
+
+.alertaCadastroLivro{
+    position:absolute; 
+    width: 280px; 
+    text-align: center;
+    margin-top: -335px;
+    margin-left: 60px;
+    z-index: 15;    
 }
 
 .acessoADM{

@@ -4,7 +4,7 @@
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <head>
         <meta charset="utf-8"></meta>
         <link rel="icon" type="image/png" href="resources/imagens/favicon.png" />
@@ -19,9 +19,6 @@
                     <h:form>
                         <h:panelGrid columns="1" >
                             <h:outputLabel for="idConfirmacao" value="Cadastro realizado com sucesso! Deseja realizar novo cadastro?" style="font-weight: normal"/>
-                            
-                            
-
                         </h:panelGrid>
                         <div class="botaoConfirmacao">
                             <h:commandButton value="Sim" style="width: 80px; " styleClass="btn btn-success" action="/admin/cadastroClientes"/>
@@ -29,8 +26,8 @@
                         </div>
                     </h:form>
                     <div class="alerta">
-                    <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
-                </div>
+                        <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
+                    </div>
                 </div>
             </ui:define>
         </ui:composition>

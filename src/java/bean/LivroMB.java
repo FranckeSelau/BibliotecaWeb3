@@ -44,10 +44,10 @@ public class LivroMB {
         return("/admin/cadastroLivros?faces-redirect=true");
     }
 
-    public String adicionarLivro()
-    {
+    public String adicionarLivro(){
         listaLivros.add(livroSelecionado);
-        return(this.novoLivro());
+        this.novoLivro();
+        return("/admin/confirmaCadastroLivro?faces-redirect=true");
     }
 
     public String editarLivro(Livro l){
