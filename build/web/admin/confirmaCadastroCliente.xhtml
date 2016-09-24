@@ -14,8 +14,9 @@
         <ui:composition template="/template.xhtml">
             <ui:define name="top"></ui:define>
             <ui:define name="content">
-                <div class="tituloConfirmacao">Confirmação!</div>
-                <div class="confirmacaoCadastro">
+                <div class="confirmacaoCadastroFundoCliente">
+                <div class="tituloConfirmacaoCliente">Confirmação!</div>
+                <div class="confirmacaoCadastroCliente">
                     <h:form>
                         <h:panelGrid columns="1" >
                             <h:outputLabel for="idConfirmacao" value="Cadastro realizado com sucesso! Deseja realizar novo cadastro?" style="font-weight: normal"/>
@@ -28,6 +29,7 @@
                     <div class="alerta">
                         <h:messages id="idMensagem" showDetail="true" errorClass="mensagem" styleClass= "alert alert-danger"/>
                     </div>
+                </div>
                 </div>
             </ui:define>
         </ui:composition>
