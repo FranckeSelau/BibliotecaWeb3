@@ -57,7 +57,7 @@ public class UsuarioMB {
         return("/admin/edicaoUsuarios?faces-redirect=true");
     }
     public String atualizarUsuario(){
-        return("/admin/index?faces-redirect=true");
+        return("/admin/listaUsuarios?faces-redirect=true");
     }
 
     public void removerUsuario(Usuario usuario){

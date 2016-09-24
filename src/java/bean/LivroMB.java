@@ -56,7 +56,7 @@ public class LivroMB {
     }
     public String atualizarLivro()
     {
-        return("/admin/index?faces-redirect=true");
+        return("/admin/listaLivros?faces-redirect=true");
     }
 
     public void removerLivro(Livro livro){

@@ -64,7 +64,7 @@ public class ClienteMB {
     }
     public String atualizarCliente()
     {
-        return("/admin/index?faces-redirect=true");
+        return("/admin/listaClientes?faces-redirect=true");
     }
 
     public void removerCliente(Cliente cliente){
