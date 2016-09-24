@@ -57,6 +57,10 @@ public class ClienteMB {
         this.novoCliente();
         return("/admin/confirmaCadastroCliente?faces-redirect=true");
     }
+    
+    public String mostrarClientes(){        
+        return("/admin/listaClientes?faces-redirect=true");
+    }
 
     public String editarCliente(Cliente c){
         clienteSelecionado = c;

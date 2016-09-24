@@ -20,12 +20,12 @@
                 <h:form>
                     <h:panelGrid columns="1" >
                         <h:commandButton value="Novo Usuario Sistema" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow"  action="#{usuarioMB.novoUsuario()}" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Lista Usuarios" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="/admin/listaUsuarios" styleClass="btn btn-primary"/> 
+                        <h:commandButton value="Lista Usuarios" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{usuarioMB.mostrarUsuarios()}" styleClass="btn btn-primary"/> 
                         <p style="color: #269abc">_________________________</p>
                         <h:commandButton value="Novo Cliente " style="width: 200px; margin-top: 0px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{clienteMB.novoCliente()}" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Lista Clientes" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="/admin/listaClientes" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Lista Clientes" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{clienteMB.mostrarClientes()}" styleClass="btn btn-primary"/>
                         <h:commandButton value="Novo Livro" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{livroMB.novoLivro()}" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Lista Livros" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="/admin/listaLivros" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Lista Livros" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{livroMB.mostrarLivros()}" styleClass="btn btn-primary"/>
                         <h:commandButton value="Funcionalidades" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="/admin/buscaClientes" styleClass="btn btn-primary"/>
                     </h:panelGrid>                    
                 </h:form>

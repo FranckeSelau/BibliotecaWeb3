@@ -49,6 +49,10 @@ public class LivroMB {
         this.novoLivro();
         return("/admin/confirmaCadastroLivro?faces-redirect=true");
     }
+    
+    public String mostrarLivros(){        
+        return("/admin/listaLivros?faces-redirect=true");
+    }
 
     public String editarLivro(Livro l){
         livroSelecionado = l;

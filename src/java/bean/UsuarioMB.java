@@ -51,6 +51,10 @@ public class UsuarioMB {
         this.novoUsuario();
         return("/admin/confirmaCadastroUsuario?faces-redirect=true");
     }
+    
+    public String mostrarUsuarios(){        
+        return("/admin/listaUsuarios?faces-redirect=true");
+    }
 
     public String editarUsuario(Usuario u){
         usuarioSelecionado = u;
