@@ -51,6 +51,11 @@ public class DevolucaoMB {
         retiradaSelecionada=new Retiradas();
         return("/admin/devolucao?faces-redirect=true");
     }
+    
+    public String novaDevolucaoUsuario(){
+        retiradaSelecionada=new Retiradas();
+        return("/usuario/devolucao?faces-redirect=true");
+    }
 /*
     public String adicionarRetirada()
     {

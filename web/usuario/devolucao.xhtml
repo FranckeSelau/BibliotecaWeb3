@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    
+    </h:head>
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="tabelaUsuarios">                    
+                    <h:form  >
+                        <h:selectOneMenu value="#{clienteMB.clienteSelecionado}" style="margin: 10px" styleClass="btn btn-default"> 
+                            <f:selectItem itemLabel="Selecione o Cliente" noSelectionOption="true"/> 
+                            <f:selectItems 
+                                value="#{clienteMB.listaClientes}" 
+                                var="cliente" 
+                                itemValue="#{cliente.nome}" 
+                                itemLabel="#{cliente.nome}" /> 
+                        </h:selectOneMenu>
+                        <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: auto; " styleClass="btn btn-primary" action="#{retiradasMB.adicionarRetirada()}"/>
+
+                        <h:dataTable var="retiradas" value="#{retiradasMB.listaRetiradas}" styleClass="table table-striped" >
+                            <f:facet name="header">
+
+                                <h:outputText value="Registra Devolução" style="font-size: 20px" />
+                            </f:facet>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Cliente" />
+                                </f:facet>
+                                <h:outputText id="idCliente" value="#{retiradas.cliente}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Titulo" />
+                                </f:facet>
+                                <h:outputText id="idTitulo" value="#{retiradas.livro}"  />
+                            </h:column>
+
+                            <h:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Operacao" />
+                                </f:facet>
+                                <h:commandLink value="Editar " action="#{clienteMB.editarCliente(cliente)}"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <h:commandLink onclick="funcaoDeletarUsuario()" id="remover" value="Remover" action="#{clienteMB.removerCliente(cliente)}"/>
+                            </h:column>
+                        </h:dataTable>
+                        <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
+                    </h:form>                      
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

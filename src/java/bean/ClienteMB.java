@@ -61,6 +61,10 @@ public class ClienteMB {
     public String mostrarClientes(){        
         return("/admin/listaClientes?faces-redirect=true");
     }
+    
+    public String mostrarClientesUsuario(){        
+        return("/usuario/listaClientes?faces-redirect=true");
+    }
 
     public String editarCliente(Cliente c){
         clienteSelecionado = c;

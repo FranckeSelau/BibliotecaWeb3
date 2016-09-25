@@ -51,6 +51,11 @@ public class RetiradasMB {
         retiradaSelecionada=new Retiradas();
         return("/admin/retirada?faces-redirect=true");
     }
+    
+    public String novaRetiradaUsuario(){
+        retiradaSelecionada=new Retiradas();
+        return("/usuario/retirada?faces-redirect=true");
+    }
 
     public String adicionarRetirada()
     {

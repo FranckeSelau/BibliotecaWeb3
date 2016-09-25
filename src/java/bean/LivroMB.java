@@ -53,6 +53,10 @@ public class LivroMB {
     public String mostrarLivros(){        
         return("/admin/listaLivros?faces-redirect=true");
     }
+    
+    public String mostrarLivrosUsuario(){        
+        return("/usuario/listaLivros?faces-redirect=true");
+    }
 
     public String editarLivro(Livro l){
         livroSelecionado = l;
