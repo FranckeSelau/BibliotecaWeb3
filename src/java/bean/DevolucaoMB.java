@@ -16,13 +16,13 @@ import model.Retiradas;
 
 @Named
 @ApplicationScoped
-public class RetiradasMB {
+public class DevolucaoMB {
 
     //CRUD
     private List<Retiradas> listaRetiradas;
     private Retiradas retiradaSelecionada;
 
-    public RetiradasMB() {
+    public DevolucaoMB() {
         retiradaSelecionada = new Retiradas();
         listaRetiradas = new ArrayList<Retiradas>();
         listaRetiradas.add(new Retiradas("Beltrano", "Harry Potter I"));
@@ -47,11 +47,11 @@ public class RetiradasMB {
     }
     
 
-    public String novaRetirada(){
+    public String novaDevolucao(){
         retiradaSelecionada=new Retiradas();
-        return("/admin/retirada?faces-redirect=true");
+        return("/admin/devolucao?faces-redirect=true");
     }
-
+/*
     public String adicionarRetirada()
     {
         listaRetiradas.add(retiradaSelecionada);
@@ -70,7 +70,7 @@ public class RetiradasMB {
     public void removerRetirada(Retiradas retirada){
         listaRetiradas.remove(retirada);
     }
-
+*/
 }
 
     
