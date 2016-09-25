@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">    
+      xmlns:f="http://xmlns.jcp.org/jsf/core">      
     <h:body>
         <ui:composition template="/template.xhtml">
             <ui:define name="top"></ui:define>
@@ -23,10 +23,10 @@
                         <h:commandButton value="Lista Usuarios" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{usuarioMB.mostrarUsuarios()}" styleClass="btn btn-primary"/> 
                         <p style="color: #269abc">_________________________</p>
                         <h:commandButton value="Novo Cliente " style="width: 200px; margin-top: 0px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{clienteMB.novoCliente()}" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Lista Clientes" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{clienteMB.mostrarClientes()}" styleClass="btn btn-primary"/>
                         <h:commandButton value="Novo Livro" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{livroMB.novoLivro()}" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Lista Livros" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{livroMB.mostrarLivros()}" styleClass="btn btn-primary"/>
-                        <h:commandButton value="Funcionalidades" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="/admin/buscaClientes" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Nova Retirada" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{clienteMB.mostrarClientes()}" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Nova Devolução" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{livroMB.mostrarLivros()}" styleClass="btn btn-primary"/>
+                        <h:commandButton value="Relatórios" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{relatorioMB.mostrarRelatorios()}" styleClass="btn btn-primary"/>
                     </h:panelGrid>                    
                 </h:form>
             </ui:define>
