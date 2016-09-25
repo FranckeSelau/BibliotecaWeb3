@@ -4,14 +4,13 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 16/09/2016, 10:20:26
+    Created on : 03/09/2016, 10:20:26
     Author     : Francke
 */
 body {
     font-size: 12px;
     font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
     margin: 10px;
-
 }
 
 .login{
@@ -170,7 +169,7 @@ body {
     .acessoADM{
         font-size: 20px;
     }
-     .acessoRelatorios{
+    .acessoRelatorios{
         font-size: 20px;
     }
 }
@@ -213,6 +212,15 @@ body {
 
 .botaoCadastro{
     position: relative;
+    float: right;
+    width: auto;
+    margin-right: 6px;
+    height: auto;
+}
+
+.botaoEditarPerfil{
+    position: relative;
+    margin-top: 30px;
     float: right;
     width: auto;
     margin-right: 6px;

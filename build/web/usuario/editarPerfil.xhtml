@@ -8,12 +8,12 @@
         <ui:composition template="/template.xhtml">
             <ui:define name="top"></ui:define>
             <ui:define name="content">
-                <div class="tituloUsuarios">Editar Usuario</div>
+                <div class="tituloUsuarios">Editar Perfil</div>
                 <div class="cadastro">
                     <h:form>
                         <h:panelGrid columns="2" >
                             <h:outputLabel for="idNome" value="Nome" style="font-weight: normal"/>
-                            <h:inputText readonly="true" id="idNome" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.nome}"  />
+                            <h:inputText id="idNome" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.nome}"  />
                             <h:outputLabel for="idTelefone" value="Telefone" style="font-weight: normal"/>
                             <h:inputText id="idTelefone" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.telefone}" />
                             <h:outputLabel for="idEmail" value="Email" style="font-weight: normal"/>
@@ -32,13 +32,11 @@
                                 <f:selectItem itemLabel="Rio de Janeiro" itemValue="RJ" />
                             </h:selectOneMenu>
                             <h:outputLabel for="idLogin" value="Login" style="font-weight: normal"/>
-                            <h:inputText id="idLogin" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.login}" />
+                            <h:inputText id="idLogin" readonly="true" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.login}" />
                             <h:outputLabel for="idSenha" value="Senha" style="font-weight: normal"/>
                             <h:inputSecret id="idSenha" style="width: 280px" styleClass="form-control" value="#{usuarioMB.usuarioSelecionado.senha}" />
-                            <h:outputLabel for="idAdmin"  value="Acesso admin" style="font-weight: normal"/>
-                            <h:selectBooleanCheckbox style="width: 60px" styleClass="checkbox" value="#{usuarioMB.usuarioSelecionado.admin}" />
                         </h:panelGrid>
-                        <div class="botaoCadastro">
+                        <div class="botaoEditarPerfil">
                             <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: auto; margin-top: -11px" styleClass="btn btn-primary" action="#{usuarioMB.atualizarUsuario()}"/>
                             <h:button value="Voltar" style="width: auto; margin-top: -11px; margin-left: 5px" styleClass="btn btn-primary" outcome="/admin/listaUsuarios"/>
                         </div>

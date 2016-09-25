@@ -60,6 +60,12 @@ public class UsuarioMB {
         usuarioSelecionado = u;
         return("/admin/edicaoUsuarios?faces-redirect=true");
     }
+    
+    public String editarPerfil(Usuario u){
+        usuarioSelecionado = u;
+        return("/usuario/editarPerfil?faces-redirect=true");
+    }
+    
     public String atualizarUsuario(){
         return("/admin/listaUsuarios?faces-redirect=true");
     }

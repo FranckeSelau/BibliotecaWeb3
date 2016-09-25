@@ -23,7 +23,7 @@
                 <div class="acessoUsuarioMenu">
                     <h:form>
                         <h:panelGrid columns="1" >
-                            <h:commandButton value="Editar Perfil" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow"  action="#{usuarioMB.usuarioSelecionado}" styleClass="btn btn-primary"/>
+                            <h:commandButton value="Editar Perfil" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow"  action="#{usuarioMB.editarPerfil(loginMB.usuarioLogado)}" styleClass="btn btn-primary"/>
                             <p style="color: #269abc">_________________________</p>
                             <h:commandButton value="Nova Retirada" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{retiradasMB.novaRetiradaUsuario()}" styleClass="btn btn-primary"/>
                             <h:commandButton value="Nova Devolução" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{devolucaoMB.novaDevolucaoUsuario()}" styleClass="btn btn-primary"/>
