@@ -19,9 +19,9 @@ public class UsuarioMB {
     public UsuarioMB() {
         usuarioSelecionado = new Usuario();
         listaUsuarios = new ArrayList<Usuario>();
-        listaUsuarios.add(new Usuario("admin", "admin"));
-        listaUsuarios.add(new Usuario("francke", "admin"));
-        listaUsuarios.add(new Usuario("a", "a"));
+        listaUsuarios.add(new Usuario("Admin","admin", "admin"));
+        listaUsuarios.add(new Usuario("Francke","francke", "admin"));
+        listaUsuarios.add(new Usuario("Convidado","a", "a"));
     }
     
     public Usuario getUsuarioSelecionado() {

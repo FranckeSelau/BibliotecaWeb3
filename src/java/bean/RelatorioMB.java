@@ -17,11 +17,7 @@ public class RelatorioMB {
     private Usuario usuarioSelecionado;
 
     public RelatorioMB() {
-        usuarioSelecionado = new Usuario();
-        listaUsuarios = new ArrayList<Usuario>();
-        listaUsuarios.add(new Usuario("admin", "admin"));
-        listaUsuarios.add(new Usuario("francke", "admin"));
-        listaUsuarios.add(new Usuario("a", "a"));
+        
     }
     
     public Usuario getUsuarioSelecionado() {
