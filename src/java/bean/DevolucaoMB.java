@@ -10,8 +10,8 @@ import model.Usuario;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
-import model.Cliente;
-import model.Livro;
+import model.ClienteAntigo;
+import model.LivroAntigo;
 import model.Retiradas;
 
 @Named

@@ -1,6 +1,6 @@
 package bean;
 
-import model.Cliente;
+import model.ClienteAntigo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -11,8 +11,8 @@ import javax.inject.Named;
 public class ClienteMB {
 
     //CRUD
-    private List<Cliente> listaClientes;
-    private Cliente clienteSelecionado;
+    private List<ClienteAntigo> listaClientes;
+    private ClienteAntigo clienteSelecionado;
     private String matricula;
 
     public String getMatricula() {
@@ -24,31 +24,31 @@ public class ClienteMB {
     }
 
     public ClienteMB() {
-        clienteSelecionado = new Cliente();
-        listaClientes = new ArrayList<Cliente>();
-        listaClientes.add(new Cliente("01", "Fulano", "3333-4544"));
-        listaClientes.add(new Cliente("02", "Beltrano", "3444-4545"));
+        clienteSelecionado = new ClienteAntigo();
+        listaClientes = new ArrayList<ClienteAntigo>();
+        listaClientes.add(new ClienteAntigo("01", "Fulano", "3333-4544"));
+        listaClientes.add(new ClienteAntigo("02", "Beltrano", "3444-4545"));
     }
     
-    public Cliente getClienteSelecionado() {
+    public ClienteAntigo getClienteSelecionado() {
         return clienteSelecionado;
     }
 
-    public void setClienteSelecionado(Cliente clienteSelecionado) {
+    public void setClienteSelecionado(ClienteAntigo clienteSelecionado) {
         this.clienteSelecionado = clienteSelecionado;
     }
 
-    public List<Cliente> getListaClientes() {
+    public List<ClienteAntigo> getListaClientes() {
         return listaClientes;
     }
 
-    public void setListaClientes(List<Cliente> listaClientes) {
+    public void setListaClientes(List<ClienteAntigo> listaClientes) {
         this.listaClientes = listaClientes;
     }
     
 
     public String novoCliente(){
-        clienteSelecionado=new Cliente();
+        clienteSelecionado=new ClienteAntigo();
         return("/admin/cadastroClientes?faces-redirect=true");
     }
 
@@ -66,7 +66,7 @@ public class ClienteMB {
         return("/usuario/listaClientes?faces-redirect=true");
     }
 
-    public String editarCliente(Cliente c){
+    public String editarCliente(ClienteAntigo c){
         clienteSelecionado = c;
         return("/admin/edicaoClientes?faces-redirect=true");
     }
@@ -75,13 +75,13 @@ public class ClienteMB {
         return("/admin/listaClientes?faces-redirect=true");
     }
 
-    public void removerCliente(Cliente cliente){
+    public void removerCliente(ClienteAntigo cliente){
         listaClientes.remove(cliente);
     }
     
-    public Cliente buscarCliente(String matricula) {
+    public ClienteAntigo buscarCliente(String matricula) {
         
-        for (Cliente cliente : listaClientes) {
+        for (ClienteAntigo cliente : listaClientes) {
             if (cliente.getMatricula().equals(matricula)) {
                 return cliente;
             }

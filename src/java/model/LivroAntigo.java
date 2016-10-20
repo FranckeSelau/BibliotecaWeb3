@@ -10,7 +10,7 @@ import java.util.Date;
  * @author Francke
  * @since JDK 1.0
  */
-public class Livro {
+public class LivroAntigo {
 
     private static int CODIGO_GERADO = 1;
     private String isbn, nome, autor, editora, ano;
@@ -29,7 +29,7 @@ public class Livro {
      */
     
     
-    public Livro(String isbn, String nome, String autor, String editora, String ano) {
+    public LivroAntigo(String isbn, String nome, String autor, String editora, String ano) {
         this.isbn = isbn;
         this.nome = nome;
         this.autor = autor;
@@ -37,14 +37,14 @@ public class Livro {
         this.ano = ano;
     }
     
-    public Livro(String nome, String autor, String editora, String ano) {
+    public LivroAntigo(String nome, String autor, String editora, String ano) {
         this.nome = nome;
         this.autor = autor;
         this.editora = editora;        
         this.ano = ano;
     }
     
-    public Livro() {
+    public LivroAntigo() {
         
     }
 

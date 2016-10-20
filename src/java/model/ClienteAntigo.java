@@ -1,40 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Objects;
 
 /**
+ * Classe para objetos do tipo cliente, onde serão criados os clientes da
+ * Biblioteca.
  *
  * @author Francke
+ * @since JDK 1.0
  */
-@Entity
-public class Cliente implements Serializable {
+public class ClienteAntigo {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String matricula, nome, telefone;
     private int retiradas, atrasos;
-    
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
     
-        public Cliente() {        
+    public ClienteAntigo() {        
     }
     /**
      * Construtor para inicializar cliente
@@ -44,7 +25,7 @@ public class Cliente implements Serializable {
      * @param telefone identifica telefone de uma pessoa.
      *
      */
-    public Cliente(String matricula, String nome, String telefone) {
+    public ClienteAntigo(String matricula, String nome, String telefone) {
         this.matricula = matricula;
         this.nome = nome;
         this.telefone = telefone;
@@ -104,30 +85,50 @@ public class Cliente implements Serializable {
     public void setAtrasos(int atrasos) {
         this.atrasos = atrasos;
     }
+    
+    
 
+    /**
+     * Faz o controle de matrículas para não inserir uma nova repetida.
+     *
+     * @return verdadeiro para uma nova matrícula única, ou falso para matrícula
+     * já existente.
+     */
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Cliente other = (Cliente) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ClienteAntigo other = (ClienteAntigo) obj;
+        if (!Objects.equals(this.matricula, other.matricula)) {
             return false;
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "model.ClienteJPA[ id=" + id + " ]";
+    
+    public boolean verificaCliente(String matricula){
+        return(this.matricula.equals(matricula));
     }
     
-}
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.matricula);
+        return hash;
+    }
+
+    /**
+     * converte o objeto pessoa em String para mostrar suas informações
+     * corretamente.
+     *
+     * @return a matricula, o nome e o telefone de uma pessoa já formatado em
+     * String.
+     */
+    @Override
+    public String toString() {
+        return matricula + " - " + nome + ", " + telefone;
+    }
+}  

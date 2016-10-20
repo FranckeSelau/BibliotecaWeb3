@@ -102,4 +102,5 @@ public class Usuario {
     public boolean verificaLogin(String login, String senha){
         return(this.login.equals(login) && this.senha.equals(senha));
     }
+    
 }   

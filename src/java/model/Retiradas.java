@@ -3,8 +3,8 @@ package model;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import model.Cliente;
-import model.Livro;
+import model.ClienteAntigo;
+import model.LivroAntigo;
 
 
 public class Retiradas{
