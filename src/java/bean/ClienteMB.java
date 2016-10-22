@@ -22,6 +22,7 @@ import rn.ClienteRN;
 public class ClienteMB implements Serializable {
     
     private Cliente clienteSelecionado;
+    private String matricula;
     @Inject
     private ClienteRN clienteRN;
 
@@ -37,32 +38,49 @@ public class ClienteMB implements Serializable {
         this.clienteSelecionado = usuarioSelecionado;
     }
     
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+    
     public List<Cliente> getListaClientes(){
         return clienteRN.listar();
     }
     
     public String novoCliente(){
         clienteSelecionado = new Cliente();
-        return("/formularioCadastroCliente");
+        return("/admin/cadastroClientes?faces-redirect=true");
     }
     
     public String adicionarCliente(){
         clienteRN.salvar(clienteSelecionado);
-        return(this.novoCliente());
+        this.novoCliente();
+        return("/admin/confirmaCadastroCliente?faces-redirect=true");
+    }
+    
+    public String mostrarClientes(){        
+        return("/admin/listaClientes?faces-redirect=true");
+    }
+    
+    public String mostrarClientesUsuario(){        
+        return("/usuario/listaClientes?faces-redirect=true");
     }
     
     public String editarCliente(Cliente c){
         clienteSelecionado = c;
-        return("/formularioEdicaoCliente");        
+        return("/admin/edicaoClientes?faces-redirect=true");        
     }
     
     public String atualizarCliente(){
         clienteRN.salvar(clienteSelecionado);
-        return("/index");
+        return("/admin/listaClientes?faces-redirect=true");
     }
     
     public void removerCliente(Cliente cliente){
         clienteRN.remover(cliente);
-    }
+    }    
     
 }

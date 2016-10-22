@@ -1,6 +1,6 @@
 package bean;
 
-import antigos.ClienteMB;
+import bean.ClienteMB;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -81,7 +81,7 @@ public class RetiradasMB {
     public void removerRetirada(Retiradas retirada) {
         listaRetiradas.remove(retirada);
     }
-
+/*
     public String verificaCliente() {
         //Obtém o usuarioMB criado pelo servidor (nível de aplicação)
         //UsuarioMB usuarioMB = (UsuarioMB) contexto.getExternalContext().getApplicationMap().get("usuarioMB");
@@ -95,6 +95,6 @@ public class RetiradasMB {
         }
 
         return ("admin/retirada?faces-redirect=true");
-    }
+    }*/
 
 }

@@ -5,7 +5,7 @@
  */
 package rn;
 
-import model.Cliente;
+import model.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,12 +15,12 @@ import javax.persistence.PersistenceContext;
  * @author lhries
  */
 @Stateless
-public class ClienteRN extends AbstractRN<Cliente>{
+public class UsuarioRN extends AbstractRN<Usuario>{
     @PersistenceContext(unitName="BibliotecaWeb2PU")
     private EntityManager manager;
     
-    public ClienteRN(){
-        super(Cliente.class);
+    public UsuarioRN(){
+        super(Usuario.class);
     }
 
     @Override
@@ -28,9 +28,9 @@ public class ClienteRN extends AbstractRN<Cliente>{
         return manager;
     }
     
-    public void salvar(Cliente u){
+    public void salvar(Usuario u){
         //validar parâmetros
-        if(u.getMatricula()==null){
+        if(u.getId()==null){
             super.adicionar(u);
         }
         else

@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import model.Usuario;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -17,7 +18,7 @@ public class LoginMB implements Serializable{
     UsuarioMB usuarioMB;
     private String login, senha;
     private Usuario usuarioLogado;
-
+    
     public String getLogin() {
         return login;
     }
