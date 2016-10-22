@@ -14,8 +14,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import model.ClienteAntigo;
-import model.LivroAntigo;
+import model.Livro;
+import model.Livro;
 import model.Retiradas;
 
 @Named
@@ -25,7 +25,7 @@ public class RetiradasMB {
     @Inject
     ClienteMB clienteMB;
     private String matricula, cliente;
-    private ClienteAntigo clienteSelecionado;
+    private Livro clienteSelecionado;
 
     //CRUD
     private List<Retiradas> listaRetiradas;
@@ -86,9 +86,9 @@ public class RetiradasMB {
         //Obtém o usuarioMB criado pelo servidor (nível de aplicação)
         //UsuarioMB usuarioMB = (UsuarioMB) contexto.getExternalContext().getApplicationMap().get("usuarioMB");
         //A partir do usuarioMB do servidor, pegamos a lista de usuários cadastrados no sistema
-        List<ClienteAntigo> listaClientes = clienteMB.getListaClientes();
+        List<Cliente> listaClientes = clienteMB.getListaClientes();
 
-        for (ClienteAntigo cliente : listaClientes) {
+        for (Livro cliente : listaClientes) {
             if (cliente.verificaCliente(matricula)) {
                 clienteSelecionado = cliente;
             }

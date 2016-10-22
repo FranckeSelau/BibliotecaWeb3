@@ -1,22 +1,43 @@
 package model;
 
-
-import java.util.Date;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
- * Classe para objetos do tipo livro, onde serão criados os livros da
- * Biblioteca.
  *
  * @author Francke
- * @since JDK 1.0
  */
-public class LivroAntigo {
+@Entity
+public class Livro implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private static int CODIGO_GERADO = 1;
     private String isbn, nome, autor, editora, ano;
     //private Date ano;
     private int retiradas;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    /**
+     * Construtor para inicializar cliente
+     *
+     * @param matricula identifica a matrícula de uma pessoa.
+     * @param nome identifica o nome de uma pessoa.
+     * @param telefone identifica telefone de uma pessoa.
+     *
+     */
     /**
      * Construtor para inicializar livro
      *
@@ -29,7 +50,7 @@ public class LivroAntigo {
      */
     
     
-    public LivroAntigo(String isbn, String nome, String autor, String editora, String ano) {
+    public Livro(String isbn, String nome, String autor, String editora, String ano) {
         this.isbn = isbn;
         this.nome = nome;
         this.autor = autor;
@@ -37,14 +58,14 @@ public class LivroAntigo {
         this.ano = ano;
     }
     
-    public LivroAntigo(String nome, String autor, String editora, String ano) {
+    public Livro(String nome, String autor, String editora, String ano) {
         this.nome = nome;
         this.autor = autor;
         this.editora = editora;        
         this.ano = ano;
     }
     
-    public LivroAntigo() {
+    public Livro() {
         
     }
 
@@ -144,5 +165,18 @@ public class LivroAntigo {
         return "Livro{" + "isbn=" + isbn + ", nome=" + nome + ", autor=" + autor + ", editora=" + editora + ", ano=" + ano + '}';
     }
 
-    
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Livro)) {
+            return false;
+        }
+        Livro other = (Livro) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
 }

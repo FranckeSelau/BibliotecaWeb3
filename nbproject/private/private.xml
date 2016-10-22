@@ -4,9 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/model/Usuario.java</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/model/Livro.java</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/model/Cliente.java</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/bean/UsuarioMB.java</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/bean/LoginMB.java</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/rn/LivroRN.java</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/relatorios.xhtml</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/rn/ClienteRN.java</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/bean/LivroMB.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,51 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package bean;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
+import model.Livro;
 import javax.inject.Named;
-import model.LivroAntigo;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
+import rn.LivroRN;
 
-@Named
-@ApplicationScoped //Application, pois os usuários cadastrados deverão permanecer mesmo se fizer logout.
-public class LivroMB {
-
-    //CRUD
-    private List<LivroAntigo> listaLivros;
-    private LivroAntigo livroSelecionado;
+/**
+ *
+ * @author Francke
+ */
+@Named(value = "livroMB")
+@SessionScoped
+public class LivroMB implements Serializable {
+    
+    private Livro livroSelecionado;
+    private String id;
+    @Inject
+    private LivroRN livroRN;
 
     public LivroMB() {
-        livroSelecionado = new LivroAntigo();
-        listaLivros = new ArrayList<LivroAntigo>();
-        listaLivros.add(new LivroAntigo("1", "Harry Potter I", "JK", "asd", "1995"));
-        listaLivros.add(new LivroAntigo("2", "Harry Potter II", "JK", "asd", "1999"));
+        livroSelecionado = new Livro();
     }
-    
-    public LivroAntigo getLivroSelecionado() {
+
+    public Livro getLivroSelecionado() {
         return livroSelecionado;
     }
 
-    public void setLivroSelecionado(LivroAntigo livroSelecionado) {
-        this.livroSelecionado = livroSelecionado;
-    }
-
-    public List<LivroAntigo> getListaLivros() {
-        return listaLivros;
-    }
-
-    public void setListaLivros(List<LivroAntigo> listaLivros) {
-        this.listaLivros = listaLivros;
+    public void setLivroSelecionado(Livro usuarioSelecionado) {
+        this.livroSelecionado = usuarioSelecionado;
     }
     
-
-    public String novoLivro(){
-        livroSelecionado=new LivroAntigo();
-        return("/admin/cadastroLivros?faces-redirect=true");
+    public String getId() {
+        return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    public List<Livro> getListaLivros(){
+        return livroRN.listar();
+    }
+    
+    public String novoLivro(){
+        livroSelecionado = new Livro();
+        return("/admin/cadastroLivros?faces-redirect=true");
+    }
+    
     public String adicionarLivro(){
-        listaLivros.add(livroSelecionado);
+        livroRN.salvar(livroSelecionado);
         this.novoLivro();
         return("/admin/confirmaCadastroLivro?faces-redirect=true");
     }
@@ -57,18 +68,19 @@ public class LivroMB {
     public String mostrarLivrosUsuario(){        
         return("/usuario/listaLivros?faces-redirect=true");
     }
-
-    public String editarLivro(LivroAntigo l){
-        livroSelecionado = l;
-        return("/admin/edicaoLivros?faces-redirect=true");
+    
+    public String editarLivro(Livro c){
+        livroSelecionado = c;
+        return("/admin/edicaoLivros?faces-redirect=true");        
     }
-    public String atualizarLivro()
-    {
+    
+    public String atualizarLivro(){
+        livroRN.salvar(livroSelecionado);
         return("/admin/listaLivros?faces-redirect=true");
     }
-
-    public void removerLivro(LivroAntigo livro){
-        listaLivros.remove(livro);
-    }
-
+    
+    public void removerLivro(Livro livro){
+        livroRN.remover(livro);
+    }    
+    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.io.Serializable;
@@ -38,7 +33,7 @@ public class Cliente implements Serializable {
     /**
      * Construtor para inicializar cliente
      *
-     * @param matricula identifica a matrÃ­cula de uma pessoa.
+     * @param matricula identifica a matrícula de uma pessoa.
      * @param nome identifica o nome de uma pessoa.
      * @param telefone identifica telefone de uma pessoa.
      *
