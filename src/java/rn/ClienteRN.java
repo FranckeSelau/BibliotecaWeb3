@@ -5,34 +5,35 @@
  */
 package rn;
 
+import model.Cliente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import model.Cliente;
 
 /**
  *
- * @author mari
+ * @author lhries
  */
 @Stateless
-public class ClienteRN extends AbstractRN<Cliente> {
-    @PersistenceContext(unitName = "BibliotecaJsfJpfPU")
+public class ClienteRN extends AbstractRN<Cliente>{
+    @PersistenceContext(unitName="BibliotecaPU")
     private EntityManager manager;
+    
+    public ClienteRN(){
+        super(Cliente.class);
+    }
 
     @Override
     protected EntityManager getEntityManager() {
         return manager;
     }
-
-    public ClienteRN() {
-        super(Cliente.class);
-    }
-     public void salvar(Cliente c){
+    
+    public void salvar(Cliente u){
         //validar parâmetros
-        if(c.getId()==null){
-            super.adicionar(c);
+        if(u.getMatricula()==null){
+            super.adicionar(u);
         }
         else
-            super.atualizar(c);
+            super.atualizar(u);
     }
 }

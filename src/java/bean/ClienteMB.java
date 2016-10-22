@@ -1,92 +1,68 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package bean;
 
-import model.ClienteAntigo;
-import java.util.ArrayList;
-import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
+import model.Cliente;
 import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
+import rn.ClienteRN;
 
-@Named
-@ApplicationScoped //Application, pois os usuários cadastrados deverão permanecer mesmo se fizer logout.
-public class ClienteMB {
-
-    //CRUD
-    private List<ClienteAntigo> listaClientes;
-    private ClienteAntigo clienteSelecionado;
-    private String matricula;
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
+/**
+ *
+ * @author Francke
+ */
+@Named(value = "clienteMB")
+@SessionScoped
+public class ClienteMB implements Serializable {
+    
+    private Cliente clienteSelecionado;
+    @Inject
+    private ClienteRN clienteRN;
 
     public ClienteMB() {
-        clienteSelecionado = new ClienteAntigo();
-        listaClientes = new ArrayList<ClienteAntigo>();
-        listaClientes.add(new ClienteAntigo("01", "Fulano", "3333-4544"));
-        listaClientes.add(new ClienteAntigo("02", "Beltrano", "3444-4545"));
+        clienteSelecionado = new Cliente();
     }
-    
-    public ClienteAntigo getClienteSelecionado() {
+
+    public Cliente getClienteSelecionado() {
         return clienteSelecionado;
     }
 
-    public void setClienteSelecionado(ClienteAntigo clienteSelecionado) {
-        this.clienteSelecionado = clienteSelecionado;
-    }
-
-    public List<ClienteAntigo> getListaClientes() {
-        return listaClientes;
-    }
-
-    public void setListaClientes(List<ClienteAntigo> listaClientes) {
-        this.listaClientes = listaClientes;
+    public void setClienteSelecionado(Cliente usuarioSelecionado) {
+        this.clienteSelecionado = usuarioSelecionado;
     }
     
-
+    public List<Cliente> getListaClientes(){
+        return clienteRN.listar();
+    }
+    
     public String novoCliente(){
-        clienteSelecionado=new ClienteAntigo();
-        return("/admin/cadastroClientes?faces-redirect=true");
-    }
-
-    public String adicionarCliente(){        
-        listaClientes.add(clienteSelecionado);
-        this.novoCliente();
-        return("/admin/confirmaCadastroCliente?faces-redirect=true");
+        clienteSelecionado = new Cliente();
+        return("/formularioCadastroCliente");
     }
     
-    public String mostrarClientes(){        
-        return("/admin/listaClientes?faces-redirect=true");
+    public String adicionarCliente(){
+        clienteRN.salvar(clienteSelecionado);
+        return(this.novoCliente());
     }
     
-    public String mostrarClientesUsuario(){        
-        return("/usuario/listaClientes?faces-redirect=true");
-    }
-
-    public String editarCliente(ClienteAntigo c){
+    public String editarCliente(Cliente c){
         clienteSelecionado = c;
-        return("/admin/edicaoClientes?faces-redirect=true");
-    }
-    public String atualizarCliente()
-    {
-        return("/admin/listaClientes?faces-redirect=true");
-    }
-
-    public void removerCliente(ClienteAntigo cliente){
-        listaClientes.remove(cliente);
+        return("/formularioEdicaoCliente");        
     }
     
-    public ClienteAntigo buscarCliente(String matricula) {
-        
-        for (ClienteAntigo cliente : listaClientes) {
-            if (cliente.getMatricula().equals(matricula)) {
-                return cliente;
-            }
-        }        
-        return null;
+    public String atualizarCliente(){
+        clienteRN.salvar(clienteSelecionado);
+        return("/index");
     }
-
+    
+    public void removerCliente(Cliente cliente){
+        clienteRN.remover(cliente);
+    }
+    
 }

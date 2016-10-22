@@ -21,47 +21,32 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String matricula, nome, telefone;
+    private Long matricula;
+    private String nome, telefone;
     private int retiradas, atrasos;
-    
 
-    public Long getId() {
-        return id;
+    public Long getMatricula() {
+        return matricula;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMatricula(Long matricula) {
+        this.matricula = matricula;
     }
     
-        public Cliente() {        
+    public Cliente() {        
     }
     /**
      * Construtor para inicializar cliente
      *
-     * @param matricula identifica a matrícula de uma pessoa.
+     * @param matricula identifica a matrÃ­cula de uma pessoa.
      * @param nome identifica o nome de uma pessoa.
      * @param telefone identifica telefone de uma pessoa.
      *
      */
-    public Cliente(String matricula, String nome, String telefone) {
-        this.matricula = matricula;
+    public Cliente(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
     }   
-
-    /**
-     * Retorna a matrícula
-     *
-     * @return matrícula de uma pessoa
-     */
-    public String getMatricula() {
-        return matricula;
-    }
-    
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
 
     /**
      * Retorna o nome
@@ -108,18 +93,18 @@ public class Cliente implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (matricula != null ? matricula.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the matricula fields are not set
         if (!(object instanceof Cliente)) {
             return false;
         }
         Cliente other = (Cliente) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.matricula == null && other.matricula != null) || (this.matricula != null && !this.matricula.equals(other.matricula))) {
             return false;
         }
         return true;
@@ -127,7 +112,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "model.ClienteJPA[ id=" + id + " ]";
+        return "model.Cliente[ id=" + matricula + " ]";
     }
     
 }
