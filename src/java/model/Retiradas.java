@@ -37,6 +37,7 @@ public class Retiradas{
     /**
      * Formata data de entrega
      *
+     * 
      * @return a entrega de um livro com data formatada "dd/MM/yyyy".
      */
     public String getEntregaFormatada() {
