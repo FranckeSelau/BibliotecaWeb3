@@ -1,7 +1,6 @@
 package bean;
 
 import java.io.Serializable;
-
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -17,10 +16,13 @@ public class RetiradasMB implements Serializable {
 
     @Inject
     RetiradasRN retiradaRN;
+    @Inject
+    ClienteMB clienteMB;
+    @Inject
+    LivroMB livroMB;
     private long id;
-    private String matricula, cliente;
     private Cliente clienteSelecionado;
-    private Livro LivroSelecionado;
+    private Livro livroSelecionado;
 
     //CRUD
     private List<Retiradas> listaRetiradas;
@@ -28,8 +30,11 @@ public class RetiradasMB implements Serializable {
 
     public RetiradasMB() {
         retiradaSelecionada = new Retiradas();
-     }
+        clienteSelecionado = new Cliente();
+        livroSelecionado = new Livro();        
+    }
 
+    
     public long getId() {
         return id;
     }
@@ -37,6 +42,22 @@ public class RetiradasMB implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    public Cliente getClienteSelecionado() {
+        return clienteSelecionado;
+    }
+
+    public void setClienteSelecionado(Cliente clienteSelecionado) {
+        this.clienteSelecionado = clienteSelecionado;
+    }
+
+    public Livro getLivroSelecionado() {
+        return livroSelecionado;
+    }
+
+    public void setLivroSelecionado(Livro livroSelecionado) {
+        this.livroSelecionado = livroSelecionado;
+    }    
     
     public Retiradas getRetiradaSelecionada() {
         return retiradaSelecionada;
@@ -61,6 +82,8 @@ public class RetiradasMB implements Serializable {
     }
 
     public String adicionarRetirada() {
+        retiradaSelecionada.setCliente(clienteSelecionado);
+        retiradaSelecionada.setLivro(livroSelecionado);
         retiradaRN.salvar(retiradaSelecionada);
         return (this.novaRetirada());
     }

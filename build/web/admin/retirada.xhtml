@@ -11,22 +11,13 @@
             <ui:define name="content">
                 <div class="tabelaUsuarios">                    
                     <h:form  >
-                        <h:selectOneMenu value="#{clienteMB.clienteSelecionado}" styleClass="btn btn-default"> 
-                            <f:selectItem itemLabel="Selecione o Cliente" noSelectionOption="true"/> 
-                            <f:selectItems 
-                                value="#{clienteMB.listaClientes}" 
-                                var="cliente" 
-                                itemValue="#{cliente.nome}" 
-                                itemLabel="#{cliente.nome}" /> 
-                        </h:selectOneMenu>
-                        <h:selectOneMenu value="#{livroMB.livroSelecionado}" style="margin: 10px" styleClass="btn btn-default"> 
-                            <f:selectItem itemLabel="Selecione o Livro" noSelectionOption="true"/> 
-                            <f:selectItems 
-                                value="#{livroMB.listaLivros}" 
-                                var="livro" 
-                                itemValue="#{livro.nome}" 
-                                itemLabel="#{livro.nome}" /> 
-                        </h:selectOneMenu>
+                        <h:panelGrid columns="2" >
+                            <h:outputLabel for="idMatricula" value="Matricula" style="font-weight: normal"/>
+                            <h:inputText id="idMatricula" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{retiradasMB.clienteSelecionado.matricula}" />
+                            <h:outputLabel for="idIsbn" value="Isbn" style="font-weight: normal"/>
+                            <h:inputText id="idIsbn" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{retiradasMB.livroSelecionado.id}" />
+                        </h:panelGrid>
+                        
                         <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: auto; " styleClass="btn btn-primary" action="#{retiradasMB.adicionarRetirada()}"/>
 
                         <h:dataTable var="retiradas" value="#{retiradasMB.listaRetiradas}" styleClass="table table-striped" >
@@ -39,13 +30,13 @@
                                 <f:facet name="header">
                                     <h:outputText value="Cliente" />
                                 </f:facet>
-                                <h:outputText id="idCliente" value="#{retiradas.cliente}" />
+                                <h:outputText id="idCliente" value="#{retiradas.cliente.nome}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Titulo" />
                                 </f:facet>
-                                <h:outputText id="idTitulo" value="#{retiradas.livro}"  />
+                                <h:outputText id="idTitulo" value="#{retiradas.livro.nome}"  />
                             </h:column>
 
                             <h:column >
