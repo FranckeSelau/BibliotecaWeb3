@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import model.Cliente;
 import model.Livro;
 import model.Retiradas;
 import rn.RetiradasRN;
+import static util.DateUtil.dateToString;
 
 @Named
 @ApplicationScoped
@@ -23,6 +25,7 @@ public class RetiradasMB implements Serializable {
     private long id;
     private Cliente clienteSelecionado;
     private Livro livroSelecionado;
+    private String dtFormatada;
 
     //CRUD
     private List<Retiradas> listaRetiradas;
@@ -84,8 +87,15 @@ public class RetiradasMB implements Serializable {
     public String adicionarRetirada() {
         retiradaSelecionada.setCliente(clienteSelecionado);
         retiradaSelecionada.setLivro(livroSelecionado);
+        retiradaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
+        retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
         retiradaRN.salvar(retiradaSelecionada);
         return (this.novaRetirada());
+    }
+    
+    public String formataData(Date data){
+        this.dtFormatada = dateToString(data);
+        return this.dtFormatada;
     }
 
     public String editarRetirada(Retiradas u) {

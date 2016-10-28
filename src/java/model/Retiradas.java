@@ -27,23 +27,22 @@ public class Retiradas implements Serializable {
     @OneToOne
     private Livro livro;
     @OneToOne
-    private Cliente cliente;
-    /*
+    private Cliente cliente;  
     @Temporal (value=TemporalType.DATE)
     private Date dataRetirada;
     @Temporal (value=TemporalType.DATE)
     private Date dataDevolucao;
 //    long DAY_IN_MS = 1000 * 60 * 60 * 24; // formatar data entrega
-*/
+
     public Retiradas() {
         
     }   
 
-    public Retiradas(Livro livro, Cliente cliente/*, Date dataRetirada, Date dataDevolucao*/) {
+    public Retiradas(Livro livro, Cliente cliente, Date dataRetirada, Date dataDevolucao) {
         this.livro = livro;
         this.cliente = cliente;
-//        this.dataRetirada = new Date(System.currentTimeMillis());
-//        this.dataDevolucao = new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24)));
+        this.dataRetirada = new Date(System.currentTimeMillis());
+        this.dataDevolucao = new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24)));
     }
     
     public Long getId() {
@@ -69,7 +68,7 @@ public class Retiradas implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-/*
+
     public Date getDataRetirada() {
         return dataRetirada;
     }
@@ -84,7 +83,7 @@ public class Retiradas implements Serializable {
 
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
-    }*/
+    }
 
     @Override
     public int hashCode() {
