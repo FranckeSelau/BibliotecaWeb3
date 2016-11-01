@@ -1,6 +1,7 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -9,6 +10,7 @@ import javax.inject.Named;
 import model.Cliente;
 import model.Livro;
 import model.Retiradas;
+import rn.LivroRN;
 import rn.RetiradasRN;
 import static util.DateUtil.dateToString;
 
@@ -19,12 +21,14 @@ public class RetiradasMB implements Serializable {
     @Inject
     RetiradasRN retiradaRN;
     @Inject
+    LivroRN livroRN;
+    @Inject
     ClienteMB clienteMB;
     @Inject
     LivroMB livroMB;
     private long id;
-    private Cliente clienteSelecionado;
-    private Livro livroSelecionado;
+    private long matriculaCliente;
+    private long idLivro;
     private String dtFormatada;
 
     //CRUD
@@ -33,11 +37,9 @@ public class RetiradasMB implements Serializable {
 
     public RetiradasMB() {
         retiradaSelecionada = new Retiradas();
-        clienteSelecionado = new Cliente();
-        livroSelecionado = new Livro();        
+          
     }
 
-    
     public long getId() {
         return id;
     }
@@ -46,20 +48,28 @@ public class RetiradasMB implements Serializable {
         this.id = id;
     }
 
-    public Cliente getClienteSelecionado() {
-        return clienteSelecionado;
+    public long getMatriculaCliente() {
+        return matriculaCliente;
     }
 
-    public void setClienteSelecionado(Cliente clienteSelecionado) {
-        this.clienteSelecionado = clienteSelecionado;
+    public void setMatriculaCliente(long matriculaCliente) {
+        this.matriculaCliente = matriculaCliente;
     }
 
-    public Livro getLivroSelecionado() {
-        return livroSelecionado;
+    public long getIdLivro() {
+        return idLivro;
     }
 
-    public void setLivroSelecionado(Livro livroSelecionado) {
-        this.livroSelecionado = livroSelecionado;
+    public void setIdLivro(long idLivro) {
+        this.idLivro = idLivro;
+    }
+
+    public String getDtFormatada() {
+        return dtFormatada;
+    }
+
+    public void setDtFormatada(String dtFormatada) {
+        this.dtFormatada = dtFormatada;
     }    
     
     public Retiradas getRetiradaSelecionada() {
@@ -85,12 +95,36 @@ public class RetiradasMB implements Serializable {
     }
 
     public String adicionarRetirada() {
-        retiradaSelecionada.setCliente(clienteSelecionado);
-        retiradaSelecionada.setLivro(livroSelecionado);
+        Livro l = buscaLivroID(this.getIdLivro());
+        l.setDisponivel(false);
+        l.setRetiradas(l.getRetiradas()+1);
+        retiradaSelecionada.setLivro(l);
         retiradaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
         retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
+        livroRN.salvar(l);
         retiradaRN.salvar(retiradaSelecionada);
+                
         return (this.novaRetirada());
+    }
+    public Livro buscaLivroID(Long id){
+        Livro auxLivro = new Livro();
+        for(Livro l : this.livroMB.getListaLivros()){
+            if(l.getId().equals(id)){
+                auxLivro=l;
+            }
+        }
+        return auxLivro;
+            
+    }
+    
+      public List<Livro> LivrosDisponiveis(){
+        List<Livro> disponiveis = new ArrayList<Livro>();
+        for(Livro l : this.livroMB.getListaLivros()){
+            if(l.isDisponivel()){
+                disponiveis.add(l);
+            }
+        }
+        return disponiveis;
     }
     
     public String formataData(Date data){

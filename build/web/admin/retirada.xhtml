@@ -13,9 +13,9 @@
                     <h:form  >
                         <h:panelGrid columns="2" >
                             <h:outputLabel for="idMatricula" value="Matricula" style="font-weight: normal"/>
-                            <h:inputText id="idMatricula" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{retiradasMB.clienteSelecionado.matricula}" />
-                            <h:outputLabel for="idIsbn" value="Isbn" style="font-weight: normal"/>
-                            <h:inputText id="idIsbn" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{retiradasMB.livroSelecionado.id}" />
+                            <h:inputText id="idMatricula" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{retiradasMB.matriculaCliente}" />
+                            <h:outputLabel for="id" value="ID livro" style="font-weight: normal"/>
+                            <h:inputText id="id" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{retiradasMB.idLivro}" />
                         </h:panelGrid>
                         
                         <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: auto; " styleClass="btn btn-primary" action="#{retiradasMB.adicionarRetirada()}"/>
@@ -57,7 +57,7 @@
                                 </f:facet>
                                 <h:commandLink value="Editar " action="#{clienteMB.editarCliente(cliente)}"/>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <h:commandLink onclick="funcaoDeletarUsuario()" id="remover" value="Remover" action="#{retiradasMB.removerRetirada(retirada)}"/>
+                                <h:commandLink onclick="funcaoDeletarUsuario()" id="remover" value="Remover" action="#{retiradasMB.removerRetirada(retiradas)}"/>
                             </h:column>
                         </h:dataTable>
                         <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>

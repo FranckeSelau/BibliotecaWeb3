@@ -21,6 +21,7 @@ public class Livro implements Serializable {
     private String isbn, nome, autor, editora, ano;
     //private Date ano;
     private int retiradas;
+    private boolean disponivel = true;    
 
     public Long getId() {
         return id;
@@ -29,6 +30,8 @@ public class Livro implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+  
     
     /**
      * Construtor para inicializar cliente
@@ -141,6 +144,14 @@ public class Livro implements Serializable {
      */
     public String getAno() {
         return ano;
+    }
+    
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 
     /**
