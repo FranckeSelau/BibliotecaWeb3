@@ -96,8 +96,10 @@ public class RetiradasMB implements Serializable {
 
     public String adicionarRetirada() {
         Livro l = buscaLivroID(this.getIdLivro());
+        Cliente c = buscaClienteMat(this.getMatriculaCliente());
         l.setDisponivel(false);
         l.setRetiradas(l.getRetiradas()+1);
+        retiradaSelecionada.setCliente(c);
         retiradaSelecionada.setLivro(l);
         retiradaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
         retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
@@ -113,8 +115,17 @@ public class RetiradasMB implements Serializable {
                 auxLivro=l;
             }
         }
-        return auxLivro;
-            
+        return auxLivro;            
+    }
+    
+    public Cliente buscaClienteMat(Long mat){
+        Cliente auxCliente = new Cliente();
+        for(Cliente c : this.clienteMB.getListaClientes()){
+            if(c.getMatricula().equals(mat)){
+                auxCliente = c;
+            }
+        }
+        return auxCliente;
     }
     
       public List<Livro> LivrosDisponiveis(){
