@@ -11,6 +11,7 @@
             <ui:define name="content">
                 <div class="tituloLivros">Adicionar Livro</div>
                 <div class="cadastroLivros">
+                    <f:event listener="#{livroMB.novoLivro()}" type="preRenderView"/> 
                     <h:form>
                         <h:panelGrid columns="2" >
                             <h:outputLabel for="idIsbn" value="Isbn" style="font-weight: normal"/>
