@@ -37,9 +37,13 @@ public class RetiradasMB implements Serializable {
 
     //CRUD
     private List<Retiradas> listaRetiradas;
+    private List<Retiradas> pesquisa;
     private Retiradas retiradaSelecionada;
+    private Retiradas pesquisaSelecionada;
 
     public RetiradasMB() {
+        pesquisa = new ArrayList<>();
+        pesquisaSelecionada = new Retiradas();
         retiradaSelecionada = new Retiradas();
         livroSelecionado = new Livro();
 
@@ -97,16 +101,48 @@ public class RetiradasMB implements Serializable {
         return retiradaRN.listar();
     }
 
+    public List<Retiradas> getPesquisa() {
+        return pesquisa;
+    }
+
+    public void setPesquisa(List<Retiradas> pesquisa) {
+        this.pesquisa = pesquisa;
+    }    
+    
+    public Retiradas getPesquisaSelecionada() {
+        return pesquisaSelecionada;
+    }
+
+    public void setPesquisaSelecionada(Retiradas pesquisaSelecionada) {
+        this.pesquisaSelecionada = pesquisaSelecionada;
+    }
+
     public String novaRetirada() {
         retiradaSelecionada = new Retiradas();
         return ("/admin/retirada?faces-redirect=true");
     }
 
     public String novaRetiradaUsuario() {
+        pesquisaSelecionada = new Retiradas();
         retiradaSelecionada = new Retiradas();
         return ("/usuario/retirada?faces-redirect=true");
     }
-
+    
+    public String adicionarPesquisa() {
+        Livro l = this.livroSelecionado;
+        Cliente c = buscaClienteMat(this.getMatriculaCliente());
+        pesquisaSelecionada.setCliente(c);
+        pesquisaSelecionada.setLivro(l);
+        pesquisaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
+        pesquisaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
+        pesquisa.add(pesquisaSelecionada);
+        return (this.novaRetirada());
+    } 
+    
+    public void limparPesquisa(Retiradas r) {
+        pesquisa.remove(r);      
+    }
+    
     public String adicionarRetirada() {
         Livro l = this.livroSelecionado;
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
