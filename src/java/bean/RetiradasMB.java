@@ -10,6 +10,7 @@ import javax.inject.Named;
 import model.Cliente;
 import model.Livro;
 import model.Retiradas;
+import rn.ClienteRN;
 import rn.LivroRN;
 import rn.RetiradasRN;
 import static util.DateUtil.dateToString;
@@ -23,6 +24,8 @@ public class RetiradasMB implements Serializable {
     @Inject
     LivroRN livroRN;
     @Inject
+    ClienteRN clienteRN;
+    @Inject
     ClienteMB clienteMB;
     @Inject
     LivroMB livroMB;
@@ -30,6 +33,7 @@ public class RetiradasMB implements Serializable {
     private long matriculaCliente;
     private long idLivro;
     private String dtFormatada;
+    private Livro livroSelecionado;
 
     //CRUD
     private List<Retiradas> listaRetiradas;
@@ -37,7 +41,8 @@ public class RetiradasMB implements Serializable {
 
     public RetiradasMB() {
         retiradaSelecionada = new Retiradas();
-          
+        livroSelecionado = new Livro();
+
     }
 
     public long getId() {
@@ -70,7 +75,15 @@ public class RetiradasMB implements Serializable {
 
     public void setDtFormatada(String dtFormatada) {
         this.dtFormatada = dtFormatada;
-    }    
+    }
+
+    public Livro getLivroSelecionado() {
+        return livroSelecionado;
+    }
+
+    public void setLivroSelecionado(Livro livroSelecionado) {
+        this.livroSelecionado = livroSelecionado;
+    }
     
     public Retiradas getRetiradaSelecionada() {
         return retiradaSelecionada;
@@ -95,7 +108,7 @@ public class RetiradasMB implements Serializable {
     }
 
     public String adicionarRetirada() {
-        Livro l = buscaLivroID(this.getIdLivro());
+        Livro l = this.livroSelecionado;
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
         l.setDisponivel(false);
         l.setRetiradas(l.getRetiradas()+1);
@@ -105,31 +118,19 @@ public class RetiradasMB implements Serializable {
         retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
         livroRN.salvar(l);
         retiradaRN.salvar(retiradaSelecionada);
-                
         return (this.novaRetirada());
-    }
-    public Livro buscaLivroID(Long id){
-        Livro auxLivro = new Livro();
-        for(Livro l : this.livroMB.getListaLivros()){
-            if(l.getId().equals(id)){
-                auxLivro=l;
-            }
-        }
-        return auxLivro;            
-    }
+    }    
     
     public Cliente buscaClienteMat(Long mat){
-        Cliente auxCliente = new Cliente();
-        for(Cliente c : this.clienteMB.getListaClientes()){
-            if(c.getMatricula().equals(mat)){
-                auxCliente = c;
-            }
-        }
-        return auxCliente;
+        return clienteRN.buscar(mat);
     }
     
-      public List<Livro> LivrosDisponiveis(){
-        List<Livro> disponiveis = new ArrayList<Livro>();
+    public Livro buscaLivroID(Long id){
+        return livroRN.buscar(id);
+    }
+    
+    public List<Livro> getLivrosDisponiveis(){
+        List<Livro> disponiveis = new ArrayList<>();
         for(Livro l : this.livroMB.getListaLivros()){
             if(l.isDisponivel()){
                 disponiveis.add(l);
@@ -155,6 +156,13 @@ public class RetiradasMB implements Serializable {
 
     public void removerRetirada(Retiradas retirada) {
         retiradaRN.remover(retirada);
+    }
+    
+    public Livro buscarLivroPorNome(String nome){
+        for(Livro l: getLivrosDisponiveis())
+            if(l.getNome().equals(nome))
+                return l;
+        return null;
     }
 /*
     public String verificaCliente() {

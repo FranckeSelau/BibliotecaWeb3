@@ -78,4 +78,22 @@ public class LivroMB implements Serializable {
         livroRN.remover(livro);
     }    
     
+    public Livro buscarLivroPorNome(String nome){
+        for(Livro l: getListaLivros())
+            if(l.getNome().equals(nome))
+                return l;
+        return null;
+    }
+    
+    /*metodo criado para buscar livro manualmente
+    public Livro buscaLivroID(Long id){
+        Livro auxLivro = new Livro();
+        for(Livro l : this.livroMB.getListaLivros()){
+            
+            if(l.getId().equals(id)){
+                auxLivro=l;
+            }
+        }
+        return auxLivro;            
+    }*/
 }

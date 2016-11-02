@@ -14,8 +14,14 @@
                         <h:panelGrid columns="2" >
                             <h:outputLabel for="idMatricula" value="Matricula" style="font-weight: normal"/>
                             <h:inputText id="idMatricula" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{retiradasMB.matriculaCliente}" />
-                            <h:outputLabel for="id" value="ID livro" style="font-weight: normal"/>
-                            <h:inputText id="id" style="width: 280px; margin-left: 30px; margin-top: 6px" styleClass="form-control" value="#{retiradasMB.idLivro}" />
+                            <h:outputLabel value="Livro:" for="idLivro"/>
+                            <h:selectOneMenu value="#{retiradasMB.livroSelecionado}" id="idLivro" styleClass="btn btn-default">
+                                <f:selectItem itemLabel="Selecione" noSelectionOption="true"/>
+                                <f:selectItems value="#{retiradasMB.livrosDisponiveis}"
+                                               var="livro" itemValue="#{livro}"
+                                               itemLabel="#{livro.nome}"/>
+                            </h:selectOneMenu>
+
                         </h:panelGrid>
                         
                         <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: auto; " styleClass="btn btn-primary" action="#{retiradasMB.adicionarRetirada()}"/>
