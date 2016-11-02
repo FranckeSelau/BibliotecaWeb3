@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import model.Cliente;
@@ -88,7 +90,7 @@ public class RetiradasMB implements Serializable {
     public void setLivroSelecionado(Livro livroSelecionado) {
         this.livroSelecionado = livroSelecionado;
     }
-    
+
     public Retiradas getRetiradaSelecionada() {
         return retiradaSelecionada;
     }
@@ -107,8 +109,8 @@ public class RetiradasMB implements Serializable {
 
     public void setPesquisa(List<Retiradas> pesquisa) {
         this.pesquisa = pesquisa;
-    }    
-    
+    }
+
     public Retiradas getPesquisaSelecionada() {
         return pesquisaSelecionada;
     }
@@ -127,7 +129,7 @@ public class RetiradasMB implements Serializable {
         retiradaSelecionada = new Retiradas();
         return ("/usuario/retirada?faces-redirect=true");
     }
-    
+
     public String adicionarPesquisa() {
         Livro l = this.livroSelecionado;
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
@@ -137,46 +139,53 @@ public class RetiradasMB implements Serializable {
         pesquisaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
         pesquisa.add(pesquisaSelecionada);
         return (this.novaRetirada());
-    } 
-    
-    public void limparPesquisa(Retiradas r) {
-        pesquisa.remove(r);      
     }
-    
+
+    public void limparPesquisa(Retiradas r) {
+        pesquisa.remove(r);
+    }
+
     public String adicionarRetirada() {
-        Livro l = this.livroSelecionado;
-        Cliente c = buscaClienteMat(this.getMatriculaCliente());
-        l.setDisponivel(false);
-        l.setRetiradas(l.getRetiradas()+1);
-        retiradaSelecionada.setCliente(c);
-        retiradaSelecionada.setLivro(l);
-        retiradaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
-        retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
-        livroRN.salvar(l);
-        retiradaRN.salvar(retiradaSelecionada);
-        limparPesquisa(pesquisaSelecionada);
-        return (this.novaRetirada());
-    }    
-    
-    public Cliente buscaClienteMat(Long mat){
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        if (!pesquisa.isEmpty()) {
+            Livro l = this.livroSelecionado;
+            Cliente c = buscaClienteMat(this.getMatriculaCliente());
+            l.setDisponivel(false);
+            l.setRetiradas(l.getRetiradas() + 1);
+            retiradaSelecionada.setCliente(c);
+            retiradaSelecionada.setLivro(l);
+            retiradaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
+            retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
+            livroRN.salvar(l);
+            retiradaRN.salvar(retiradaSelecionada);
+            limparPesquisa(pesquisaSelecionada);
+            return (this.novaRetirada());
+        }
+        FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                "Erro!", "É necessario pesquisar antes!");
+        contexto.addMessage("idMensagem", mensagem);
+        return ("/admin/retirada?faces-redirect=true");
+    }
+
+    public Cliente buscaClienteMat(Long mat) {
         return clienteRN.buscar(mat);
     }
-    
-    public Livro buscaLivroID(Long id){
+
+    public Livro buscaLivroID(Long id) {
         return livroRN.buscar(id);
     }
-    
-    public List<Livro> getLivrosDisponiveis(){
+
+    public List<Livro> getLivrosDisponiveis() {
         List<Livro> disponiveis = new ArrayList<>();
-        for(Livro l : this.livroMB.getListaLivros()){
-            if(l.isDisponivel()){
+        for (Livro l : this.livroMB.getListaLivros()) {
+            if (l.isDisponivel()) {
                 disponiveis.add(l);
             }
         }
         return disponiveis;
     }
-    
-    public String formataData(Date data){
+
+    public String formataData(Date data) {
         this.dtFormatada = dateToString(data);
         return this.dtFormatada;
     }
@@ -194,14 +203,16 @@ public class RetiradasMB implements Serializable {
     public void removerRetirada(Retiradas retirada) {
         retiradaRN.remover(retirada);
     }
-    
-    public Livro buscarLivroPorNome(String nome){
-        for(Livro l: getLivrosDisponiveis())
-            if(l.getNome().equals(nome))
+
+    public Livro buscarLivroPorNome(String nome) {
+        for (Livro l : getLivrosDisponiveis()) {
+            if (l.getNome().equals(nome)) {
                 return l;
+            }
+        }
         return null;
     }
-/*
+    /*
     public String verificaCliente() {
         //Obtém o usuarioMB criado pelo servidor (nível de aplicação)
         //UsuarioMB usuarioMB = (UsuarioMB) contexto.getExternalContext().getApplicationMap().get("usuarioMB");

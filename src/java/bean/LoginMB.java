@@ -1,7 +1,6 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import model.Usuario;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
