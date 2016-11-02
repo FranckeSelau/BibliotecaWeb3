@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/index.xhtml</file>
-            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/retirada.xhtml</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/cadastroClientes.xhtml</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/retirada.xhtml</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/cadastroLivros.xhtml</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/resources/css/estilos.css</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/listaLivros.xhtml</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/index.xhtml</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/bean/RetiradasMB.java</file>
-            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/bean/LivroMB.java</file>
         </group>
     </open-files>
 </project-private>
