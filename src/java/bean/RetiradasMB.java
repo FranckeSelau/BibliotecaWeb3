@@ -154,6 +154,7 @@ public class RetiradasMB implements Serializable {
         retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
         livroRN.salvar(l);
         retiradaRN.salvar(retiradaSelecionada);
+        limparPesquisa(pesquisaSelecionada);
         return (this.novaRetirada());
     }    
     

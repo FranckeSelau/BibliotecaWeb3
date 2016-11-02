@@ -26,44 +26,49 @@
                                 <h:commandButton value="Pesquisar" style="width: auto; margin-left: 45px " styleClass="btn btn-primary" action="#{retiradasMB.adicionarPesquisa()}"/>
                             </h:panelGrid>
                         </div>
-                        <div class="alertaCadastroCliente">
+                        <div class="alertaRetirada">
                             <h:messages id="messages"  showDetail="false" styleClass= "alert alert-danger"/>
                         </div>
-                        <h:dataTable var="pesquisa" value="#{retiradasMB.pesquisa}" styleClass="table table-striped" >
-                            <f:facet name="header">
-                                <h:outputText value="Confirmar Retirada" style="font-size: 18px; padding-left: 12px" />
-                            </f:facet>
-                            <h:column>
+                        <div class="tabelaRetiradaPesquisa">
+                            <h:dataTable var="pesquisa" value="#{retiradasMB.pesquisa}" styleClass="table table-striped" >
                                 <f:facet name="header">
-                                    <h:outputText value="Cliente" />
+                                    <h:outputText value="Confirmar Retirada" style="font-size: 18px; padding-left: 12px" />
                                 </f:facet>
-                                <h:outputText id="idCliente" value="#{pesquisa.cliente.nome}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Titulo" />
-                                </f:facet>
-                                <h:outputText id="idTitulo" value="#{pesquisa.livro.nome}"  />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Data Retirada" />
-                                </f:facet>
-                                <h:outputText id="idDataret" value="#{retiradasMB.formataData(pesquisa.dataRetirada)}"  />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Data devolucao" />
-                                </f:facet>                                
-                                <h:outputText id="idDatadev" value="#{retiradasMB.formataData(pesquisa.dataDevolucao)}"  />
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Cliente" />
+                                    </f:facet>
+                                    <h:outputText id="idCliente" value="#{pesquisa.cliente.nome}" />
                                 </h:column>
                                 <h:column>
-                                <h:commandButton id="limpar" value="Limpar pesquisa" style="align: right; margin-right: -57px;" styleClass="btn btn-danger" action="#{retiradasMB.limparPesquisa(pesquisa)}"/>
-                            </h:column>
-                           </h:dataTable>
-                        <h:button value="Voltar" style="align: right; width: 120px; margin-left: 650px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
-                        <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: 120px; align: right; " styleClass="btn btn-primary" action="#{retiradasMB.adicionarRetirada()}"/>
+                                    <f:facet name="header">
+                                        <h:outputText value="Titulo" />
+                                    </f:facet>
+                                    <h:outputText id="idTitulo" value="#{pesquisa.livro.nome}"  />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data Retirada" />
+                                    </f:facet>
+                                    <h:outputText id="idDataret" value="#{retiradasMB.formataData(pesquisa.dataRetirada)}"  />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Data devolucao" />
+                                    </f:facet>                                
+                                    <h:outputText id="idDatadev" value="#{retiradasMB.formataData(pesquisa.dataDevolucao)}"  />
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton id="limpar" value="Limpar pesquisa" style="align: right; margin-right: -57px;" styleClass="btn btn-danger" action="#{retiradasMB.limparPesquisa(pesquisa)}"/>
+                                </h:column>
+                            </h:dataTable>                              
+                        </div>
+                        <div class="tabelaRetiradaPesquisaCentro">
+                            <h:button value="Voltar" style="align: right; width: 120px; margin-left: 650px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
+                            <h:commandButton value="Confirmar" onclick="funcaoConfirmarCadastro()" style="width: 120px; align: right; " styleClass="btn btn-primary" action="#{retiradasMB.adicionarRetirada()}"/>
+                        </div>
                     </h:form>
+
                 </div>
             </ui:define>
         </ui:composition>

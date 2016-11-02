@@ -68,6 +68,30 @@ body {
     z-index: 15;    
 }
 
+.alertaRetirada{
+    position:absolute; 
+    width: 280px; 
+    text-align: center;
+    margin-top: -230px;
+    margin-left: 340px;
+    z-index: 15;    
+}
+
+.tabelaRetiradaPesquisa{
+    position:relative; 
+    width: 900px; 
+    height: 160px;
+    
+}
+
+.tabelaRetiradaPesquisaCentro{
+    position:relative; 
+    width: 900px; 
+    height: 60px;
+    margin-top:-20px;
+      
+}
+
 .alertaCadastroLivro{
     position:absolute; 
     width: 280px; 
