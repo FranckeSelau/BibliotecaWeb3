@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import model.Cliente;
@@ -137,12 +135,12 @@ public class DevolucaoMB implements Serializable {
         Livro l = retirada.getLivro();
         l.setDisponivel(true);
         livroRN.salvar(l);
-        //retiradaRN.remover(retirada);
+        retiradaRN.remover(retirada);
     }
 
-    public String novaRetirada() {
+    public String novaDevolucao() {
         devolucaoSelecionada = new Devolucao();
-        return ("/admin/retirada?faces-redirect=true");
+        return ("/admin/devolucao?faces-redirect=true");
     }
 
     public String novaRetiradaUsuario() {
@@ -151,29 +149,13 @@ public class DevolucaoMB implements Serializable {
         return ("/usuario/retirada?faces-redirect=true");
     }
 
-    public String adicionarPesquisa() {        
-        Livro l = this.livroSelecionado;
-        Cliente c = buscaClienteMat(this.getMatriculaCliente());
-        pesquisaSelecionada.setCliente(c);
-        pesquisaSelecionada.setLivro(l);
-        pesquisaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
-        pesquisaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS)));
-        pesquisa.add(pesquisaSelecionada);
-        return (this.novaRetirada());
-    }
-
     public void limparPesquisa(Devolucao r) {
         pesquisa.remove(r);
     }
 
     public String adicionarRetirada() {
-        FacesContext contexto = FacesContext.getCurrentInstance();
-        DevolucaoMB retiradasMB = (DevolucaoMB) contexto.getExternalContext().getApplicationMap().get("DevolucaoMB");
-        if (!pesquisa.isEmpty()) {
             Livro l = this.livroSelecionado;
             Cliente c = buscaClienteMat(this.getMatriculaCliente());
-            l.setDisponivel(false);
-            //l.setDevolucao(l.getDevolucao() + 1);
             devolucaoSelecionada.setCliente(c);
             devolucaoSelecionada.setLivro(l);
             devolucaoSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
@@ -181,14 +163,9 @@ public class DevolucaoMB implements Serializable {
             livroRN.salvar(l);
             devolucaoRN.salvar(devolucaoSelecionada);
             limparPesquisa(pesquisaSelecionada);
-            this.novaRetirada();
+            this.novaDevolucao();
             return ("/admin/confirmaRetirada?faces-redirect=true");
         }
-        FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                "Erro!", "É necessario pesquisar antes!");
-        contexto.addMessage("idMensagem", mensagem);
-        return ("/admin/retirada?faces-redirect=true");
-    }
 
     public Cliente buscaClienteMat(Long mat) {
         return clienteRN.buscar(mat);
@@ -239,18 +216,4 @@ public class DevolucaoMB implements Serializable {
         }
         return null;
     }
-    
-    /*
-    public String verificaRetirada() {
-        List<Retiradas> listaRetiradas = RetiradasMB.getListaRetiradas();
-
-        for (Retiradas retirada : listaRetiradas) {
-            if (retirada.) {
-                clienteSelecionado = cliente;
-            }
-        }
-
-        return ("admin/retirada?faces-redirect=true");
-    }*/
-
 }

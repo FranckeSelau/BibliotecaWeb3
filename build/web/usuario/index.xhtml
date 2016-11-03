@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">   
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="top"></ui:define>
+            <ui:define name="content">
+                <div class="logout">
+                    <h:form>
+                        <h:commandLink value="Logout" action="#{loginMB.realizaLogout()}"/>                                   
+                    </h:form>
+                </div>
+                <div class="acessoADM">                    
+                    <h:outputText value="Seja bem vindo, #{loginMB.usuarioLogado.nome}"/>
+                    <br></br>Acesso Usuário
+                </div>
+                <div class="acessoUsuarioMenu">
+                    <h:form>
+                        <h:panelGrid columns="1" >
+                            <h:commandButton value="Editar Perfil" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow"  action="#{usuarioMB.editarPerfil(loginMB.usuarioLogado)}" styleClass="btn btn-primary"/>
+                            <p style="color: #269abc">_________________________</p>
+                            <h:commandButton value="Nova Retirada" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{retiradasMB.novaRetiradaUsuario()}" styleClass="btn btn-primary"/>
+                            <h:commandButton value="Nova Devolução" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{devolucaoMB.novaDevolucaoUsuario()}" styleClass="btn btn-primary"/>
+                            <h:commandButton value="Relatórios" style="width: 200px; margin-top: 6px; box-shadow: 1px 1px 1px threeddarkshadow" action="#{relatorioMB.mostrarRelatoriosUsuario()}" styleClass="btn btn-primary"/>
+                        </h:panelGrid>                    
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

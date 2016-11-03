@@ -132,6 +132,17 @@ public class RetiradasMB implements Serializable {
         retiradaSelecionada = new Retiradas();
         return ("/usuario/retirada?faces-redirect=true");
     }
+    
+    public String adicionarPesquisa() {
+        Livro l = this.livroSelecionado;
+        Cliente c = buscaClienteMat(this.getMatriculaCliente());
+        pesquisaSelecionada.setCliente(c);
+        pesquisaSelecionada.setLivro(l);
+        pesquisaSelecionada.setDataRetirada(dataAtual);
+        pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
+        pesquisa.add(pesquisaSelecionada);
+        return (this.novaRetirada());
+    }
 
     public void limparPesquisa(Retiradas r) {
         pesquisa.remove(r);
@@ -217,8 +228,8 @@ public class RetiradasMB implements Serializable {
     }
     
     public String getLabel(Retiradas r){
-        if(r.getDataDevolucao().before(dataAtual)) return "label-success";
-        else return "label-danger";
+        if(r.getDataDevolucao().before(dataAtual)) return "label-danger";
+        else return "label-success";
     }
     
     /*
