@@ -133,17 +133,6 @@ public class RetiradasMB implements Serializable {
         return ("/usuario/retirada?faces-redirect=true");
     }
 
-    public String adicionarPesquisa() {
-        Livro l = this.livroSelecionado;
-        Cliente c = buscaClienteMat(this.getMatriculaCliente());
-        pesquisaSelecionada.setCliente(c);
-        pesquisaSelecionada.setLivro(l);
-        pesquisaSelecionada.setDataRetirada(dataAtual);
-        pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
-        pesquisa.add(pesquisaSelecionada);
-        return (this.novaRetirada());
-    }
-
     public void limparPesquisa(Retiradas r) {
         pesquisa.remove(r);
     }

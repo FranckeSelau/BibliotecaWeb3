@@ -132,6 +132,13 @@ public class DevolucaoMB implements Serializable {
     public void setRetiradaSelecionada(Retiradas retiradaSelecionada) {
         this.retiradaSelecionada = retiradaSelecionada;
     }
+    
+    public void devolverLivro(Retiradas retirada){
+        Livro l = retirada.getLivro();
+        l.setDisponivel(true);
+        livroRN.salvar(l);
+        //retiradaRN.remover(retirada);
+    }
 
     public String novaRetirada() {
         devolucaoSelecionada = new Devolucao();
