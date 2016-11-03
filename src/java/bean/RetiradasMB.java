@@ -147,6 +147,7 @@ public class RetiradasMB implements Serializable {
 
     public String adicionarRetirada() {
         FacesContext contexto = FacesContext.getCurrentInstance();
+        RetiradasMB retiradasMB = (RetiradasMB) contexto.getExternalContext().getApplicationMap().get("RetiradasMB");
         if (!pesquisa.isEmpty()) {
             Livro l = this.livroSelecionado;
             Cliente c = buscaClienteMat(this.getMatriculaCliente());
@@ -159,7 +160,8 @@ public class RetiradasMB implements Serializable {
             livroRN.salvar(l);
             retiradaRN.salvar(retiradaSelecionada);
             limparPesquisa(pesquisaSelecionada);
-            return (this.novaRetirada());
+            this.novaRetirada();
+            return ("/admin/confirmaRetirada?faces-redirect=true");
         }
         FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "É necessario pesquisar antes!");

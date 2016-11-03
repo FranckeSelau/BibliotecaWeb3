@@ -18,7 +18,7 @@
                             <div class="tituloRetirada">Nova Retirada</div>
                             <h:panelGrid columns="5" style="margin-left: 7px; margin-top: 29px;" >
                                 <h:outputLabel for="idMatricula" value="Buscar Cliente" style="font-weight: normal"/>
-                                <h:inputText id="idMatricula" style="width: 190px; margin-left: 20px" styleClass="form-control" required="true" requiredMessage="Erro! Campo 'Matrícula' vazio!" a:placeholder="Digite a Matrícula"  value="#{retiradasMB.matriculaCliente}" />
+                                <h:inputText id="idMatricula" style="width: 190px; margin-left: 20px" styleClass="form-control" required="true"  requiredMessage="Erro! Campo 'Matrícula' vazio!" a:placeholder="Digite a Matrícula"  value="#{retiradasMB.matriculaCliente}" />
                                 <h:outputLabel  for="idLivro"/>
                                 <h:selectOneMenu value="#{retiradasMB.livroSelecionado}" id="idLivro" styleClass="btn btn-primary" style="margin-left: 60px; width: 300px" required="true" requiredMessage="Erro! Selecione um livro disponível!">
                                     <f:selectItem itemLabel="Selecione um Livro disponível" noSelectionOption="true"  />
