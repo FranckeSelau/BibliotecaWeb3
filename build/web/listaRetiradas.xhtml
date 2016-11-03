@@ -49,18 +49,10 @@
                                 <h:outputText id="idDev" value="#{retiradasMB.formataData(retirada.dataDevolucao)}" />
                             </h:column>
                             <h:column>
-                               <f:facet name="header">
+                                <f:facet name="header">
                                     <h:outputText value="Atrasado" />
                                 </f:facet>
-                                <span style="margin-left: 17px; padding-top: 7px; padding-bottom: 7px; padding-left: 12px; padding-right: 12px" Class="label #{livro.label}">#{livro.disponivelString}</span>
-                            </h:column>
-                            <h:column >
-                                <f:facet name="header">
-                                    <h:outputText value="Operação" style="padding-left: 0" />
-                                </f:facet>
-                                <h:commandLink value="Editar " action="#{livroMB.editarLivro(livro)}"/>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <h:commandLink onclick="funcaoDeletarUsuario()" id="remover" value="Remover" action="#{livroMB.removerLivro(livro)}"/>
+                                <span style="margin-left: 11px; padding-top: 7px; padding-bottom: 7px; padding-left: 12px; padding-right: 12px" Class="label #{retiradasMB.getLabel(retirada)}">#{retiradasMB.getAtrasadoString(retirada)}</span>
                             </h:column>
                         </h:dataTable>
                         <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>

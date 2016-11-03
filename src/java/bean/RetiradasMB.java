@@ -33,10 +33,12 @@ public class RetiradasMB implements Serializable {
     LivroMB livroMB;
     private long id;
     private long matriculaCliente;
-    private long idLivro;
+    private long idLivro; 
     private String dtFormatada;
     private Livro livroSelecionado;
-    long DAY_IN_MS = 1000 * 60 * 60 * 24; // formatar data entrega
+    long DAY_IN_MS = 1000 * 60 * 60 * 24;
+    Date periodoEmprestimo = new Date(System.currentTimeMillis() + 7 * DAY_IN_MS); // uma semana
+    Date dataAtual = new Date(System.currentTimeMillis());
 
     //CRUD
     private List<Retiradas> listaRetiradas;
@@ -118,7 +120,7 @@ public class RetiradasMB implements Serializable {
 
     public void setPesquisaSelecionada(Retiradas pesquisaSelecionada) {
         this.pesquisaSelecionada = pesquisaSelecionada;
-    }
+    }    
 
     public String novaRetirada() {
         retiradaSelecionada = new Retiradas();
@@ -136,8 +138,8 @@ public class RetiradasMB implements Serializable {
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
         pesquisaSelecionada.setCliente(c);
         pesquisaSelecionada.setLivro(l);
-        pesquisaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
-        pesquisaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS)));
+        pesquisaSelecionada.setDataRetirada(dataAtual);
+        pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
         pesquisa.add(pesquisaSelecionada);
         return (this.novaRetirada());
     }
@@ -156,8 +158,8 @@ public class RetiradasMB implements Serializable {
             l.setRetiradas(l.getRetiradas() + 1);
             retiradaSelecionada.setCliente(c);
             retiradaSelecionada.setLivro(l);
-            retiradaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
-            retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS)));
+            retiradaSelecionada.setDataRetirada(dataAtual);
+            retiradaSelecionada.setDataDevolucao(periodoEmprestimo);
             livroRN.salvar(l);
             retiradaRN.salvar(retiradaSelecionada);
             limparPesquisa(pesquisaSelecionada);
@@ -206,6 +208,10 @@ public class RetiradasMB implements Serializable {
     public void removerRetirada(Retiradas retirada) {
         retiradaRN.remover(retirada);
     }
+    
+    public String mostrarRetiradas(){        
+        return("/admin/listaRetiradas?faces-redirect=true");
+    }
 
     public Livro buscarLivroPorNome(String nome) {
         for (Livro l : getLivrosDisponiveis()) {
@@ -215,6 +221,17 @@ public class RetiradasMB implements Serializable {
         }
         return null;
     }
+    
+    public String getAtrasadoString(Retiradas r){
+        if(r.getDataDevolucao().before(dataAtual)) return "Sim";
+        else return "Não";
+    }
+    
+    public String getLabel(Retiradas r){
+        if(r.getDataDevolucao().before(dataAtual)) return "label-success";
+        else return "label-danger";
+    }
+    
     /*
     public String verificaCliente() {
         //Obtém o usuarioMB criado pelo servidor (nível de aplicação)
