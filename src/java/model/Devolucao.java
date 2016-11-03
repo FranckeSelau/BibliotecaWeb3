@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="retiradas")
-public class Retiradas implements Serializable {
+public class Devolucao implements Serializable {
     
     private static final long serialVersionUID = 1L;
     @Id
@@ -31,8 +31,10 @@ public class Retiradas implements Serializable {
     private Date dataRetirada;
     @Temporal (value=TemporalType.DATE)
     private Date dataDevolucao;
+    @Temporal (value=TemporalType.DATE)
+    private Date dataDevolvido;
 
-    public Retiradas() {
+    public Devolucao() {
         
     }   
 
@@ -76,6 +78,14 @@ public class Retiradas implements Serializable {
         this.dataDevolucao = dataDevolucao;
     }
 
+    public Date getDataDevolvido() {
+        return dataDevolvido;
+    }
+
+    public void setDataDevolvido(Date dataDevolvido) {
+        this.dataDevolvido = dataDevolvido;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -86,10 +96,10 @@ public class Retiradas implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Retiradas)) {
+        if (!(object instanceof Devolucao)) {
             return false;
         }
-        Retiradas other = (Retiradas) object;
+        Devolucao other = (Devolucao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

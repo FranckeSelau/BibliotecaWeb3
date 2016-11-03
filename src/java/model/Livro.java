@@ -31,16 +31,6 @@ public class Livro implements Serializable {
         this.id = id;
     }
     
-  
-    
-    /**
-     * Construtor para inicializar cliente
-     *
-     * @param matricula identifica a matrícula de uma pessoa.
-     * @param nome identifica o nome de uma pessoa.
-     * @param telefone identifica telefone de uma pessoa.
-     *
-     */
     /**
      * Construtor para inicializar livro
      *
@@ -50,8 +40,7 @@ public class Livro implements Serializable {
      * @param editora identifica a editora de um livro.
      * @param ano identifica o ano de publicação de um livro.
      *
-     */
-    
+     */    
     
     public Livro(String isbn, String nome, String autor, String editora, String ano) {
         this.isbn = isbn;

@@ -11,16 +11,20 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import model.Cliente;
 import model.Livro;
+import model.Devolucao;
 import model.Retiradas;
 import rn.ClienteRN;
 import rn.LivroRN;
+import rn.DevolucaoRN;
 import rn.RetiradasRN;
 import static util.DateUtil.dateToString;
 
 @Named
 @ApplicationScoped
-public class RetiradasMB implements Serializable {
+public class DevolucaoMB implements Serializable {
 
+    @Inject
+    DevolucaoRN devolucaoRN;
     @Inject
     RetiradasRN retiradaRN;
     @Inject
@@ -31,25 +35,26 @@ public class RetiradasMB implements Serializable {
     ClienteMB clienteMB;
     @Inject
     LivroMB livroMB;
+    @Inject
+    RetiradasMB RetiradasMB;
     private long id;
     private long matriculaCliente;
     private long idLivro;
     private String dtFormatada;
     private Livro livroSelecionado;
-    long DAY_IN_MS = 1000 * 60 * 60 * 24; // formatar data entrega
-
-    //CRUD
-    private List<Retiradas> listaRetiradas;
-    private List<Retiradas> pesquisa;
     private Retiradas retiradaSelecionada;
-    private Retiradas pesquisaSelecionada;
+    long DAY_IN_MS = 1000 * 60 * 60 * 24; // formatar data entrega
+    private List<Devolucao> listaDevolucao;
+    private List<Devolucao> pesquisa;
+    private Devolucao devolucaoSelecionada;
+    private Devolucao pesquisaSelecionada;
 
-    public RetiradasMB() {
+    public DevolucaoMB() {
         pesquisa = new ArrayList<>();
-        pesquisaSelecionada = new Retiradas();
-        retiradaSelecionada = new Retiradas();
+        pesquisaSelecionada = new Devolucao();
+        devolucaoSelecionada = new Devolucao();
         livroSelecionado = new Livro();
-
+        retiradaSelecionada = new Retiradas();
     }
 
     public long getId() {
@@ -92,6 +97,34 @@ public class RetiradasMB implements Serializable {
         this.livroSelecionado = livroSelecionado;
     }
 
+    public Devolucao getDevolucaoSelecionada() {
+        return devolucaoSelecionada;
+    }
+
+    public void setDevolucaoSelecionada(Devolucao devolucaoSelecionada) {
+        this.devolucaoSelecionada = devolucaoSelecionada;
+    }
+
+    public List<Devolucao> getListaDevolucao() {
+        return devolucaoRN.listar();
+    }
+
+    public List<Devolucao> getPesquisa() {
+        return pesquisa;
+    }
+
+    public void setPesquisa(List<Devolucao> pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+
+    public Devolucao getPesquisaSelecionada() {
+        return pesquisaSelecionada;
+    }
+
+    public void setPesquisaSelecionada(Devolucao pesquisaSelecionada) {
+        this.pesquisaSelecionada = pesquisaSelecionada;
+    }
+
     public Retiradas getRetiradaSelecionada() {
         return retiradaSelecionada;
     }
@@ -100,38 +133,18 @@ public class RetiradasMB implements Serializable {
         this.retiradaSelecionada = retiradaSelecionada;
     }
 
-    public List<Retiradas> getListaRetiradas() {
-        return retiradaRN.listar();
-    }
-
-    public List<Retiradas> getPesquisa() {
-        return pesquisa;
-    }
-
-    public void setPesquisa(List<Retiradas> pesquisa) {
-        this.pesquisa = pesquisa;
-    }
-
-    public Retiradas getPesquisaSelecionada() {
-        return pesquisaSelecionada;
-    }
-
-    public void setPesquisaSelecionada(Retiradas pesquisaSelecionada) {
-        this.pesquisaSelecionada = pesquisaSelecionada;
-    }
-
     public String novaRetirada() {
-        retiradaSelecionada = new Retiradas();
+        devolucaoSelecionada = new Devolucao();
         return ("/admin/retirada?faces-redirect=true");
     }
 
     public String novaRetiradaUsuario() {
-        pesquisaSelecionada = new Retiradas();
-        retiradaSelecionada = new Retiradas();
+        pesquisaSelecionada = new Devolucao();
+        devolucaoSelecionada = new Devolucao();
         return ("/usuario/retirada?faces-redirect=true");
     }
 
-    public String adicionarPesquisa() {
+    public String adicionarPesquisa() {        
         Livro l = this.livroSelecionado;
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
         pesquisaSelecionada.setCliente(c);
@@ -142,24 +155,24 @@ public class RetiradasMB implements Serializable {
         return (this.novaRetirada());
     }
 
-    public void limparPesquisa(Retiradas r) {
+    public void limparPesquisa(Devolucao r) {
         pesquisa.remove(r);
     }
 
     public String adicionarRetirada() {
         FacesContext contexto = FacesContext.getCurrentInstance();
-        RetiradasMB retiradasMB = (RetiradasMB) contexto.getExternalContext().getApplicationMap().get("RetiradasMB");
+        DevolucaoMB retiradasMB = (DevolucaoMB) contexto.getExternalContext().getApplicationMap().get("DevolucaoMB");
         if (!pesquisa.isEmpty()) {
             Livro l = this.livroSelecionado;
             Cliente c = buscaClienteMat(this.getMatriculaCliente());
             l.setDisponivel(false);
-            l.setRetiradas(l.getRetiradas() + 1);
-            retiradaSelecionada.setCliente(c);
-            retiradaSelecionada.setLivro(l);
-            retiradaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
-            retiradaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS)));
+            //l.setDevolucao(l.getDevolucao() + 1);
+            devolucaoSelecionada.setCliente(c);
+            devolucaoSelecionada.setLivro(l);
+            devolucaoSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
+            devolucaoSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
             livroRN.salvar(l);
-            retiradaRN.salvar(retiradaSelecionada);
+            devolucaoRN.salvar(devolucaoSelecionada);
             limparPesquisa(pesquisaSelecionada);
             this.novaRetirada();
             return ("/admin/confirmaRetirada?faces-redirect=true");
@@ -177,6 +190,10 @@ public class RetiradasMB implements Serializable {
     public Livro buscaLivroID(Long id) {
         return livroRN.buscar(id);
     }
+    
+    public Retiradas buscarRetiradasID(Long id){         
+        return retiradaRN.buscar(id);
+    }
 
     public List<Livro> getLivrosDisponiveis() {
         List<Livro> disponiveis = new ArrayList<>();
@@ -193,18 +210,18 @@ public class RetiradasMB implements Serializable {
         return this.dtFormatada;
     }
 
-    public String editarRetirada(Retiradas u) {
-        retiradaSelecionada = u;
-        return ("/admin/edicaoUsuarios?faces-redirect=true"); //fazer pagina
+    public String editarRetirada(Devolucao u) {
+        devolucaoSelecionada = u;
+        return ("/admin/edicaoUsuarios?faces-redirect=true"); 
     }
 
-    public String atualizarRetirada() {
-        retiradaRN.salvar(retiradaSelecionada);
-        return ("/admin/index?faces-redirect=true"); //fazer pagina
+    public String atualizarDevolucao() {
+        devolucaoRN.salvar(devolucaoSelecionada);
+        return ("/admin/index?faces-redirect=true"); 
     }
 
-    public void removerRetirada(Retiradas retirada) {
-        retiradaRN.remover(retirada);
+    public void removerDevolucao(Devolucao devolucao) {
+        devolucaoRN.remover(devolucao);
     }
 
     public Livro buscarLivroPorNome(String nome) {
@@ -215,15 +232,13 @@ public class RetiradasMB implements Serializable {
         }
         return null;
     }
+    
     /*
-    public String verificaCliente() {
-        //Obtém o usuarioMB criado pelo servidor (nível de aplicação)
-        //UsuarioMB usuarioMB = (UsuarioMB) contexto.getExternalContext().getApplicationMap().get("usuarioMB");
-        //A partir do usuarioMB do servidor, pegamos a lista de usuários cadastrados no sistema
-        List<Cliente> listaClientes = clienteMB.getListaClientes();
+    public String verificaRetirada() {
+        List<Retiradas> listaRetiradas = RetiradasMB.getListaRetiradas();
 
-        for (Livro cliente : listaClientes) {
-            if (cliente.verificaCliente(matricula)) {
+        for (Retiradas retirada : listaRetiradas) {
+            if (retirada.) {
                 clienteSelecionado = cliente;
             }
         }
