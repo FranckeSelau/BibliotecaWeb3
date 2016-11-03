@@ -36,6 +36,7 @@ public class RetiradasMB implements Serializable {
     private long idLivro;
     private String dtFormatada;
     private Livro livroSelecionado;
+    long DAY_IN_MS = 1000 * 60 * 60 * 24; // formatar data entrega
 
     //CRUD
     private List<Retiradas> listaRetiradas;
@@ -136,7 +137,7 @@ public class RetiradasMB implements Serializable {
         pesquisaSelecionada.setCliente(c);
         pesquisaSelecionada.setLivro(l);
         pesquisaSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
-        pesquisaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
+        pesquisaSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * DAY_IN_MS)));
         pesquisa.add(pesquisaSelecionada);
         return (this.novaRetirada());
     }

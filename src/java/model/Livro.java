@@ -153,6 +153,16 @@ public class Livro implements Serializable {
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
+    
+    public String getDisponivelString(){
+        if(disponivel) return "Sim";
+        else return "N�o";
+    }
+    
+    public String getLabel(){
+        if(disponivel)return "label-success";
+        else return "label-danger";
+    }
 
     /**
      * Retorna adição ao código gerado

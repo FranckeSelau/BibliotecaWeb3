@@ -113,8 +113,13 @@ public class Usuario implements Serializable {
     }
     
     public String getAdminString(){
-        if(admin) return "SIM";
-        else return "NAO";
+        if(admin) return "Sim";
+        else return "Não";
+    }
+    
+    public String getLabel(){
+        if(admin)return "label-success";
+        else return "label-danger";
     }
 
     public void setAdmin(boolean admin) {
