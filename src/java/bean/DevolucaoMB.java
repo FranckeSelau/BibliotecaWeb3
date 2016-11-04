@@ -200,9 +200,23 @@ public class DevolucaoMB implements Serializable {
         devolucaoRN.salvar(devolucaoSelecionada);
         return ("/admin/index?faces-redirect=true"); 
     }
+    
+    public String mostrarDevolucao(){        
+        return("/admin/listaDevolucao?faces-redirect=true");
+    }
 
     public void removerDevolucao(Devolucao devolucao) {
         devolucaoRN.remover(devolucao);
+    }
+    
+    public String getAtrasadoString(Devolucao d){
+        if(d.getDataDevolucao().before(d.getDataDevolvido())) return "Sim";
+        else return "Não";
+    }
+    
+    public String getLabel(Devolucao d){
+        if(d.getDataDevolucao().before(d.getDataDevolvido())) return "label-danger";
+        else return "label-success";
     }
 
     public Livro buscarLivroPorNome(String nome) {
