@@ -128,7 +128,6 @@ public class RetiradasMB implements Serializable {
     }
 
     public String novaRetiradaUsuario() {
-        pesquisaSelecionada = new Retiradas();
         retiradaSelecionada = new Retiradas();
         return ("/usuario/retirada?faces-redirect=true");
     }
@@ -142,6 +141,17 @@ public class RetiradasMB implements Serializable {
         pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
         pesquisa.add(pesquisaSelecionada);
         return (this.novaRetirada());
+    }
+    
+    public String adicionarPesquisaUsuario() {
+        Livro l = this.livroSelecionado;
+        Cliente c = buscaClienteMat(this.getMatriculaCliente());
+        pesquisaSelecionada.setCliente(c);
+        pesquisaSelecionada.setLivro(l);
+        pesquisaSelecionada.setDataRetirada(dataAtual);
+        pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
+        pesquisa.add(pesquisaSelecionada);
+        return (this.novaRetiradaUsuario());
     }
 
     public void limparPesquisa(Retiradas r) {
@@ -170,6 +180,30 @@ public class RetiradasMB implements Serializable {
                 "Erro!", "É necessario pesquisar antes!");
         contexto.addMessage("idMensagem", mensagem);
         return ("/admin/retirada?faces-redirect=true");
+    }
+    
+    public String adicionarRetiradaUsuario() {
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        RetiradasMB retiradasMB = (RetiradasMB) contexto.getExternalContext().getApplicationMap().get("RetiradasMB");
+        if (!pesquisa.isEmpty()) {
+            Livro l = this.livroSelecionado;
+            Cliente c = buscaClienteMat(this.getMatriculaCliente());
+            l.setDisponivel(false);
+            l.setRetiradas(l.getRetiradas() + 1);
+            retiradaSelecionada.setCliente(c);
+            retiradaSelecionada.setLivro(l);
+            retiradaSelecionada.setDataRetirada(dataAtual);
+            retiradaSelecionada.setDataDevolucao(periodoEmprestimo);
+            livroRN.salvar(l);
+            retiradaRN.salvar(retiradaSelecionada);
+            limparPesquisa(pesquisaSelecionada);
+            this.novaRetirada();
+            return ("/usuario/confirmaRetirada?faces-redirect=true");
+        }
+        FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                "Erro!", "É necessario pesquisar antes!");
+        contexto.addMessage("idMensagem", mensagem);
+        return ("/usuario/retirada?faces-redirect=true");
     }
 
     public Cliente buscaClienteMat(Long mat) {
@@ -211,6 +245,10 @@ public class RetiradasMB implements Serializable {
     
     public String mostrarRetiradas(){        
         return("/admin/listaRetiradas?faces-redirect=true");
+    }
+    
+    public String mostrarRetiradasUsuario(){        
+        return("/usuario/listaRetiradas?faces-redirect=true");
     }
 
     public Livro buscarLivroPorNome(String nome) {
