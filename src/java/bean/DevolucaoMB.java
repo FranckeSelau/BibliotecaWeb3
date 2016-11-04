@@ -46,6 +46,7 @@ public class DevolucaoMB implements Serializable {
     private List<Devolucao> pesquisa;
     private Devolucao devolucaoSelecionada;
     private Devolucao pesquisaSelecionada;
+    private Date dataAtual = new Date(System.currentTimeMillis());
 
     public DevolucaoMB() {
         pesquisa = new ArrayList<>();
@@ -135,7 +136,8 @@ public class DevolucaoMB implements Serializable {
         Livro l = retirada.getLivro();
         l.setDisponivel(true);
         livroRN.salvar(l);
-        retiradaRN.remover(retirada);
+        adicionarDevolucao(retirada);
+        retiradaRN.remover(retirada);        
     }
 
     public String novaDevolucao() {
@@ -144,7 +146,6 @@ public class DevolucaoMB implements Serializable {
     }
 
     public String novaRetiradaUsuario() {
-        pesquisaSelecionada = new Devolucao();
         devolucaoSelecionada = new Devolucao();
         return ("/usuario/retirada?faces-redirect=true");
     }
@@ -153,18 +154,14 @@ public class DevolucaoMB implements Serializable {
         pesquisa.remove(r);
     }
 
-    public String adicionarRetirada() {
-            Livro l = this.livroSelecionado;
-            Cliente c = buscaClienteMat(this.getMatriculaCliente());
-            devolucaoSelecionada.setCliente(c);
-            devolucaoSelecionada.setLivro(l);
-            devolucaoSelecionada.setDataRetirada(new Date(System.currentTimeMillis()));
-            devolucaoSelecionada.setDataDevolucao(new Date(System.currentTimeMillis() + (7 * (1000 * 60 * 60 * 24))));
-            livroRN.salvar(l);
-            devolucaoRN.salvar(devolucaoSelecionada);
-            limparPesquisa(pesquisaSelecionada);
-            this.novaDevolucao();
-            return ("/admin/confirmaRetirada?faces-redirect=true");
+    public String adicionarDevolucao(Retiradas retirada) {
+            devolucaoSelecionada.setCliente(retirada.getCliente());
+            devolucaoSelecionada.setLivro(retirada.getLivro());
+            devolucaoSelecionada.setDataRetirada(retirada.getDataRetirada());
+            devolucaoSelecionada.setDataDevolucao(retirada.getDataDevolucao());
+            devolucaoSelecionada.setDataDevolvido(dataAtual);
+            devolucaoRN.salvar(devolucaoSelecionada);            
+            return (this.novaDevolucao());
         }
 
     public Cliente buscaClienteMat(Long mat) {

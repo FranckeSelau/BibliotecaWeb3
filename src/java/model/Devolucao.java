@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
  * @author Francke
  */
 @Entity
-@Table(name="retiradas")
+@Table(name="devolucao")
 public class Devolucao implements Serializable {
     
     private static final long serialVersionUID = 1L;
