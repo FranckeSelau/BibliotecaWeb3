@@ -22,6 +22,7 @@ public class LivroMB implements Serializable {
     private String id;
     private List<Livro> pesquisaTitulo;
     private List<Livro> maisRetirados;
+    private List<Livro> disponiveis;
     private String tituloBusca;
     @Inject
     private LivroRN livroRN;
@@ -75,6 +76,14 @@ public class LivroMB implements Serializable {
     public void setMaisRetirados(List<Livro> maisRetirados) {
         this.maisRetirados = maisRetirados;
     }
+
+    public List<Livro> getDisponiveis() {
+        return disponiveis;
+    }
+
+    public void setDisponiveis(List<Livro> disponiveis) {
+        this.disponiveis = disponiveis;
+    }    
     
     public String novoLivro(){
         livroSelecionado = new Livro();
@@ -130,6 +139,11 @@ public class LivroMB implements Serializable {
     public String livrosMaisRetirados(){
         maisRetirados = this.livroRN.maisRetirados();
         return("/admin/relatorios/livrosMaisRetirados?faces-redirect=true");
+    }
+    
+    public String livrosDisponiveis(){
+        disponiveis = this.livroRN.disponiveis();
+        return("/admin/relatorios/livrosDisponiveis?faces-redirect=true");
     }
         
     //metodo para box option selec one
