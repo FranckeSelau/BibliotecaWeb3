@@ -5,10 +5,12 @@
  */
 package rn;
 
+import java.util.List;
 import model.Cliente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -36,4 +38,21 @@ public class ClienteRN extends AbstractRN<Cliente>{
         else
             super.atualizar(u);
     }
+    
+    public List<Cliente> buscarPorNome(String nome) {
+        Query query = manager.createQuery("SELECT p FROM Cliente p WHERE  LOWER(p.nome) LIKE :nome");
+        query.setParameter("nome", "%"+nome.toLowerCase()+"%");
+        return query.getResultList();
+    }
+    
+            //SELECT p FROM Cliente p WHERE p.nome LIKE :nome
+    /*
+    public List<Movimento> getListaFiltro(String anoMes){
+        Query query = manager.createQuery("SELECT c from Movimento c where anoMes like :anoMes order by c.anoMes");
+        query.setParameter("anoMes", anoMes + "%");
+        List<Movimento> movimentos = (List<Movimento>) query.getResultList();
+
+        return movimentos;
+    }*/
+    
 }

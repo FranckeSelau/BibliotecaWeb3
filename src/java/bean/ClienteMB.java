@@ -22,12 +22,16 @@ import rn.ClienteRN;
 public class ClienteMB implements Serializable {
     
     private Cliente clienteSelecionado;
+    private Cliente clientePesquisado;
     private String matricula;
+    private String nomeBusca;
+    private List<Cliente> pesquisaNome;
     @Inject
     private ClienteRN clienteRN;
 
     public ClienteMB() {
         clienteSelecionado = new Cliente();
+        clientePesquisado = new Cliente();
     }
 
     public Cliente getClienteSelecionado() {
@@ -44,10 +48,34 @@ public class ClienteMB implements Serializable {
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
-    }
+    }    
     
     public List<Cliente> getListaClientes(){
         return clienteRN.listar();
+    }
+
+    public List<Cliente> getPesquisaNome() {
+        return pesquisaNome;
+    }
+
+    public void setPesquisaNome(List<Cliente> pesquisaNome) {
+        this.pesquisaNome = pesquisaNome;
+    }    
+
+    public Cliente getClientePesquisado() {
+        return clientePesquisado;
+    }
+
+    public void setClientePesquisado(Cliente clientePesquisado) {
+        this.clientePesquisado = clientePesquisado;
+    }
+
+    public String getNomeBusca() {
+        return nomeBusca;
+    }
+
+    public void setNomeBusca(String nomeBusca) {
+        this.nomeBusca = nomeBusca;
     }
     
     public String novoCliente(){
@@ -79,8 +107,20 @@ public class ClienteMB implements Serializable {
         return("/admin/listaClientes?faces-redirect=true");
     }
     
+    public String adicionarPesquisa() {
+        pesquisaNome = buscarCliente(this.nomeBusca); 
+        System.out.println("nome "+ pesquisaNome.toString());
+        return ("/admin/buscaCliente?faces-redirect=true");
+    }
+    
     public void removerCliente(Cliente cliente){
         clienteRN.remover(cliente);
-    }    
+    } 
+    
+    public List<Cliente> buscarCliente(String nome){
+        return clienteRN.buscarPorNome(nome);
+    }  
+    
+    
     
 }
