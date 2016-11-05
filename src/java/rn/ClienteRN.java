@@ -14,7 +14,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author lhries
+ * @author Francke
  */
 @Stateless
 public class ClienteRN extends AbstractRN<Cliente>{

@@ -345,9 +345,9 @@ body {
     box-shadow: 3px 3px 4px threeddarkshadow;
 }
 
-.cadastroBuscaNome{
+.campoBuscaNome{
     position: relative;
-    width: 100%;
+    width: 85%;
     margin-left: 0%;
     height: 120px;
     border-radius: 20px;

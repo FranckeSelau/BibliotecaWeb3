@@ -135,6 +135,7 @@ public class DevolucaoMB implements Serializable {
     public void devolverLivro(Retiradas retirada){
         Livro l = retirada.getLivro();
         l.setDisponivel(true);
+        l.setDataLiberacao(RetiradasMB.getDataLiberacao());
         livroRN.salvar(l);
         adicionarDevolucao(retirada);
         retiradaRN.remover(retirada);        

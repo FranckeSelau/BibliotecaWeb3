@@ -1,10 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -21,7 +25,9 @@ public class Livro implements Serializable {
     private String isbn, nome, autor, editora, ano;
     //private Date ano;
     private int retiradas;
-    private boolean disponivel = true;    
+    private boolean disponivel = true;
+    @Temporal (value=TemporalType.DATE)
+    private Date dataLiberacao = new Date(System.currentTimeMillis()); 
 
     public Long getId() {
         return id;
@@ -34,28 +40,8 @@ public class Livro implements Serializable {
     /**
      * Construtor para inicializar livro
      *
-     * @param isbn identifica o ISBN de um livro.
-     * @param nome identifica o nome de um livro.
-     * @param autor identifica o autor de um livro.
-     * @param editora identifica a editora de um livro.
-     * @param ano identifica o ano de publicação de um livro.
      *
      */    
-    
-    public Livro(String isbn, String nome, String autor, String editora, String ano) {
-        this.isbn = isbn;
-        this.nome = nome;
-        this.autor = autor;
-        this.editora = editora;        
-        this.ano = ano;
-    }
-    
-    public Livro(String nome, String autor, String editora, String ano) {
-        this.nome = nome;
-        this.autor = autor;
-        this.editora = editora;        
-        this.ano = ano;
-    }
     
     public Livro() {
         
@@ -141,6 +127,14 @@ public class Livro implements Serializable {
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public Date getDataLiberacao() {
+        return dataLiberacao;
+    }
+
+    public void setDataLiberacao(Date dataLiberacao) {
+        this.dataLiberacao = dataLiberacao;
     }
     
     public String getDisponivelString(){

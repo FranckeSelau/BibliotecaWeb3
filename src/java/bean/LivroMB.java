@@ -18,6 +18,8 @@ public class LivroMB implements Serializable {
     
     private Livro livroSelecionado;
     private String id;
+    private List<Livro> pesquisaTitulo;
+    private String tituloBusca;
     @Inject
     private LivroRN livroRN;
 
@@ -43,6 +45,22 @@ public class LivroMB implements Serializable {
     
     public List<Livro> getListaLivros(){
         return livroRN.listar();
+    }
+
+    public List<Livro> getPesquisaTitulo() {
+        return pesquisaTitulo;
+    }
+
+    public void setPesquisaTitulo(List<Livro> pesquisaTitulo) {
+        this.pesquisaTitulo = pesquisaTitulo;
+    }    
+
+    public String getTituloBusca() {
+        return tituloBusca;
+    }
+
+    public void setTituloBusca(String tituloBusca) {
+        this.tituloBusca = tituloBusca;
     }
     
     public String novoLivro(){
@@ -76,8 +94,18 @@ public class LivroMB implements Serializable {
     
     public void removerLivro(Livro livro){
         livroRN.remover(livro);
-    }    
+    } 
     
+    public String adicionarPesquisa() {
+        pesquisaTitulo = buscarLivroTitulo(this.tituloBusca); 
+        return ("/admin/buscaLivros?faces-redirect=true");
+    }
+    
+    public List<Livro> buscarLivroTitulo(String titulo){
+        return livroRN.buscarPorTitulo(titulo);
+    }
+    
+    //metodo para box option selec one
     public Livro buscarLivroPorNome(String nome){
         for(Livro l: getListaLivros())
             if(l.getNome().equals(nome))
@@ -85,15 +113,5 @@ public class LivroMB implements Serializable {
         return null;
     }
     
-    /*metodo criado para buscar livro manualmente
-    public Livro buscaLivroID(Long id){
-        Livro auxLivro = new Livro();
-        for(Livro l : this.livroMB.getListaLivros()){
-            
-            if(l.getId().equals(id)){
-                auxLivro=l;
-            }
-        }
-        return auxLivro;            
-    }*/
+    
 }

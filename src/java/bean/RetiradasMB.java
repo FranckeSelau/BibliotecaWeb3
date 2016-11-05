@@ -38,6 +38,7 @@ public class RetiradasMB implements Serializable {
     private Livro livroSelecionado;
     long DAY_IN_MS = 1000 * 60 * 60 * 24;
     Date periodoEmprestimo = new Date(System.currentTimeMillis() + 7 * DAY_IN_MS); // uma semana
+    private Date dataLiberacao = new Date(System.currentTimeMillis() + 8 * DAY_IN_MS); //prazo que o livro ficará disponível novamente
     Date dataAtual = new Date(System.currentTimeMillis());
 
     //CRUD
@@ -122,6 +123,14 @@ public class RetiradasMB implements Serializable {
         this.pesquisaSelecionada = pesquisaSelecionada;
     }    
 
+    public Date getDataLiberacao() {
+        return dataLiberacao;
+    }
+
+    public void setDataLiberacao(Date dataLiberacao) {
+        this.dataLiberacao = dataLiberacao;
+    }
+
     public String novaRetirada() {
         retiradaSelecionada = new Retiradas();
         return ("/admin/retirada?faces-redirect=true");
@@ -166,6 +175,7 @@ public class RetiradasMB implements Serializable {
             Cliente c = buscaClienteMat(this.getMatriculaCliente());
             l.setDisponivel(false);
             l.setRetiradas(l.getRetiradas() + 1);
+            l.setDataLiberacao(dataLiberacao);
             retiradaSelecionada.setCliente(c);
             retiradaSelecionada.setLivro(l);
             retiradaSelecionada.setDataRetirada(dataAtual);
@@ -190,6 +200,7 @@ public class RetiradasMB implements Serializable {
             Cliente c = buscaClienteMat(this.getMatriculaCliente());
             l.setDisponivel(false);
             l.setRetiradas(l.getRetiradas() + 1);
+            l.setDataLiberacao(dataLiberacao);
             retiradaSelecionada.setCliente(c);
             retiradaSelecionada.setLivro(l);
             retiradaSelecionada.setDataRetirada(dataAtual);

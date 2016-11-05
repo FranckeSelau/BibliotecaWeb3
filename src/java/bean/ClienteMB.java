@@ -22,7 +22,6 @@ import rn.ClienteRN;
 public class ClienteMB implements Serializable {
     
     private Cliente clienteSelecionado;
-    private Cliente clientePesquisado;
     private String matricula;
     private String nomeBusca;
     private List<Cliente> pesquisaNome;
@@ -31,7 +30,6 @@ public class ClienteMB implements Serializable {
 
     public ClienteMB() {
         clienteSelecionado = new Cliente();
-        clientePesquisado = new Cliente();
     }
 
     public Cliente getClienteSelecionado() {
@@ -61,14 +59,6 @@ public class ClienteMB implements Serializable {
     public void setPesquisaNome(List<Cliente> pesquisaNome) {
         this.pesquisaNome = pesquisaNome;
     }    
-
-    public Cliente getClientePesquisado() {
-        return clientePesquisado;
-    }
-
-    public void setClientePesquisado(Cliente clientePesquisado) {
-        this.clientePesquisado = clientePesquisado;
-    }
 
     public String getNomeBusca() {
         return nomeBusca;

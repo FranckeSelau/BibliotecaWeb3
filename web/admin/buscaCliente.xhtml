@@ -16,10 +16,11 @@
                     <h:form>
                         <div class="cadastroRetirada">
                             <div class="tituloRetirada">Buscar Cliente</div>
-                            <h:panelGrid columns="5" style="margin-left: 7px; margin-top: 29px;" >
-                                <h:outputLabel for="idMatricula" value="Busca por Nome" style="font-weight: normal"/>
-                                <h:inputText id="idMatricula" style="width: 290px; margin-left: 20px" styleClass="form-control" required="true"  requiredMessage="Erro! digite um nome!" a:placeholder="Digite um nome..."   value="#{clienteMB.nomeBusca}" />
-                                <h:commandButton value="Pesquisar" style="width: 150px; margin-left: 45px " styleClass="btn btn-primary" action="#{clienteMB.adicionarPesquisa()}"/>
+                            <h:panelGrid columns="5" style="margin-left: 90px; margin-top: 29px;" >
+                                <h:outputLabel for="idBuscaNome" value="Busca por Nome" style="font-weight: normal"/>
+                                <h:inputText id="idBuscaNome" style="width: 290px; margin-left: 20px" styleClass="form-control" required="true"  requiredMessage="Erro! digite um nome!" a:placeholder="Digite um nome..."   value="#{clienteMB.nomeBusca}" />
+                                <h:commandButton value="Pesquisar" style="width: 150px; margin-left: 20px " styleClass="btn btn-primary" action="#{clienteMB.adicionarPesquisa()}"/>
+                                <h:button value="Voltar" style="align: right; width: 120px; margin-left: 20px; margin-right: 5px" styleClass="btn btn-info" outcome="/admin/index"/>
                             </h:panelGrid>
                         </div>
                         <div class="alertaRetirada">
@@ -27,16 +28,27 @@
                         </div>
                         <h:dataTable var="cliente" value="#{clienteMB.pesquisaNome}" styleClass="table table-striped" >
                             <f:facet name="header">
-                                <h:outputText value="Confirmar Retirada" style="font-size: 18px; padding-left: 12px" />
+                                <h:outputText value="Clientes encontrados:" style="font-size: 18px; padding-left: 12px" />
                             </f:facet>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Cliente" />
+                                    <h:outputText value="Matricula" style="margin-left: 120px;" />
                                 </f:facet>
-                                <h:outputText id="idCliente" value="#{cliente.nome}" />
+                                <h:outputText id="idMatricula" style="margin-left: 120px;" value="#{cliente.matricula}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome" />
+                                </f:facet>
+                                <h:outputText id="idNome" value="#{cliente.nome}"  />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Telefone" />
+                                </f:facet>
+                                <h:outputText id="idTelefone" value="#{cliente.telefone}" />
                             </h:column>
                         </h:dataTable>
-                        <h:button value="Voltar" style="align: right; width: 120px; margin-left: 0px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
                     </h:form>
                 </div>
             </ui:define>
