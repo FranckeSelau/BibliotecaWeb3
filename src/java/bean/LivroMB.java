@@ -6,7 +6,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Inject;
+import model.Devolucao;
 import rn.LivroRN;
+import rn.DevolucaoRN;
 
 /**
  *
@@ -22,6 +24,8 @@ public class LivroMB implements Serializable {
     private String tituloBusca;
     @Inject
     private LivroRN livroRN;
+    @Inject
+    private DevolucaoRN devolucaoRN;
 
     public LivroMB() {
         livroSelecionado = new Livro();
@@ -65,40 +69,49 @@ public class LivroMB implements Serializable {
     
     public String novoLivro(){
         livroSelecionado = new Livro();
-        return("/admin/cadastroLivros?faces-redirect=true");
+        return("/admin/livros/cadastroLivros?faces-redirect=true");
     }
     
     public String adicionarLivro(){
         livroRN.salvar(livroSelecionado);
         this.novoLivro();
-        return("/admin/confirmaCadastroLivro?faces-redirect=true");
+        return("/admin/livros/confirmaCadastroLivro?faces-redirect=true");
     }
     
     public String mostrarLivros(){        
-        return("/admin/listaLivros?faces-redirect=true");
+        return("/admin/livros/listaLivros?faces-redirect=true");
     }
     
     public String mostrarLivrosUsuario(){        
-        return("/usuario/listaLivros?faces-redirect=true");
+        return("/usuario/livros/listaLivros?faces-redirect=true");
     }
     
     public String editarLivro(Livro c){
         livroSelecionado = c;
-        return("/admin/edicaoLivros?faces-redirect=true");        
+        return("/admin/livros/edicaoLivros?faces-redirect=true");        
     }
     
     public String atualizarLivro(){
         livroRN.salvar(livroSelecionado);
-        return("/admin/listaLivros?faces-redirect=true");
+        return("/admin/livros/listaLivros?faces-redirect=true");
     }
     
-    public void removerLivro(Livro livro){
-        livroRN.remover(livro);
+    public void removerLivro(Livro livro){// verifica se este livro está relacionado a tabela devolução
+        List<Devolucao> pesquisaCascade = devolucaoRN.buscarLivroExclusao(livro.getId());
+        for (Devolucao devolucao : pesquisaCascade) {
+            devolucaoRN.remover(devolucao);      
+        }
+        livroRN.remover(livro);       
     } 
     
     public String adicionarPesquisa() {
         pesquisaTitulo = buscarLivroTitulo(this.tituloBusca); 
-        return ("/admin/buscaLivros?faces-redirect=true");
+        return ("/admin/livros/buscaLivros?faces-redirect=true");
+    }
+    
+    public String adicionarPesquisaUsuario() {
+        pesquisaTitulo = buscarLivroTitulo(this.tituloBusca); 
+        return ("/usuario/livros/buscaLivros?faces-redirect=true");
     }
     
     public List<Livro> buscarLivroTitulo(String titulo){

@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

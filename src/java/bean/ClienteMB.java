@@ -70,36 +70,41 @@ public class ClienteMB implements Serializable {
     
     public String novoCliente(){
         clienteSelecionado = new Cliente();
-        return("/admin/cadastroClientes?faces-redirect=true");
+        return("/admin/clientes/cadastroClientes?faces-redirect=true");
     }
     
     public String adicionarCliente(){
         clienteRN.salvar(clienteSelecionado);
         this.novoCliente();
-        return("/admin/confirmaCadastroCliente?faces-redirect=true");
+        return("/admin/clientes/confirmaCadastroCliente?faces-redirect=true");
     }
     
     public String mostrarClientes(){        
-        return("/admin/listaClientes?faces-redirect=true");
+        return("/admin/clientes/listaClientes?faces-redirect=true");
     }
     
     public String mostrarClientesUsuario(){        
-        return("/usuario/listaClientes?faces-redirect=true");
+        return("/usuario/clientes/listaClientes?faces-redirect=true");
     }
     
     public String editarCliente(Cliente c){
         clienteSelecionado = c;
-        return("/admin/edicaoClientes?faces-redirect=true");        
+        return("/admin/clientes/edicaoClientes?faces-redirect=true");        
     }
     
     public String atualizarCliente(){
         clienteRN.salvar(clienteSelecionado);
-        return("/admin/listaClientes?faces-redirect=true");
+        return("/admin/clientes/listaClientes?faces-redirect=true");
     }
     
     public String adicionarPesquisa() {
         pesquisaNome = buscarCliente(this.nomeBusca); 
-        return ("/admin/buscaCliente?faces-redirect=true");
+        return ("/admin/clientes/buscaCliente?faces-redirect=true");
+    }
+    
+    public String adicionarPesquisaUsuario() {
+        pesquisaNome = buscarCliente(this.nomeBusca); 
+        return ("/usuario/clientes/buscaCliente?faces-redirect=true");
     }
     
     public void removerCliente(Cliente cliente){

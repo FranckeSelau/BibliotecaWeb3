@@ -5,10 +5,12 @@
  */
 package rn;
 
+import java.util.List;
 import model.Devolucao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -35,5 +37,12 @@ public class DevolucaoRN extends AbstractRN<Devolucao>{
         }
         else
             super.atualizar(l);
+    }
+    
+    //metodo usado para deletar livro em cascata = (cascade = {CascadeType.PERSIST}) não funciona
+    public List<Devolucao> buscarLivroExclusao(Long id) {
+        Query query = manager.createQuery("SELECT p FROM Devolucao p WHERE p.livro.id = :id");
+        query.setParameter("id", id);
+        return query.getResultList();
     }
 }
