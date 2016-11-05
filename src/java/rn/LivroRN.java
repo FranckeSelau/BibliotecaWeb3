@@ -45,4 +45,12 @@ public class LivroRN extends AbstractRN<Livro>{
         query.setParameter("nome", "%"+titulo.toLowerCase()+"%");
         return query.getResultList();
     }
+    
+    public List<Livro> maisRetirados() {
+        String jpql = "SELECT p FROM Livro p WHERE p.retiradas > 2 "
+                + "ORDER BY p.retiradas DESC";   
+        Query query = manager.createQuery(jpql);
+        query.setMaxResults(4);
+        return query.getResultList();
+    }
 }//

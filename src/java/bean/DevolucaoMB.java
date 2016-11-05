@@ -203,7 +203,7 @@ public class DevolucaoMB implements Serializable {
     }
     
     public String mostrarDevolucao(){        
-        return("/admin/devolucao/listaDevolucao?faces-redirect=true");
+        return("/admin/relatorios/listaDevolucao?faces-redirect=true");
     }
     
     public String mostrarDevolucaoUsuario(){        

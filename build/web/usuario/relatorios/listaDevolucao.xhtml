@@ -4,61 +4,64 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">   
+    <h:head>
+        <meta charset="utf-8"></meta>
+    </h:head>
     <h:body>
         <ui:composition template="/template.xhtml">
             <ui:define name="top"></ui:define>
             <ui:define name="content">
                 <div class="tabelaUsuarios">
-                    <h:form >
-                        <h:dataTable var="usuario" value="#{usuarioMB.usuarioSelecionado}" styleClass="table table-striped" >
+                    <h:form>
+                        <h:dataTable var="devolucao" value="#{devolucaoMB.listaDevolucao}" styleClass="table table-striped" >
                             <f:facet name="header">
-                                <h:outputText value="Lista de Usuarios" style="font-size: 20px" />
-                            </f:facet>
+                                <h:outputText value="Lista de Devoluções" style="font-size: 20px" />
+                            </f:facet> 
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Nome" />
+                                    <h:outputText value="ID" />
                                 </f:facet>
-                                <h:outputText id="idNome" value="#{usuario.nome}"  />
+                                <h:outputText id="id" value="#{devolucao.id}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Telefone" />
+                                    <h:outputText value="Cliente" />
                                 </f:facet>
-                                <h:outputText id="idTelefone" value="#{usuario.telefone}" />
+                                <h:outputText id="idCliente" value="#{devolucao.cliente.nome}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Email" />
+                                    <h:outputText value="Livro" />
                                 </f:facet>
-                                <h:outputText id="idEmail" value="#{usuario.email}" />
+                                <h:outputText id="idLivro" value="#{devolucao.livro.nome}"  />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Sexo" />
+                                    <h:outputText value="Retirada" />
                                 </f:facet>
-                                <h:outputText  id="idSexo" value="#{usuario.sexoString}"/>
+                                <h:outputText id="idRet" value="#{retiradasMB.formataData(devolucao.dataRetirada)}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Estado" />
+                                    <h:outputText value="Devolução" />
                                 </f:facet>
-                                <h:outputText id="idEstado" value="#{usuario.estado}" />
+                                <h:outputText id="idDev" value="#{retiradasMB.formataData(devolucao.dataDevolucao)}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Login" />
+                                    <h:outputText value="Devolvido" />
                                 </f:facet>
-                                <h:outputText  id="idLogin" value="#{usuario.login}" />
+                                <h:outputText id="idDevEm" value="#{retiradasMB.formataData(devolucao.dataDevolvido)}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Acesso admin" />
+                                    <h:outputText value="Devolvido em Atraso" />
                                 </f:facet>
-                                <h:outputText  value="#{usuario.adminString}" />
+                                <span style="margin-left: 47px; padding-top: 7px; padding-bottom: 7px; padding-left: 12px; padding-right: 12px" Class="label #{devolucaoMB.getLabel(devolucao)}">#{devolucaoMB.getAtrasadoString(devolucao)}</span>
                             </h:column>
                         </h:dataTable>
-                        <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
+                        <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/usuario/relatorios/relatorios"/>
                     </h:form>                      
                 </div>
             </ui:define>

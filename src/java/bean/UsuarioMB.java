@@ -63,7 +63,7 @@ public class UsuarioMB implements Serializable {
     
     public String editarPerfil(Usuario u){
         usuarioSelecionado = u;
-        return("/usuario/usuarios/editarPerfil?faces-redirect=true");
+        return("/usuario/editarPerfil?faces-redirect=true");
     }
     
     public String atualizarUsuario(){

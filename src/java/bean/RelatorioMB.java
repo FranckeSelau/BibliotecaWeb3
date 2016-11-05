@@ -60,8 +60,8 @@ public class RelatorioMB {
         usuarioSelecionado = u;
         return("/admin/edicaoUsuarios?faces-redirect=true");
     }
-    public String atualizarUsuario(){
-        return("/admin/listaUsuarios?faces-redirect=true");
+    public String livrosMaisRetirados(){
+        return("/admin/relatorios/livrosMaisRetirados?faces-redirect=true");
     }
 
     public void removerUsuario(Usuario usuario){

@@ -255,11 +255,11 @@ public class RetiradasMB implements Serializable {
     }
     
     public String mostrarRetiradas(){        
-        return("/admin/retiradas/listaRetiradas?faces-redirect=true");
+        return("/admin/relatorios/listaRetiradas?faces-redirect=true");
     }
     
     public String mostrarRetiradasUsuario(){        
-        return("/usuario/retiradas/listaRetiradas?faces-redirect=true");
+        return("/usuario/relatorios/listaRetiradas?faces-redirect=true");
     }
 
     public Livro buscarLivroPorNome(String nome) {

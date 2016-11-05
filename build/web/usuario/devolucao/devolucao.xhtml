@@ -14,54 +14,51 @@
             <ui:define name="content">
                 <div class="tabelaUsuarios">
                     <h:form>
-                        <h:dataTable var="devolucao" value="#{devolucaoMB.listaDevolucao}" styleClass="table table-striped" >
+                        <h:dataTable var="retirada" value="#{retiradasMB.listaRetiradas}" styleClass="table table-striped" >
                             <f:facet name="header">
-                                <h:outputText value="Lista de Devoluções" style="font-size: 20px" />
+                                <h:outputText value="Retiradas Disponíveis para Devolução" style="font-size: 20px" />
                             </f:facet> 
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="ID" />
                                 </f:facet>
-                                <h:outputText id="id" value="#{devolucao.id}" />
+                                <h:outputText id="id" value="#{retirada.id}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Cliente" />
                                 </f:facet>
-                                <h:outputText id="idCliente" value="#{devolucao.cliente.nome}" />
+                                <h:outputText id="idCliente" value="#{retirada.cliente.nome}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Livro" />
                                 </f:facet>
-                                <h:outputText id="idLivro" value="#{devolucao.livro.nome}"  />
+                                <h:outputText id="idLivro" value="#{retirada.livro.nome}"  />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Retirada" />
                                 </f:facet>
-                                <h:outputText id="idRet" value="#{retiradasMB.formataData(devolucao.dataRetirada)}" />
+                                <h:outputText id="idRet" value="#{retiradasMB.formataData(retirada.dataRetirada)}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Devolução" />
                                 </f:facet>
-                                <h:outputText id="idDev" value="#{retiradasMB.formataData(devolucao.dataDevolucao)}" />
+                                <h:outputText id="idDev" value="#{retiradasMB.formataData(retirada.dataDevolucao)}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Devolvido" />
+                                    <h:outputText value="Atrasado" />
                                 </f:facet>
-                                <h:outputText id="idDevEm" value="#{retiradasMB.formataData(devolucao.dataDevolvido)}" />
+                                <span style="margin-left: 10px; padding-top: 7px; padding-bottom: 7px; padding-left: 12px; padding-right: 12px" Class="label #{retiradasMB.getLabel(retirada)}">#{retiradasMB.getAtrasadoString(retirada)}</span>
                             </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Devolvido em Atraso" />
-                                </f:facet>
-                                <span style="margin-left: 47px; padding-top: 7px; padding-bottom: 7px; padding-left: 12px; padding-right: 12px" Class="label #{devolucaoMB.getLabel(devolucao)}">#{devolucaoMB.getAtrasadoString(devolucao)}</span>
+                            <h:column >
+                                <h:commandButton onclick="funcaoConfirmarDevolucao()" id="devolver" value="Devolver Livro" style="align: right; margin-right: -37px; height: 28px; width: 140px; padding: 3px" styleClass="btn btn-warning" action="#{devolucaoMB.devolverLivro(retirada)}"/>
                             </h:column>
                         </h:dataTable>
-                        <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/usuario/relatorios"/>
+                        <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/usuario/index"/>
                     </h:form>                      
                 </div>
             </ui:define>

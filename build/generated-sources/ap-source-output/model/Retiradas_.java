@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import model.Cliente;
 import model.Livro;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-11-05T17:11:54")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-11-05T19:31:39")
 @StaticMetamodel(Retiradas.class)
 public class Retiradas_ { 
 
