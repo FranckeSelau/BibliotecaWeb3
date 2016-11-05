@@ -44,15 +44,4 @@ public class ClienteRN extends AbstractRN<Cliente>{
         query.setParameter("nome", "%"+nome.toLowerCase()+"%");
         return query.getResultList();
     }
-    
-            //SELECT p FROM Cliente p WHERE p.nome LIKE :nome
-    /*
-    public List<Movimento> getListaFiltro(String anoMes){
-        Query query = manager.createQuery("SELECT c from Movimento c where anoMes like :anoMes order by c.anoMes");
-        query.setParameter("anoMes", anoMes + "%");
-        List<Movimento> movimentos = (List<Movimento>) query.getResultList();
-
-        return movimentos;
-    }*/
-    
 }

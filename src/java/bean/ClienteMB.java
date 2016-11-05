@@ -109,7 +109,6 @@ public class ClienteMB implements Serializable {
     
     public String adicionarPesquisa() {
         pesquisaNome = buscarCliente(this.nomeBusca); 
-        System.out.println("nome "+ pesquisaNome.toString());
         return ("/admin/buscaCliente?faces-redirect=true");
     }
     
@@ -119,8 +118,5 @@ public class ClienteMB implements Serializable {
     
     public List<Cliente> buscarCliente(String nome){
         return clienteRN.buscarPorNome(nome);
-    }  
-    
-    
-    
+    }
 }

@@ -345,6 +345,22 @@ body {
     box-shadow: 3px 3px 4px threeddarkshadow;
 }
 
+.cadastroBuscaNome{
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+    height: 120px;
+    border-radius: 20px;
+    background: #E6E7E8; 
+    padding: 17px 45px;
+    font-family: verdana;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 9px;
+    margin-bottom: 9px;
+    box-shadow: 3px 3px 4px threeddarkshadow;
+}
+
 .confirmacaoCadastro{
     position: relative;
     width: 95%;
