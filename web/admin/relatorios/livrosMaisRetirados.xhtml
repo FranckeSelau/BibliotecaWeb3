@@ -20,9 +20,9 @@
                             </f:facet>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="ISBN" />
+                                    <h:outputText style="margin-left: 40px" value="ISBN" />
                                 </f:facet>
-                                <h:outputText id="idIsbn" value="#{livro.isbn}" />
+                                <h:outputText id="idIsbn" style="margin-left: 40px" value="#{livro.isbn}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -52,7 +52,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="Retiradas" />
                                 </f:facet>
-                                <h:outputText id="idMaisRet" value="#{livro.retiradas}" />
+                                <h:outputText id="idMaisRet" style="font-weight: bold; padding-left: 30px" value="#{livro.retiradas}" />
                             </h:column>
                         </h:dataTable>
                         <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/relatorios/relatorios"/>
