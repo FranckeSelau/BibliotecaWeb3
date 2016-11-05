@@ -101,7 +101,7 @@ public class LivroMB implements Serializable {
         for (Devolucao devolucao : pesquisaCascade) {
             devolucaoRN.remover(devolucao);      
         }
-        livroRN.remover(livro);       
+        livroRN.remover(livro);
     } 
     
     public String adicionarPesquisa() {
@@ -125,6 +125,4 @@ public class LivroMB implements Serializable {
                 return l;
         return null;
     }
-    
-    
 }

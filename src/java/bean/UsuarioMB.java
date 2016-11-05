@@ -43,32 +43,32 @@ public class UsuarioMB implements Serializable {
     
     public String novoUsuario(){
         usuarioSelecionado = new Usuario();
-        return("/admin/cadastroUsuarios?faces-redirect=true");
+        return("/admin/usuarios/cadastroUsuarios?faces-redirect=true");
     }
     
     public String adicionarUsuario(){
         usuarioRN.salvar(usuarioSelecionado);
         this.novoUsuario();
-        return("/admin/confirmaCadastroUsuario?faces-redirect=true");
+        return("/admin/usuarios/confirmaCadastroUsuario?faces-redirect=true");
     }
     
     public String mostrarUsuarios(){        
-        return("/admin/listaUsuarios?faces-redirect=true");
+        return("/admin/usuarios/listaUsuarios?faces-redirect=true");
     }
     
     public String editarUsuario(Usuario u){
         usuarioSelecionado = u;
-        return("/admin/edicaoUsuarios?faces-redirect=true");        
+        return("/admin/usuarios/edicaoUsuarios?faces-redirect=true");        
     }
     
     public String editarPerfil(Usuario u){
         usuarioSelecionado = u;
-        return("/usuario/editarPerfil?faces-redirect=true");
+        return("/usuario/usuarios/editarPerfil?faces-redirect=true");
     }
     
     public String atualizarUsuario(){
         usuarioRN.salvar(usuarioSelecionado);
-        return("/admin/listaUsuarios?faces-redirect=true");
+        return("/admin/usuarios/listaUsuarios?faces-redirect=true");
     }
     
     public void removerUsuario(Usuario usuario){

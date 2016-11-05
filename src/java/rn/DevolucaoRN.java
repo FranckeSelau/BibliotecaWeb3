@@ -45,4 +45,11 @@ public class DevolucaoRN extends AbstractRN<Devolucao>{
         query.setParameter("id", id);
         return query.getResultList();
     }
+    
+    //metodo usado para deletar cliente em cascata = (cascade = {CascadeType.PERSIST}) não funciona
+    public List<Devolucao> buscarClienteExclusao(Long matricula) {
+        Query query = manager.createQuery("SELECT p FROM Devolucao p WHERE p.cliente.matricula = :matricula");
+        query.setParameter("matricula", matricula);
+        return query.getResultList();
+    }
 }

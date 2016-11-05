@@ -49,11 +49,11 @@ public class RelatorioMB {
     }
     
     public String mostrarRelatorios(){        
-        return("/admin/relatorios?faces-redirect=true");
+        return("/admin/relatorios/relatorios?faces-redirect=true");
     }
     
     public String mostrarRelatoriosUsuario(){        
-        return("/usuario/relatorios?faces-redirect=true");
+        return("/usuario/relatorios/relatorios?faces-redirect=true");
     }
 
     public String editarUsuario(Usuario u){

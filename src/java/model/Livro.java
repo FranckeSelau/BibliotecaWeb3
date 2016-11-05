@@ -22,7 +22,6 @@ public class Livro implements Serializable {
     private Long id;
     private static int CODIGO_GERADO = 1;
     private String isbn, nome, autor, editora, ano;
-    //private Date ano;
     private int retiradas;
     private boolean disponivel = true;
     @Temporal (value=TemporalType.DATE)
@@ -43,7 +42,6 @@ public class Livro implements Serializable {
      */    
     
     public Livro() {
-        
     }
 
     /**

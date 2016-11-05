@@ -133,12 +133,12 @@ public class RetiradasMB implements Serializable {
 
     public String novaRetirada() {
         retiradaSelecionada = new Retiradas();
-        return ("/admin/retirada?faces-redirect=true");
+        return ("/admin/retiradas/retirada?faces-redirect=true");
     }
 
     public String novaRetiradaUsuario() {
         retiradaSelecionada = new Retiradas();
-        return ("/usuario/retirada?faces-redirect=true");
+        return ("/usuario/retiradas/retirada?faces-redirect=true");
     }
     
     public String adicionarPesquisa() {
@@ -184,12 +184,12 @@ public class RetiradasMB implements Serializable {
             retiradaRN.salvar(retiradaSelecionada);
             limparPesquisa(pesquisaSelecionada);
             this.novaRetirada();
-            return ("/admin/confirmaRetirada?faces-redirect=true");
+            return ("/admin/retiradas/confirmaRetirada?faces-redirect=true");
         }
         FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "É necessario pesquisar antes!");
         contexto.addMessage("idMensagem", mensagem);
-        return ("/admin/retirada?faces-redirect=true");
+        return ("/admin/retiradas/retirada?faces-redirect=true");
     }
     
     public String adicionarRetiradaUsuario() {
@@ -209,12 +209,12 @@ public class RetiradasMB implements Serializable {
             retiradaRN.salvar(retiradaSelecionada);
             limparPesquisa(pesquisaSelecionada);
             this.novaRetirada();
-            return ("/usuario/confirmaRetirada?faces-redirect=true");
+            return ("/usuario/retiradas/confirmaRetirada?faces-redirect=true");
         }
         FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "É necessario pesquisar antes!");
         contexto.addMessage("idMensagem", mensagem);
-        return ("/usuario/retirada?faces-redirect=true");
+        return ("/usuario/retiradas/retirada?faces-redirect=true");
     }
 
     public Cliente buscaClienteMat(Long mat) {
@@ -242,7 +242,7 @@ public class RetiradasMB implements Serializable {
 
     public String editarRetirada(Retiradas u) {
         retiradaSelecionada = u;
-        return ("/admin/edicaoUsuarios?faces-redirect=true"); //fazer pagina
+        return ("/admin/retiradas/edicaoUsuarios?faces-redirect=true"); //fazer pagina
     }
 
     public String atualizarRetirada() {
@@ -255,11 +255,11 @@ public class RetiradasMB implements Serializable {
     }
     
     public String mostrarRetiradas(){        
-        return("/admin/listaRetiradas?faces-redirect=true");
+        return("/admin/retiradas/listaRetiradas?faces-redirect=true");
     }
     
     public String mostrarRetiradasUsuario(){        
-        return("/usuario/listaRetiradas?faces-redirect=true");
+        return("/usuario/retiradas/listaRetiradas?faces-redirect=true");
     }
 
     public Livro buscarLivroPorNome(String nome) {

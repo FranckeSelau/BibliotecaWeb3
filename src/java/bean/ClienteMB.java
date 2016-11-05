@@ -11,7 +11,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Inject;
+import model.Devolucao;
 import rn.ClienteRN;
+import rn.DevolucaoRN;
 
 /**
  *
@@ -27,6 +29,9 @@ public class ClienteMB implements Serializable {
     private List<Cliente> pesquisaNome;
     @Inject
     private ClienteRN clienteRN;
+    @Inject
+    private DevolucaoRN devolucaoRN;
+    
 
     public ClienteMB() {
         clienteSelecionado = new Cliente();
@@ -107,7 +112,11 @@ public class ClienteMB implements Serializable {
         return ("/usuario/clientes/buscaCliente?faces-redirect=true");
     }
     
-    public void removerCliente(Cliente cliente){
+    public void removerCliente(Cliente cliente){// verifica se este cliente está relacionado a tabela devolução
+        List<Devolucao> pesquisaCascade = devolucaoRN.buscarClienteExclusao(cliente.getMatricula());
+        for (Devolucao devolucao : pesquisaCascade) {
+            devolucaoRN.remover(devolucao);      
+        }
         clienteRN.remover(cliente);
     } 
     

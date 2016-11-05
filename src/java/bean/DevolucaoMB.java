@@ -143,12 +143,12 @@ public class DevolucaoMB implements Serializable {
 
     public String novaDevolucao() {
         devolucaoSelecionada = new Devolucao();
-        return ("/admin/devolucao?faces-redirect=true");
+        return ("/admin/devolucao/devolucao?faces-redirect=true");
     }
 
     public String novaDevolucaoUsuario() {
         devolucaoSelecionada = new Devolucao();
-        return ("/usuario/devolucao?faces-redirect=true");
+        return ("/usuario/devolucao/devolucao?faces-redirect=true");
     }
 
     public void limparPesquisa(Devolucao r) {
@@ -203,11 +203,11 @@ public class DevolucaoMB implements Serializable {
     }
     
     public String mostrarDevolucao(){        
-        return("/admin/listaDevolucao?faces-redirect=true");
+        return("/admin/devolucao/listaDevolucao?faces-redirect=true");
     }
     
     public String mostrarDevolucaoUsuario(){        
-        return("/usuario/listaDevolucao?faces-redirect=true");
+        return("/usuario/devolucao/listaDevolucao?faces-redirect=true");
     }
 
     public void removerDevolucao(Devolucao devolucao) {
