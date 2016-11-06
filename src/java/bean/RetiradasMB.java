@@ -176,11 +176,13 @@ public class RetiradasMB implements Serializable {
             l.setDisponivel(false);
             l.setRetiradas(l.getRetiradas() + 1);
             l.setDataLiberacao(dataLiberacao);
+            c.setRetiradas(c.getRetiradas() + 1);
             retiradaSelecionada.setCliente(c);
             retiradaSelecionada.setLivro(l);
             retiradaSelecionada.setDataRetirada(dataAtual);
             retiradaSelecionada.setDataDevolucao(periodoEmprestimo);
             livroRN.salvar(l);
+            clienteRN.salvar(c);
             retiradaRN.salvar(retiradaSelecionada);
             limparPesquisa(pesquisaSelecionada);
             this.novaRetirada();
@@ -201,11 +203,13 @@ public class RetiradasMB implements Serializable {
             l.setDisponivel(false);
             l.setRetiradas(l.getRetiradas() + 1);
             l.setDataLiberacao(dataLiberacao);
+            c.setRetiradas(c.getRetiradas() + 1);
             retiradaSelecionada.setCliente(c);
             retiradaSelecionada.setLivro(l);
             retiradaSelecionada.setDataRetirada(dataAtual);
             retiradaSelecionada.setDataDevolucao(periodoEmprestimo);
             livroRN.salvar(l);
+            clienteRN.salvar(c);
             retiradaRN.salvar(retiradaSelecionada);
             limparPesquisa(pesquisaSelecionada);
             this.novaRetirada();

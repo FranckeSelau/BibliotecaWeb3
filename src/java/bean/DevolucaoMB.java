@@ -131,14 +131,31 @@ public class DevolucaoMB implements Serializable {
     public void setRetiradaSelecionada(Retiradas retiradaSelecionada) {
         this.retiradaSelecionada = retiradaSelecionada;
     }
+
+    public Date getDataAtual() {
+        return dataAtual;
+    }
+
+    public void setDataAtual(Date dataAtual) {
+        this.dataAtual = dataAtual;
+    }
     
     public void devolverLivro(Retiradas retirada){
         Livro l = retirada.getLivro();
+        Cliente c = retirada.getCliente();
         l.setDisponivel(true);
         l.setDataLiberacao(RetiradasMB.getDataLiberacao());
         livroRN.salvar(l);
+        atrasoCliente(c, retirada);
         adicionarDevolucao(retirada);
         retiradaRN.remover(retirada);        
+    }
+    
+    public void atrasoCliente(Cliente c, Retiradas r){
+        if (r.getDataDevolucao().before(getDataAtual()))
+            c.setAtrasos(c.getAtrasos() + 1);
+        
+        clienteRN.salvar(c);   
     }
 
     public String novaDevolucao() {

@@ -58,4 +58,4 @@ public class LivroRN extends AbstractRN<Livro>{
         Query query = manager.createQuery("SELECT p FROM Livro p WHERE p.disponivel = TRUE ORDER BY p.nome");
         return query.getResultList();
     }
-}//
+}
