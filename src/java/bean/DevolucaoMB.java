@@ -224,7 +224,7 @@ public class DevolucaoMB implements Serializable {
     }
     
     public String mostrarDevolucaoUsuario(){        
-        return("/usuario/devolucao/listaDevolucao?faces-redirect=true");
+        return("/usuario/relatorios/listaDevolucao?faces-redirect=true");
     }
 
     public void removerDevolucao(Devolucao devolucao) {

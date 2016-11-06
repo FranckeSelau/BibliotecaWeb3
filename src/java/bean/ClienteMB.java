@@ -147,8 +147,18 @@ public class ClienteMB implements Serializable {
         return("/admin/relatorios/clientesMaisRetiram?faces-redirect=true");
     }
     
+    public String clientesMaisRetiramUsuario(){
+        maisRetiram = this.clienteRN.topQueRetiram();
+        return("/usuario/relatorios/clientesMaisRetiram?faces-redirect=true");
+    }
+    
     public String clientesMaisAtrasam(){
         maisAtrasam = this.clienteRN.topQueAtrasam();
         return("/admin/relatorios/clientesMaisAtrasam?faces-redirect=true");
+    }
+    
+    public String clientesMaisAtrasamUsuario(){
+        maisAtrasam = this.clienteRN.topQueAtrasam();
+        return("/usuario/relatorios/clientesMaisAtrasam?faces-redirect=true");
     }
 }

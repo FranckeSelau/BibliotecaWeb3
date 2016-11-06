@@ -4,7 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">   
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="utf-8"></meta>
     </h:head>
@@ -12,51 +12,51 @@
         <ui:composition template="/template.xhtml">
             <ui:define name="top"></ui:define>
             <ui:define name="content">
-                <div class="tabelaUsuarios">
+                <div class="tabelaUsuarios"> 
                     <h:form>
-                        <h:dataTable var="retirada" value="#{retiradasMB.listaRetiradas}" styleClass="table table-striped" >
+                        <h:dataTable var="livro" value="#{livroMB.maisRetirados}" styleClass="table table-striped" >
                             <f:facet name="header">
-                                <h:outputText value="Lista de Retiradas" style="font-size: 20px" />
-                            </f:facet> 
+                                <h:outputText value="TOP 4 mais Retirados:" style="font-size: 18px; padding-left: 12px" />
+                            </f:facet>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText style="margin-left: 40px" value="ID" />
+                                    <h:outputText style="margin-left: 40px" value="ISBN" />
                                 </f:facet>
-                                <h:outputText style="margin-left: 40px" id="id" value="#{retirada.id}" />
+                                <h:outputText id="idIsbn" style="margin-left: 40px" value="#{livro.isbn}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Cliente" />
+                                    <h:outputText value="Nome" />
                                 </f:facet>
-                                <h:outputText id="idCliente" value="#{retirada.cliente.nome}" />
+                                <h:outputText id="idNome" value="#{livro.nome}"  />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Livro" />
+                                    <h:outputText value="Autor" />
                                 </f:facet>
-                                <h:outputText id="idLivro" value="#{retirada.livro.nome}"  />
+                                <h:outputText id="idAutor" value="#{livro.autor}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Retirada" />
+                                    <h:outputText value="Editora" />
                                 </f:facet>
-                                <h:outputText id="idRet" value="#{retiradasMB.formataData(retirada.dataRetirada)}" />
+                                <h:outputText id="idEditora" value="#{livro.editora}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Devolução" />
+                                    <h:outputText value="Ano" />
                                 </f:facet>
-                                <h:outputText id="idDev" value="#{retiradasMB.formataData(retirada.dataDevolucao)}" />
+                                <h:outputText id="idAno" value="#{livro.ano}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Atrasado" />
+                                    <h:outputText value="Retiradas" />
                                 </f:facet>
-                                <span style="margin-left: 11px; padding-top: 7px; padding-bottom: 7px; padding-left: 12px; padding-right: 12px" Class="label #{retiradasMB.getLabel(retirada)}">#{retiradasMB.getAtrasadoString(retirada)}</span>
+                                <h:outputText id="idMaisRet" style="font-weight: bold; padding-left: 30px" value="#{livro.retiradas}" />
                             </h:column>
                         </h:dataTable>
                         <h:button value="Voltar" style="align: right; width: 120px; margin-right: 5px" styleClass="btn btn-primary" outcome="/usuario/relatorios/relatorios"/>
-                    </h:form>                      
+                    </h:form>
                 </div>
             </ui:define>
         </ui:composition>

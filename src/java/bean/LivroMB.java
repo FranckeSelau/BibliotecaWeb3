@@ -141,9 +141,19 @@ public class LivroMB implements Serializable {
         return("/admin/relatorios/livrosMaisRetirados?faces-redirect=true");
     }
     
+    public String livrosMaisRetiradosUsuario(){
+        maisRetirados = this.livroRN.maisRetirados();
+        return("/usuario/relatorios/livrosMaisRetirados?faces-redirect=true");
+    }
+    
     public String livrosDisponiveis(){
         disponiveis = this.livroRN.disponiveis();
         return("/admin/relatorios/livrosDisponiveis?faces-redirect=true");
+    }
+    
+    public String livrosDisponiveisUsuario(){
+        disponiveis = this.livroRN.disponiveis();
+        return("/usuario/relatorios/livrosDisponiveis?faces-redirect=true");
     }
         
     //metodo para box option selec one
