@@ -27,6 +27,8 @@ public class ClienteMB implements Serializable {
     private String matricula;
     private String nomeBusca;
     private List<Cliente> pesquisaNome;
+    private List<Cliente> maisRetiram;
+    private List<Cliente> maisAtrasam;
     @Inject
     private ClienteRN clienteRN;
     @Inject
@@ -71,6 +73,22 @@ public class ClienteMB implements Serializable {
 
     public void setNomeBusca(String nomeBusca) {
         this.nomeBusca = nomeBusca;
+    }
+
+    public List<Cliente> getMaisRetiram() {
+        return maisRetiram;
+    }
+
+    public void setMaisRetiram(List<Cliente> maisRetiram) {
+        this.maisRetiram = maisRetiram;
+    }
+
+    public List<Cliente> getMaisAtrasam() {
+        return maisAtrasam;
+    }
+
+    public void setMaisAtrasam(List<Cliente> maisAtrasam) {
+        this.maisAtrasam = maisAtrasam;
     }
     
     public String novoCliente(){
@@ -122,5 +140,15 @@ public class ClienteMB implements Serializable {
     
     public List<Cliente> buscarCliente(String nome){
         return clienteRN.buscarPorNome(nome);
+    }
+    
+    public String clientesMaisRetiram(){
+        maisRetiram = this.clienteRN.topQueRetiram();
+        return("/admin/relatorios/clientesMaisRetiram?faces-redirect=true");
+    }
+    
+    public String clientesMaisAtrasam(){
+        maisAtrasam = this.clienteRN.topQueAtrasam();
+        return("/admin/relatorios/clientesMaisAtrasam?faces-redirect=true");
     }
 }

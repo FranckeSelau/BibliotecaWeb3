@@ -44,4 +44,20 @@ public class ClienteRN extends AbstractRN<Cliente>{
         query.setParameter("nome", "%"+nome.toLowerCase()+"%");
         return query.getResultList();
     }
+    
+    public List<Cliente> topQueRetiram() {
+        String jpql = "SELECT p FROM Cliente p WHERE p.retiradas > 1 "
+                + "ORDER BY p.retiradas DESC";   
+        Query query = manager.createQuery(jpql);
+        query.setMaxResults(3);
+        return query.getResultList();
+    }
+    
+    public List<Cliente> topQueAtrasam() {
+        String jpql = "SELECT p FROM Cliente p WHERE p.atrasos > 1 "
+                + "ORDER BY p.atrasos DESC";   
+        Query query = manager.createQuery(jpql);
+        query.setMaxResults(3);
+        return query.getResultList();
+    }
 }
