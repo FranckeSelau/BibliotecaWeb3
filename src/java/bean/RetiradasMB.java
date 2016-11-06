@@ -142,14 +142,22 @@ public class RetiradasMB implements Serializable {
     }
     
     public String adicionarPesquisa() {
+        FacesContext contexto = FacesContext.getCurrentInstance();
         Livro l = this.livroSelecionado;
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
-        pesquisaSelecionada.setCliente(c);
-        pesquisaSelecionada.setLivro(l);
-        pesquisaSelecionada.setDataRetirada(dataAtual);
-        pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
-        pesquisa.add(pesquisaSelecionada);
-        return (this.novaRetirada());
+        if (c != null) {
+            pesquisaSelecionada.setCliente(c);
+            pesquisaSelecionada.setLivro(l);
+            pesquisaSelecionada.setDataRetirada(dataAtual);
+            pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
+            pesquisa.add(pesquisaSelecionada);
+            return (this.novaRetirada());
+        }else{
+            FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                "Erro!", "Cliente não encontrado!");
+            contexto.addMessage("idMensagem", mensagemRet);
+        }
+        return ("/admin/retiradas/validacaoCiente?faces-redirect=true");        
     }
     
     public String adicionarPesquisaUsuario() {
@@ -169,7 +177,7 @@ public class RetiradasMB implements Serializable {
 
     public String adicionarRetirada() {
         FacesContext contexto = FacesContext.getCurrentInstance();
-        RetiradasMB retiradasMB = (RetiradasMB) contexto.getExternalContext().getApplicationMap().get("RetiradasMB");
+        //RetiradasMB retiradasMB = (RetiradasMB) contexto.getExternalContext().getApplicationMap().get("RetiradasMB");
         if (!pesquisa.isEmpty()) {
             Livro l = this.livroSelecionado;
             Cliente c = buscaClienteMat(this.getMatriculaCliente());
@@ -188,15 +196,15 @@ public class RetiradasMB implements Serializable {
             this.novaRetirada();
             return ("/admin/retiradas/confirmaRetirada?faces-redirect=true");
         }
-        FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+        FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "É necessario pesquisar antes!");
-        contexto.addMessage("idMensagem", mensagem);
+        contexto.addMessage("idMensagem", mensagemRet);
         return ("/admin/retiradas/retirada?faces-redirect=true");
     }
     
     public String adicionarRetiradaUsuario() {
-        FacesContext contexto = FacesContext.getCurrentInstance();
-        RetiradasMB retiradasMB = (RetiradasMB) contexto.getExternalContext().getApplicationMap().get("RetiradasMB");
+        FacesContext contextoRet = FacesContext.getCurrentInstance();
+        //RetiradasMB retiradasMB = (RetiradasMB) contextoRet.getExternalContext().getApplicationMap().get("RetiradasMB");
         if (!pesquisa.isEmpty()) {
             Livro l = this.livroSelecionado;
             Cliente c = buscaClienteMat(this.getMatriculaCliente());
@@ -215,9 +223,9 @@ public class RetiradasMB implements Serializable {
             this.novaRetirada();
             return ("/usuario/retiradas/confirmaRetirada?faces-redirect=true");
         }
-        FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+        FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "É necessario pesquisar antes!");
-        contexto.addMessage("idMensagem", mensagem);
+        contextoRet.addMessage("idMensagemRet", mensagemRet);
         return ("/usuario/retiradas/retirada?faces-redirect=true");
     }
 

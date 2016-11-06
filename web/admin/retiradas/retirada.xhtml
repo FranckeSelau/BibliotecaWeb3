@@ -26,11 +26,11 @@
                                                    var="livro" itemValue="#{livro}"
                                                    itemLabel="#{livro.nome}"/>
                                 </h:selectOneMenu>
-                                <h:commandButton value="Pesquisar" style="width: auto; margin-left: 45px " styleClass="btn btn-primary" action="#{retiradasMB.adicionarPesquisa()}"/>
+                                <h:commandButton value="Pesquisar" style="width: auto; margin-left: 45px" styleClass="btn btn-primary" action="#{retiradasMB.adicionarPesquisa()}"/>
                             </h:panelGrid>
                         </div>
                         <div class="alertaRetirada">
-                            <h:messages id="Mensagem" showDetail="false" errorClass="mensagem" styleClass= "alert alert-danger"/>
+                            <h:messages id="MensagemRet" showDetail="tue" errorClass="mensagemRet" styleClass= "alert alert-danger"/>
                         </div>
                         <div class="tabelaRetiradaPesquisa">
                             <h:dataTable var="pesquisa" value="#{retiradasMB.pesquisa}" styleClass="table table-striped" >
@@ -74,7 +74,6 @@
                             <p>*Para concluir o empréstimo, é necessário confirmar os dados clicando no botão "Pesquisar".</p>
                         </div>
                     </h:form>
-
                 </div>
             </ui:define>
         </ui:composition>

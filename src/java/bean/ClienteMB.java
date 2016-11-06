@@ -125,6 +125,11 @@ public class ClienteMB implements Serializable {
         return ("/admin/clientes/buscaCliente?faces-redirect=true");
     }
     
+    public String adicionarPesquisaRetirada() {
+        pesquisaNome = buscarCliente(this.nomeBusca); 
+        return ("/admin/retiradas/buscaCliente?faces-redirect=true");
+    }
+    
     public String adicionarPesquisaUsuario() {
         pesquisaNome = buscarCliente(this.nomeBusca); 
         return ("/usuario/clientes/buscaCliente?faces-redirect=true");
