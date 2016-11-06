@@ -20,9 +20,9 @@
                             </f:facet>                            
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="ISBN" />
+                                    <h:outputText value="ISBN" style="margin-left: 20px" />
                                 </f:facet>
-                                <h:outputText id="idIsbn" value="#{livro.isbn}" />
+                                <h:outputText id="idIsbn" value="#{livro.isbn}" style="margin-left: 20px" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -56,7 +56,7 @@
                             </h:column>
                             <h:column >
                                 <f:facet name="header">
-                                    <h:outputText value="Operação" style="padding-left: 0" />
+                                    <h:outputText value="Operação" style="margin-left: 30px" />
                                 </f:facet>
                                 <h:commandLink value="Editar " action="#{livroMB.editarLivro(livro)}"/>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
