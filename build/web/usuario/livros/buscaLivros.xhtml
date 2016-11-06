@@ -19,7 +19,7 @@
                             <h:panelGrid columns="5" style="margin-left: 90px; margin-top: 29px;" >
                                 <h:outputLabel for="idBuscaTitulo" value="Busca por Titulo" style="font-weight: normal"/>
                                 <h:inputText id="idBuscaTitulo" style="width: 290px; margin-left: 20px" styleClass="form-control" required="true"  requiredMessage="Erro! digite um título!" a:placeholder="Digite o título..."   value="#{livroMB.tituloBusca}" />
-                                <h:commandButton value="Pesquisar" style="width: 150px; margin-left: 20px " styleClass="btn btn-primary" action="#{livroMB.adicionarPesquisaUsuario()}"/>
+                                <h:commandButton value="Pesquisar" style="width: 150px; margin-left: 20px " styleClass="btn btn-primary" action="#{livroMB.adicionarPesquisa()}"/>
                                 <h:button value="Voltar" style="align: right; width: 120px; margin-left: 20px; margin-right: 5px" styleClass="btn btn-info" outcome="/usuario/index"/>
                             </h:panelGrid>
                         </div>

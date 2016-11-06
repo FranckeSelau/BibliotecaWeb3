@@ -19,8 +19,8 @@
                             <h:panelGrid columns="5" style="margin-left: 90px; margin-top: 29px;" >
                                 <h:outputLabel for="idBuscaNome" value="Busca por Nome" style="font-weight: normal"/>
                                 <h:inputText id="idBuscaNome" style="width: 290px; margin-left: 20px" styleClass="form-control" required="true"  requiredMessage="Erro! digite um nome!" a:placeholder="Digite um nome..."   value="#{clienteMB.nomeBusca}" />
-                                <h:commandButton value="Pesquisar" style="width: 150px; margin-left: 20px " styleClass="btn btn-primary" action="#{clienteMB.adicionarPesquisa()}"/>
-                                <h:button value="Voltar" style="align: right; width: 120px; margin-left: 20px; margin-right: 5px" styleClass="btn btn-info" outcome="/usuario/index"/>
+                                <h:commandButton value="Pesquisar" style="width: 150px; margin-left: 20px " styleClass="btn btn-primary" action="#{clienteMB.adicionarPesquisaRetirada}"/>
+                                <h:button value="Retornar Retiradas" style="align: right; width: 190px; margin-left: 20px; margin-right: 5px" styleClass="btn btn-info" outcome="/usuario/retiradas/retirada"/>
                             </h:panelGrid>
                         </div>
                         <div class="alertaRetirada">

@@ -10,6 +10,7 @@ import model.Cliente;
 import model.Livro;
 import model.Devolucao;
 import model.Retiradas;
+import model.Usuario;
 import rn.ClienteRN;
 import rn.LivroRN;
 import rn.DevolucaoRN;
@@ -34,6 +35,9 @@ public class DevolucaoMB implements Serializable {
     LivroMB livroMB;
     @Inject
     RetiradasMB RetiradasMB;
+    @Inject
+    LoginMB loginMB;
+
     private long id;
     private long matriculaCliente;
     private long idLivro;
@@ -44,7 +48,7 @@ public class DevolucaoMB implements Serializable {
       private Date dataAtual = new Date(System.currentTimeMillis());
 
     public DevolucaoMB() {
-       devolucaoSelecionada = new Devolucao();       
+       devolucaoSelecionada = new Devolucao();
     }
 
     public long getId() {
@@ -90,7 +94,7 @@ public class DevolucaoMB implements Serializable {
     public List<Devolucao> getListaDevolucao() {
         return devolucaoRN.listar();
     }
-    
+
     public Date getDataAtual() {
         return dataAtual;
     }
@@ -98,7 +102,7 @@ public class DevolucaoMB implements Serializable {
     public void setDataAtual(Date dataAtual) {
         this.dataAtual = dataAtual;
     }
-    
+
     public void devolverLivro(Retiradas retirada){
         Livro l = retirada.getLivro();
         Cliente c = retirada.getCliente();
@@ -107,23 +111,20 @@ public class DevolucaoMB implements Serializable {
         livroRN.salvar(l);
         atrasoCliente(c, retirada);
         adicionarDevolucao(retirada);
-        retiradaRN.remover(retirada);        
+        retiradaRN.remover(retirada);
     }
-    
+
     public void atrasoCliente(Cliente c, Retiradas r){
         if (r.getDataDevolucao().before(getDataAtual()))
             c.setAtrasos(c.getAtrasos() + 1);
-        
-        clienteRN.salvar(c);   
+
+        clienteRN.salvar(c);
     }
 
     public String novaDevolucao() {
         devolucaoSelecionada = new Devolucao();
-        return ("/admin/devolucao/devolucao?faces-redirect=true");
-    }
-
-    public String novaDevolucaoUsuario() {
-        devolucaoSelecionada = new Devolucao();
+        if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return ("/admin/devolucao/devolucao?faces-redirect=true");
         return ("/usuario/devolucao/devolucao?faces-redirect=true");
     }
 
@@ -133,7 +134,7 @@ public class DevolucaoMB implements Serializable {
             devolucaoSelecionada.setDataRetirada(retirada.getDataRetirada());
             devolucaoSelecionada.setDataDevolucao(retirada.getDataDevolucao());
             devolucaoSelecionada.setDataDevolvido(dataAtual);
-            devolucaoRN.salvar(devolucaoSelecionada);            
+            devolucaoRN.salvar(devolucaoSelecionada);
             return (this.novaDevolucao());
         }
 
@@ -142,25 +143,23 @@ public class DevolucaoMB implements Serializable {
         return this.dtFormatada;
     }
 
-    public String mostrarDevolucao(){        
-        return("/admin/relatorios/listaDevolucao?faces-redirect=true");
-    }
-    
-    public String mostrarDevolucaoUsuario(){        
+    public String mostrarDevolucao(){
+        if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return("/admin/relatorios/listaDevolucao?faces-redirect=true");
         return("/usuario/relatorios/listaDevolucao?faces-redirect=true");
     }
 
     public void removerDevolucao(Devolucao devolucao) {
         devolucaoRN.remover(devolucao);
     }
-    
+
     public String getAtrasadoString(Devolucao d){
         if(d.getDataDevolucao().before(d.getDataDevolvido())) return "Sim";
         else return "Não";
     }
-    
+
     public String getLabel(Devolucao d){
         if(d.getDataDevolucao().before(d.getDataDevolvido())) return "label-danger";
         else return "label-success";
-    }    
+    }
 }

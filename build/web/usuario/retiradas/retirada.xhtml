@@ -26,7 +26,7 @@
                                                    var="livro" itemValue="#{livro}"
                                                    itemLabel="#{livro.nome}"/>
                                 </h:selectOneMenu>
-                                <h:commandButton value="Pesquisar" style="width: auto; margin-left: 45px " styleClass="btn btn-primary" action="#{retiradasMB.adicionarPesquisaUsuario()}"/>
+                                <h:commandButton value="Pesquisar" style="width: auto; margin-left: 45px " styleClass="btn btn-primary" action="#{retiradasMB.addPesquisaUsuario()}"/>
                             </h:panelGrid>
                         </div>
                         <div class="alertaRetirada">
@@ -67,7 +67,7 @@
                             </h:dataTable>                              
                         </div>
                         <div class="tabelaRetiradaPesquisaCentro">                            
-                            <h:button value="Voltar" style="align: right; width: 120px; margin-left: 650px; margin-right: 5px" styleClass="btn btn-primary" outcome="/admin/index"/>
+                            <h:button value="Voltar" style="align: right; width: 120px; margin-left: 650px; margin-right: 5px" styleClass="btn btn-primary" outcome="/usuario/index"/>
                             <h:commandButton value="Confirmar" style="width: 120px; align: right; " styleClass="btn btn-primary" action="#{retiradasMB.adicionarRetiradaUsuario()}"/>
                         </div>
                         <div class="tabelaRetiradaPesquisaTexto"> 

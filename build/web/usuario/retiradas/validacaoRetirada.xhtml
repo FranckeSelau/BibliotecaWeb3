@@ -12,19 +12,21 @@
             <ui:define name="top"></ui:define>
             <ui:define name="content">
                 <div class="confirmacaoFundoPesquisa">
-                    <div class="tituloErroCliente">ERRO!</div>
-                    <div class="validaClienteRetirada">
+                <div class="confirmacaoFundoRetirada">
+                    <div class="tituloErroPesquisa">Alerta!</div>
+                    <div class="validaClienteRetirada1">
                         <h:form>
                             <h:panelGrid columns="1" >
-                                <h:outputLabel for="idConfirmacao" value="Erro! Cliente não encontrado!" style="font-weight: normal"/>
-                                <h:outputLabel for="idConfirmacao" value="Acesse Menu Clientes, Buscar por nome!" style="font-weight: normal; font-size: 15px"/>
+                                <h:outputLabel for="idConfirmacao" value="Pesquisa não encontrada!" style="font-weight: normal"/>
+                                <h:outputLabel for="idConfirmacao" value="Realize a pesquisa antes de confimar retirada" style="font-weight: normal; font-size: 13px"/>
                             </h:panelGrid>
-                            <div class="botaoErro">
-                                <h:button value="Fechar" style="width: 80px; margin-left: 5px" styleClass="btn btn-danger" outcome="/admin/retiradas/buscaCliente"/>
+                            <div class="botaoErroPesquisa">
+                                <h:button value="Fechar" style="width: 80px; margin-left: 5px" styleClass="btn btn-danger" outcome="/usuario/retiradas/retirada"/>
                             </div>
                         </h:form>
                     </div>
                 </div>
+                    </div>
             </ui:define>
         </ui:composition>
     </h:body>

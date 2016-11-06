@@ -28,8 +28,8 @@ and open the template in the editor.
 
 .validaClienteRetirada{
     position: relative;
-    width: 95%;
-    margin-left: -47px;
+    width: 40%;
+    margin-left: 230px;
     height: 180px;
     border-radius: 20px;
     background: #ff9f8d; 
@@ -58,8 +58,8 @@ and open the template in the editor.
 
 .tituloErroCliente{
     position: relative;
-    width: 57%;
-    margin-left: 8%;
+    width: 20%;
+    margin-left: 26%;
     height: 9%;
     border-radius: 10px;
     background: #ff9999; 
@@ -67,7 +67,7 @@ and open the template in the editor.
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-    margin-top: 25px;   
+    margin-top: 13px;   
     z-index: 10;
     box-shadow: 2px 2px 3px threeddarkshadow;
 }
@@ -100,3 +100,4 @@ and open the template in the editor.
     margin-top: -40px; 
     background: url(../imagens/confirmaPesquisa.jpg) no-repeat; 
 }
+

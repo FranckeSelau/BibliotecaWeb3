@@ -13,7 +13,7 @@
             <ui:define name="top"></ui:define>
             <ui:define name="content">
                 <div class="tabelaUsuarios">
-                    <f:event listener="#{clienteMB.clientesMaisRetiramUsuario()}" type="preRenderView"/> 
+                    <f:event listener="#{clienteMB.clientesMaisRetiram()}" type="preRenderView"/> 
                     <h:form>
                         <h:dataTable var="cliente" value="#{clienteMB.maisRetiram}" styleClass="table table-striped" >
                             <f:facet name="header">

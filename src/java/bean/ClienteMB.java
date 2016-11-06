@@ -22,7 +22,7 @@ import rn.DevolucaoRN;
 @Named(value = "clienteMB")
 @SessionScoped
 public class ClienteMB implements Serializable {
-    
+
     private Cliente clienteSelecionado;
     private String matricula;
     private String nomeBusca;
@@ -33,10 +33,12 @@ public class ClienteMB implements Serializable {
     private ClienteRN clienteRN;
     @Inject
     private DevolucaoRN devolucaoRN;
-    
+    @Inject
+    LoginMB loginMB;
 
     public ClienteMB() {
         clienteSelecionado = new Cliente();
+
     }
 
     public Cliente getClienteSelecionado() {
@@ -46,15 +48,15 @@ public class ClienteMB implements Serializable {
     public void setClienteSelecionado(Cliente usuarioSelecionado) {
         this.clienteSelecionado = usuarioSelecionado;
     }
-    
+
     public String getMatricula() {
         return matricula;
     }
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
-    }    
-    
+    }
+
     public List<Cliente> getListaClientes(){
         return clienteRN.listar();
     }
@@ -65,7 +67,7 @@ public class ClienteMB implements Serializable {
 
     public void setPesquisaNome(List<Cliente> pesquisaNome) {
         this.pesquisaNome = pesquisaNome;
-    }    
+    }
 
     public String getNomeBusca() {
         return nomeBusca;
@@ -90,80 +92,73 @@ public class ClienteMB implements Serializable {
     public void setMaisAtrasam(List<Cliente> maisAtrasam) {
         this.maisAtrasam = maisAtrasam;
     }
-    
+
     public String novoCliente(){
         clienteSelecionado = new Cliente();
         return("/admin/clientes/cadastroClientes?faces-redirect=true");
     }
-    
+
     public String adicionarCliente(){
         clienteRN.salvar(clienteSelecionado);
         this.novoCliente();
         return("/admin/clientes/confirmaCadastroCliente?faces-redirect=true");
     }
-    
-    public String mostrarClientes(){        
-        return("/admin/clientes/listaClientes?faces-redirect=true");
-    }
-    
-    public String mostrarClientesUsuario(){        
+
+    public String mostrarClientes(){
+        if(loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return("/admin/clientes/listaClientes?faces-redirect=true");
         return("/usuario/clientes/listaClientes?faces-redirect=true");
     }
-    
+
     public String editarCliente(Cliente c){
         clienteSelecionado = c;
         return("/admin/clientes/edicaoClientes?faces-redirect=true");        
     }
-    
+
     public String atualizarCliente(){
         clienteRN.salvar(clienteSelecionado);
         return("/admin/clientes/listaClientes?faces-redirect=true");
     }
-    
+
     public String adicionarPesquisa() {
-        pesquisaNome = buscarCliente(this.nomeBusca); 
-        return ("/admin/clientes/buscaCliente?faces-redirect=true");
+        pesquisaNome = buscarCliente(this.nomeBusca);        
+        if(loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return ("/admin/clientes/buscaCliente?faces-redirect=true");
+        return ("/usuario/clientes/buscaCliente?faces-redirect=true");        
     }
-    
+
     public String adicionarPesquisaRetirada() {
         pesquisaNome = buscarCliente(this.nomeBusca); 
-        return ("/admin/retiradas/buscaCliente?faces-redirect=true");
+        if(loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return ("/admin/retiradas/buscaCliente?faces-redirect=true");
+        return ("/usuario/retiradas/buscaCliente?faces-redirect=true");
     }
-    
-    public String adicionarPesquisaUsuario() {
-        pesquisaNome = buscarCliente(this.nomeBusca); 
-        return ("/usuario/clientes/buscaCliente?faces-redirect=true");
-    }
-    
+
     public void removerCliente(Cliente cliente){// verifica se este cliente está relacionado a tabela devolução
         List<Devolucao> pesquisaCascade = devolucaoRN.buscarClienteExclusao(cliente.getMatricula());
         for (Devolucao devolucao : pesquisaCascade) {
             devolucaoRN.remover(devolucao);      
         }
         clienteRN.remover(cliente);
-    } 
-    
+    }
+
     public List<Cliente> buscarCliente(String nome){
         return clienteRN.buscarPorNome(nome);
     }
-    
+
     public String clientesMaisRetiram(){
         maisRetiram = this.clienteRN.topQueRetiram();
-        return("/admin/relatorios/clientesMaisRetiram?faces-redirect=true");
+        if(loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return("/admin/relatorios/clientesMaisRetiram?faces-redirect=true");
+        return("/usuario/relatorios/clientesMaisRetiram?faces-redirect=true");   
+
     }
-    
-    public String clientesMaisRetiramUsuario(){
-        maisRetiram = this.clienteRN.topQueRetiram();
-        return("/usuario/relatorios/clientesMaisRetiram?faces-redirect=true");
-    }
-    
+
     public String clientesMaisAtrasam(){
         maisAtrasam = this.clienteRN.topQueAtrasam();
-        return("/admin/relatorios/clientesMaisAtrasam?faces-redirect=true");
-    }
-    
-    public String clientesMaisAtrasamUsuario(){
-        maisAtrasam = this.clienteRN.topQueAtrasam();
+        if(loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return("/admin/relatorios/clientesMaisAtrasam?faces-redirect=true");
         return("/usuario/relatorios/clientesMaisAtrasam?faces-redirect=true");
+
     }
 }

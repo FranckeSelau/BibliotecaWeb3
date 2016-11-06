@@ -17,7 +17,7 @@ import rn.DevolucaoRN;
 @Named(value = "livroMB")
 @SessionScoped
 public class LivroMB implements Serializable {
-    
+
     private Livro livroSelecionado;
     private String id;
     private List<Livro> pesquisaTitulo;
@@ -28,6 +28,8 @@ public class LivroMB implements Serializable {
     private LivroRN livroRN;
     @Inject
     private DevolucaoRN devolucaoRN;
+    @Inject
+    LoginMB loginMB;
 
     public LivroMB() {
         livroSelecionado = new Livro();
@@ -40,7 +42,7 @@ public class LivroMB implements Serializable {
     public void setLivroSelecionado(Livro usuarioSelecionado) {
         this.livroSelecionado = usuarioSelecionado;
     }
-    
+
     public String getId() {
         return id;
     }
@@ -48,7 +50,7 @@ public class LivroMB implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public List<Livro> getListaLivros(){
         return livroRN.listar();
     }
@@ -59,7 +61,7 @@ public class LivroMB implements Serializable {
 
     public void setPesquisaTitulo(List<Livro> pesquisaTitulo) {
         this.pesquisaTitulo = pesquisaTitulo;
-    }    
+    }
 
     public String getTituloBusca() {
         return tituloBusca;
@@ -83,79 +85,68 @@ public class LivroMB implements Serializable {
 
     public void setDisponiveis(List<Livro> disponiveis) {
         this.disponiveis = disponiveis;
-    }    
-    
+    }
+
     public String novoLivro(){
         livroSelecionado = new Livro();
         return("/admin/livros/cadastroLivros?faces-redirect=true");
     }
-    
+
     public String adicionarLivro(){
         livroRN.salvar(livroSelecionado);
         this.novoLivro();
         return("/admin/livros/confirmaCadastroLivro?faces-redirect=true");
     }
-    
-    public String mostrarLivros(){        
-        return("/admin/livros/listaLivros?faces-redirect=true");
-    }
-    
-    public String mostrarLivrosUsuario(){        
+
+    public String mostrarLivros(){
+        if(loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+                return("/admin/livros/listaLivros?faces-redirect=true");
         return("/usuario/livros/listaLivros?faces-redirect=true");
     }
-    
+
     public String editarLivro(Livro c){
         livroSelecionado = c;
         return("/admin/livros/edicaoLivros?faces-redirect=true");        
     }
-    
+
     public String atualizarLivro(){
         livroRN.salvar(livroSelecionado);
         return("/admin/livros/listaLivros?faces-redirect=true");
     }
-    
+
     public void removerLivro(Livro livro){// verifica se este livro está relacionado a tabela devolução
         List<Devolucao> pesquisaCascade = devolucaoRN.buscarLivroExclusao(livro.getId());
         for (Devolucao devolucao : pesquisaCascade) {
-            devolucaoRN.remover(devolucao);      
+            devolucaoRN.remover(devolucao);
         }
         livroRN.remover(livro);
-    } 
-    
-    public String adicionarPesquisa() {
-        pesquisaTitulo = buscarLivroTitulo(this.tituloBusca); 
-        return ("/admin/livros/buscaLivros?faces-redirect=true");
     }
-    
-    public String adicionarPesquisaUsuario() {
-        pesquisaTitulo = buscarLivroTitulo(this.tituloBusca); 
+
+    public String adicionarPesquisa() {
+        pesquisaTitulo = buscarLivroTitulo(this.tituloBusca);
+        if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return ("/admin/livros/buscaLivros?faces-redirect=true");
         return ("/usuario/livros/buscaLivros?faces-redirect=true");
     }
-    
+
     public List<Livro> buscarLivroTitulo(String titulo){
         return livroRN.buscarPorTitulo(titulo);
     }
-    
+
     public String livrosMaisRetirados(){
         maisRetirados = this.livroRN.maisRetirados();
-        return("/admin/relatorios/livrosMaisRetirados?faces-redirect=true");
-    }
-    
-    public String livrosMaisRetiradosUsuario(){
-        maisRetirados = this.livroRN.maisRetirados();
+        if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return("/admin/relatorios/livrosMaisRetirados?faces-redirect=true");
         return("/usuario/relatorios/livrosMaisRetirados?faces-redirect=true");
     }
-    
+
     public String livrosDisponiveis(){
         disponiveis = this.livroRN.disponiveis();
-        return("/admin/relatorios/livrosDisponiveis?faces-redirect=true");
-    }
-    
-    public String livrosDisponiveisUsuario(){
-        disponiveis = this.livroRN.disponiveis();
+        if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return("/admin/relatorios/livrosDisponiveis?faces-redirect=true");
         return("/usuario/relatorios/livrosDisponiveis?faces-redirect=true");
     }
-        
+
     //metodo para box option selec one
     public Livro buscarLivroPorNome(String nome){
         for(Livro l: getListaLivros())

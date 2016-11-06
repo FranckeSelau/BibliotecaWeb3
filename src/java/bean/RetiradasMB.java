@@ -12,6 +12,7 @@ import javax.inject.Named;
 import model.Cliente;
 import model.Livro;
 import model.Retiradas;
+import model.Usuario;
 import rn.ClienteRN;
 import rn.LivroRN;
 import rn.RetiradasRN;
@@ -31,9 +32,11 @@ public class RetiradasMB implements Serializable {
     ClienteMB clienteMB;
     @Inject
     LivroMB livroMB;
+    @Inject
+    LoginMB loginMB;
     private long id;
     private long matriculaCliente;
-    private long idLivro; 
+    private long idLivro;
     private String dtFormatada;
     private Livro livroSelecionado;
     long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -52,7 +55,6 @@ public class RetiradasMB implements Serializable {
         pesquisaSelecionada = new Retiradas();
         retiradaSelecionada = new Retiradas();
         livroSelecionado = new Livro();
-
     }
 
     public long getId() {
@@ -121,7 +123,7 @@ public class RetiradasMB implements Serializable {
 
     public void setPesquisaSelecionada(Retiradas pesquisaSelecionada) {
         this.pesquisaSelecionada = pesquisaSelecionada;
-    }    
+    }
 
     public Date getDataLiberacao() {
         return dataLiberacao;
@@ -133,14 +135,11 @@ public class RetiradasMB implements Serializable {
 
     public String novaRetirada() {
         retiradaSelecionada = new Retiradas();
-        return ("/admin/retiradas/retirada?faces-redirect=true");
-    }
-
-    public String novaRetiradaUsuario() {
-        retiradaSelecionada = new Retiradas();
+        if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return ("/admin/retiradas/retirada?faces-redirect=true");
         return ("/usuario/retiradas/retirada?faces-redirect=true");
     }
-    
+
     public String adicionarPesquisa() {
         FacesContext contexto = FacesContext.getCurrentInstance();
         Livro l = this.livroSelecionado;
@@ -153,30 +152,38 @@ public class RetiradasMB implements Serializable {
             pesquisa.add(pesquisaSelecionada);
             return (this.novaRetirada());
         }else{
-            
             FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "Cliente não encontrado!");
             contexto.addMessage("idMensagem", mensagemRet);
         }
         return ("/admin/retiradas/validacaoCiente?faces-redirect=true");        
     }
-    
-    public String adicionarPesquisaUsuario() {
+
+    public String addPesquisaUsuario() {
+        FacesContext contexto = FacesContext.getCurrentInstance();
         Livro l = this.livroSelecionado;
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
-        pesquisaSelecionada.setCliente(c);
-        pesquisaSelecionada.setLivro(l);
-        pesquisaSelecionada.setDataRetirada(dataAtual);
-        pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
-        pesquisa.add(pesquisaSelecionada);
-        return (this.novaRetiradaUsuario());
+        if (c != null) {
+            pesquisaSelecionada.setCliente(c);
+            pesquisaSelecionada.setLivro(l);
+            pesquisaSelecionada.setDataRetirada(dataAtual);
+            pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
+            pesquisa.add(pesquisaSelecionada);
+            this.novaRetirada();
+            return ("/usuario/retiradas/retirada?faces-redirect=true");
+        }else{
+            FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                "Erro!", "Cliente não encontrado!");
+            contexto.addMessage("idMensagem", mensagemRet);
+        }
+        return ("/usuario/retiradas/validacaoCiente?faces-redirect=true");        
     }
 
     public void limparPesquisa(Retiradas r) {
         pesquisa.remove(r);
     }
 
-    public String adicionarRetirada() {
+   public String adicionarRetirada() {
         FacesContext contexto = FacesContext.getCurrentInstance();
         //RetiradasMB retiradasMB = (RetiradasMB) contexto.getExternalContext().getApplicationMap().get("RetiradasMB");
         if (!pesquisa.isEmpty()) {
@@ -202,7 +209,7 @@ public class RetiradasMB implements Serializable {
         contexto.addMessage("idMensagem", mensagemRet);
         return ("/admin/retiradas/validacaoRetirada?faces-redirect=true");
     }
-    
+
     public String adicionarRetiradaUsuario() {
         FacesContext contextoRet = FacesContext.getCurrentInstance();
         //RetiradasMB retiradasMB = (RetiradasMB) contextoRet.getExternalContext().getApplicationMap().get("RetiradasMB");
@@ -227,7 +234,7 @@ public class RetiradasMB implements Serializable {
         FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "É necessario pesquisar antes!");
         contextoRet.addMessage("idMensagemRet", mensagemRet);
-        return ("/usuario/retiradas/retirada?faces-redirect=true");
+        return ("/usuario/retiradas/validacaoRetirada?faces-redirect=true");
     }
 
     public Cliente buscaClienteMat(Long mat) {
@@ -266,13 +273,11 @@ public class RetiradasMB implements Serializable {
     public void removerRetirada(Retiradas retirada) {
         retiradaRN.remover(retirada);
     }
-    
-    public String mostrarRetiradas(){        
-        return("/admin/relatorios/listaRetiradas?faces-redirect=true");
-    }
-    
-    public String mostrarRetiradasUsuario(){        
-        return("/usuario/relatorios/listaRetiradas?faces-redirect=true");
+
+    public String mostrarRetiradas() {
+        if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin()) 
+            return ("/admin/relatorios/listaRetiradas?faces-redirect=true");
+        return ("/usuario/relatorios/listaRetiradas?faces-redirect=true");
     }
 
     public Livro buscarLivroPorNome(String nome) {
@@ -283,15 +288,15 @@ public class RetiradasMB implements Serializable {
         }
         return null;
     }
-    
+
     public String getAtrasadoString(Retiradas r){
         if(r.getDataDevolucao().before(dataAtual)) return "Sim";
         else return "Não";
     }
-    
+
     public String getLabel(Retiradas r){
         if(r.getDataDevolucao().before(dataAtual)) return "label-danger";
         else return "label-success";
     }
-    
+
 }
