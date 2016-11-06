@@ -28,7 +28,8 @@ public class Cliente implements Serializable {
         this.matricula = matricula;
     }
     
-    public Cliente() {        
+    public Cliente() { 
+        
     }
     /**
      * Construtor para inicializar cliente

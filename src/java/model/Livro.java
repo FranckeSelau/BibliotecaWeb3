@@ -37,11 +37,9 @@ public class Livro implements Serializable {
     
     /**
      * Construtor para inicializar livro
-     *
-     *
-     */    
-    
-    public Livro() {
+     */        
+    public Livro(){
+        
     }
 
     /**

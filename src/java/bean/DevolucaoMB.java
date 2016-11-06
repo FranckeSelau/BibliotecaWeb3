@@ -1,7 +1,6 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -39,21 +38,13 @@ public class DevolucaoMB implements Serializable {
     private long matriculaCliente;
     private long idLivro;
     private String dtFormatada;
-    private Livro livroSelecionado;
-    private Retiradas retiradaSelecionada;
     long DAY_IN_MS = 1000 * 60 * 60 * 24; // formatar data entrega
     private List<Devolucao> listaDevolucao;
-    private List<Devolucao> pesquisa;
     private Devolucao devolucaoSelecionada;
-    private Devolucao pesquisaSelecionada;
-    private Date dataAtual = new Date(System.currentTimeMillis());
+      private Date dataAtual = new Date(System.currentTimeMillis());
 
     public DevolucaoMB() {
-        pesquisa = new ArrayList<>();
-        pesquisaSelecionada = new Devolucao();
-        devolucaoSelecionada = new Devolucao();
-        livroSelecionado = new Livro();
-        retiradaSelecionada = new Retiradas();
+       devolucaoSelecionada = new Devolucao();       
     }
 
     public long getId() {
@@ -88,14 +79,6 @@ public class DevolucaoMB implements Serializable {
         this.dtFormatada = dtFormatada;
     }
 
-    public Livro getLivroSelecionado() {
-        return livroSelecionado;
-    }
-
-    public void setLivroSelecionado(Livro livroSelecionado) {
-        this.livroSelecionado = livroSelecionado;
-    }
-
     public Devolucao getDevolucaoSelecionada() {
         return devolucaoSelecionada;
     }
@@ -107,31 +90,7 @@ public class DevolucaoMB implements Serializable {
     public List<Devolucao> getListaDevolucao() {
         return devolucaoRN.listar();
     }
-
-    public List<Devolucao> getPesquisa() {
-        return pesquisa;
-    }
-
-    public void setPesquisa(List<Devolucao> pesquisa) {
-        this.pesquisa = pesquisa;
-    }
-
-    public Devolucao getPesquisaSelecionada() {
-        return pesquisaSelecionada;
-    }
-
-    public void setPesquisaSelecionada(Devolucao pesquisaSelecionada) {
-        this.pesquisaSelecionada = pesquisaSelecionada;
-    }
-
-    public Retiradas getRetiradaSelecionada() {
-        return retiradaSelecionada;
-    }
-
-    public void setRetiradaSelecionada(Retiradas retiradaSelecionada) {
-        this.retiradaSelecionada = retiradaSelecionada;
-    }
-
+    
     public Date getDataAtual() {
         return dataAtual;
     }
@@ -168,10 +127,6 @@ public class DevolucaoMB implements Serializable {
         return ("/usuario/devolucao/devolucao?faces-redirect=true");
     }
 
-    public void limparPesquisa(Devolucao r) {
-        pesquisa.remove(r);
-    }
-
     public String adicionarDevolucao(Retiradas retirada) {
             devolucaoSelecionada.setCliente(retirada.getCliente());
             devolucaoSelecionada.setLivro(retirada.getLivro());
@@ -182,43 +137,11 @@ public class DevolucaoMB implements Serializable {
             return (this.novaDevolucao());
         }
 
-    public Cliente buscaClienteMat(Long mat) {
-        return clienteRN.buscar(mat);
-    }
-
-    public Livro buscaLivroID(Long id) {
-        return livroRN.buscar(id);
-    }
-    
-    public Retiradas buscarRetiradasID(Long id){         
-        return retiradaRN.buscar(id);
-    }
-
-    public List<Livro> getLivrosDisponiveis() {
-        List<Livro> disponiveis = new ArrayList<>();
-        for (Livro l : this.livroMB.getListaLivros()) {
-            if (l.isDisponivel()) {
-                disponiveis.add(l);
-            }
-        }
-        return disponiveis;
-    }
-
-    public String formataData(Date data) {
+   public String formataData(Date data) {
         this.dtFormatada = dateToString(data);
         return this.dtFormatada;
     }
 
-    public String editarRetirada(Devolucao u) {
-        devolucaoSelecionada = u;
-        return ("/admin/edicaoUsuarios?faces-redirect=true"); 
-    }
-
-    public String atualizarDevolucao() {
-        devolucaoRN.salvar(devolucaoSelecionada);
-        return ("/admin/index?faces-redirect=true"); 
-    }
-    
     public String mostrarDevolucao(){        
         return("/admin/relatorios/listaDevolucao?faces-redirect=true");
     }
@@ -239,14 +162,5 @@ public class DevolucaoMB implements Serializable {
     public String getLabel(Devolucao d){
         if(d.getDataDevolucao().before(d.getDataDevolvido())) return "label-danger";
         else return "label-success";
-    }
-
-    public Livro buscarLivroPorNome(String nome) {
-        for (Livro l : getLivrosDisponiveis()) {
-            if (l.getNome().equals(nome)) {
-                return l;
-            }
-        }
-        return null;
-    }
+    }    
 }

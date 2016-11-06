@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author lhries
+ * @author Francke
  */
 @Stateless
 public class RetiradasRN extends AbstractRN<Retiradas>{

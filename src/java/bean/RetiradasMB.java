@@ -246,12 +246,12 @@ public class RetiradasMB implements Serializable {
 
     public String editarRetirada(Retiradas u) {
         retiradaSelecionada = u;
-        return ("/admin/retiradas/edicaoUsuarios?faces-redirect=true"); //fazer pagina
+        return ("/admin/retiradas/edicaoUsuarios?faces-redirect=true");
     }
 
     public String atualizarRetirada() {
         retiradaRN.salvar(retiradaSelecionada);
-        return ("/admin/index?faces-redirect=true"); //fazer pagina
+        return ("/admin/index?faces-redirect=true"); 
     }
 
     public void removerRetirada(Retiradas retirada) {
@@ -285,20 +285,4 @@ public class RetiradasMB implements Serializable {
         else return "label-success";
     }
     
-    /*
-    public String verificaCliente() {
-        //Obtém o usuarioMB criado pelo servidor (nível de aplicação)
-        //UsuarioMB usuarioMB = (UsuarioMB) contexto.getExternalContext().getApplicationMap().get("usuarioMB");
-        //A partir do usuarioMB do servidor, pegamos a lista de usuários cadastrados no sistema
-        List<Cliente> listaClientes = clienteMB.getListaClientes();
-
-        for (Livro cliente : listaClientes) {
-            if (cliente.verificaCliente(matricula)) {
-                clienteSelecionado = cliente;
-            }
-        }
-
-        return ("admin/retirada?faces-redirect=true");
-    }*/
-
 }
