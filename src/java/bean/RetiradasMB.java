@@ -153,6 +153,7 @@ public class RetiradasMB implements Serializable {
             pesquisa.add(pesquisaSelecionada);
             return (this.novaRetirada());
         }else{
+            
             FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "Cliente não encontrado!");
             contexto.addMessage("idMensagem", mensagemRet);
@@ -199,7 +200,7 @@ public class RetiradasMB implements Serializable {
         FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "É necessario pesquisar antes!");
         contexto.addMessage("idMensagem", mensagemRet);
-        return ("/admin/retiradas/retirada?faces-redirect=true");
+        return ("/admin/retiradas/validacaoRetirada?faces-redirect=true");
     }
     
     public String adicionarRetiradaUsuario() {

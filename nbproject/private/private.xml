@@ -4,9 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/retiradas/confirmaRetirada.xhtml</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/clientes/confirmaCadastroCliente.xhtml</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/resources/css/estilosValidacao.css</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/resources/css/estilos.css</file>
-            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/bean/ClienteMB.java</file>
+            <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/retiradas/validacaoRetirada.xhtml</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/retiradas/retirada.xhtml</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/web/admin/retiradas/validacaoCiente.xhtml</file>
             <file>file:/C:/@Faculdade%20Senac%20-%20ADS/ADS%20-%204º%20Semestre/Prog%20internet%202%20-%20Ries/BibliotecaWeb2/src/java/bean/RetiradasMB.java</file>
