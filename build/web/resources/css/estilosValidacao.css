@@ -101,3 +101,13 @@ and open the template in the editor.
     background: url(../imagens/confirmaPesquisa.jpg) no-repeat; 
 }
 
+.acessoRelatoriosMenuAdmin{
+    position: relative;
+    float: left;
+    margin-top: -10px;
+    margin-right: 40px;
+    width: 20%; 
+    height: 240px;
+    text-align: center;
+    padding-top: 4%;
+}
