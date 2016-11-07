@@ -12,7 +12,6 @@ import javax.inject.Named;
 import model.Cliente;
 import model.Livro;
 import model.Retiradas;
-import model.Usuario;
 import rn.ClienteRN;
 import rn.LivroRN;
 import rn.RetiradasRN;
@@ -141,7 +140,6 @@ public class RetiradasMB implements Serializable {
     }
 
     public String adicionarPesquisa() {
-        FacesContext contexto = FacesContext.getCurrentInstance();
         Livro l = this.livroSelecionado;
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
         if (c != null) {
@@ -151,32 +149,10 @@ public class RetiradasMB implements Serializable {
             pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
             pesquisa.add(pesquisaSelecionada);
             return (this.novaRetirada());
-        }else{
-            FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                "Erro!", "Cliente não encontrado!");
-            contexto.addMessage("idMensagem", mensagemRet);
         }
-        return ("/admin/retiradas/validacaoCiente?faces-redirect=true");        
-    }
-
-    public String addPesquisaUsuario() {
-        FacesContext contexto = FacesContext.getCurrentInstance();
-        Livro l = this.livroSelecionado;
-        Cliente c = buscaClienteMat(this.getMatriculaCliente());
-        if (c != null) {
-            pesquisaSelecionada.setCliente(c);
-            pesquisaSelecionada.setLivro(l);
-            pesquisaSelecionada.setDataRetirada(dataAtual);
-            pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
-            pesquisa.add(pesquisaSelecionada);
-            this.novaRetirada();
-            return ("/usuario/retiradas/retirada?faces-redirect=true");
-        }else{
-            FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                "Erro!", "Cliente não encontrado!");
-            contexto.addMessage("idMensagem", mensagemRet);
-        }
-        return ("/usuario/retiradas/validacaoCiente?faces-redirect=true");        
+        if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+            return ("/admin/retiradas/validacaoCiente?faces-redirect=true");
+        return ("/usuario/retiradas/validacaoCiente?faces-redirect=true");
     }
 
     public void limparPesquisa(Retiradas r) {
@@ -202,39 +178,16 @@ public class RetiradasMB implements Serializable {
             retiradaRN.salvar(retiradaSelecionada);
             limparPesquisa(pesquisaSelecionada);
             this.novaRetirada();
-            return ("/admin/retiradas/confirmaRetirada?faces-redirect=true");
+            if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+                return ("/admin/retiradas/confirmaRetirada?faces-redirect=true");
+            return ("/usuario/retiradas/confirmaRetirada?faces-redirect=true");            
         }
         FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Erro!", "É necessario pesquisar antes!");
         contexto.addMessage("idMensagem", mensagemRet);
-        return ("/admin/retiradas/validacaoRetirada?faces-redirect=true");
-    }
-
-    public String adicionarRetiradaUsuario() {
-        FacesContext contextoRet = FacesContext.getCurrentInstance();
-        //RetiradasMB retiradasMB = (RetiradasMB) contextoRet.getExternalContext().getApplicationMap().get("RetiradasMB");
-        if (!pesquisa.isEmpty()) {
-            Livro l = this.livroSelecionado;
-            Cliente c = buscaClienteMat(this.getMatriculaCliente());
-            l.setDisponivel(false);
-            l.setRetiradas(l.getRetiradas() + 1);
-            l.setDataLiberacao(dataLiberacao);
-            c.setRetiradas(c.getRetiradas() + 1);
-            retiradaSelecionada.setCliente(c);
-            retiradaSelecionada.setLivro(l);
-            retiradaSelecionada.setDataRetirada(dataAtual);
-            retiradaSelecionada.setDataDevolucao(periodoEmprestimo);
-            livroRN.salvar(l);
-            clienteRN.salvar(c);
-            retiradaRN.salvar(retiradaSelecionada);
-            limparPesquisa(pesquisaSelecionada);
-            this.novaRetirada();
-            return ("/usuario/retiradas/confirmaRetirada?faces-redirect=true");
-        }
-        FacesMessage mensagemRet = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                "Erro!", "É necessario pesquisar antes!");
-        contextoRet.addMessage("idMensagemRet", mensagemRet);
-        return ("/usuario/retiradas/validacaoRetirada?faces-redirect=true");
+            if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
+                return ("/admin/retiradas/validacaoRetirada?faces-redirect=true");
+            return ("/usuario/retiradas/validacaoRetirada?faces-redirect=true");        
     }
 
     public Cliente buscaClienteMat(Long mat) {

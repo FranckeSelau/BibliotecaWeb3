@@ -10,7 +10,6 @@ import model.Cliente;
 import model.Livro;
 import model.Devolucao;
 import model.Retiradas;
-import model.Usuario;
 import rn.ClienteRN;
 import rn.LivroRN;
 import rn.DevolucaoRN;
