@@ -33,8 +33,15 @@ public class Retiradas implements Serializable {
     private Date dataDevolucao;
 
     public Retiradas() {
-        
-    }   
+
+    }
+
+    public Retiradas(Cliente cliente, Livro livro, Date dataRetirada, Date dataDevolucao) {
+        this.cliente = cliente;
+        this.livro = livro;
+        this.dataRetirada = dataRetirada;
+        this.dataDevolucao = dataDevolucao;
+    }
 
     public Long getId() {
         return id;

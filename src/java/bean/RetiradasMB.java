@@ -51,8 +51,6 @@ public class RetiradasMB implements Serializable {
 
     public RetiradasMB() {
         pesquisa = new ArrayList<>();
-        pesquisaSelecionada = new Retiradas();
-        retiradaSelecionada = new Retiradas();
         livroSelecionado = new Livro();
     }
 
@@ -143,10 +141,7 @@ public class RetiradasMB implements Serializable {
         Livro l = this.livroSelecionado;
         Cliente c = buscaClienteMat(this.getMatriculaCliente());
         if (c != null) {
-            pesquisaSelecionada.setCliente(c);
-            pesquisaSelecionada.setLivro(l);
-            pesquisaSelecionada.setDataRetirada(dataAtual);
-            pesquisaSelecionada.setDataDevolucao(periodoEmprestimo);
+            pesquisaSelecionada = new Retiradas(c,l,dataAtual,periodoEmprestimo);
             pesquisa.add(pesquisaSelecionada);
             return (this.novaRetirada());
         }
@@ -165,16 +160,9 @@ public class RetiradasMB implements Serializable {
         if (!pesquisa.isEmpty()) {
             Livro l = this.livroSelecionado;
             Cliente c = buscaClienteMat(this.getMatriculaCliente());
-            l.setDisponivel(false);
-            l.setRetiradas(l.getRetiradas() + 1);
-            l.setDataLiberacao(dataLiberacao);
-            c.setRetiradas(c.getRetiradas() + 1);
-            retiradaSelecionada.setCliente(c);
-            retiradaSelecionada.setLivro(l);
-            retiradaSelecionada.setDataRetirada(dataAtual);
-            retiradaSelecionada.setDataDevolucao(periodoEmprestimo);
-            livroRN.salvar(l);
-            clienteRN.salvar(c);
+            atualizaLivroRetirada(l);
+            atualizaClienteRetirada(c);
+            retiradaSelecionada = new Retiradas(c, l, dataAtual, periodoEmprestimo);
             retiradaRN.salvar(retiradaSelecionada);
             limparPesquisa(pesquisaSelecionada);
             this.novaRetirada();
@@ -188,6 +176,18 @@ public class RetiradasMB implements Serializable {
             if (loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
                 return ("/admin/retiradas/validacaoRetirada?faces-redirect=true");
             return ("/usuario/retiradas/validacaoRetirada?faces-redirect=true");        
+    }
+
+    public void atualizaLivroRetirada(Livro l) {
+        l.setDisponivel(false);
+        l.setRetiradas(l.getRetiradas() + 1);
+        l.setDataLiberacao(dataLiberacao);
+        livroRN.salvar(l);
+    }
+
+    public void atualizaClienteRetirada(Cliente c) {
+        c.setRetiradas(c.getRetiradas() + 1);
+        clienteRN.salvar(c);
     }
 
     public Cliente buscaClienteMat(Long mat) {
