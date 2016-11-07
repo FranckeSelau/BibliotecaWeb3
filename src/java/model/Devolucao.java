@@ -35,8 +35,16 @@ public class Devolucao implements Serializable {
     private Date dataDevolvido;
 
     public Devolucao() {
-        
-    }   
+
+    }
+
+    public Devolucao(Cliente cliente, Livro livro, Date dataRetirada, Date dataDevolucao, Date dataDevolvido) {
+        this.cliente = cliente;
+        this.livro = livro;
+        this.dataRetirada = dataRetirada;
+        this.dataDevolucao = dataDevolucao;
+        this.dataDevolvido = dataDevolvido;
+    }
 
     public Long getId() {
         return id;

@@ -46,7 +46,7 @@ public class DevolucaoMB implements Serializable {
       private Date dataAtual = new Date(System.currentTimeMillis());
 
     public DevolucaoMB() {
-       devolucaoSelecionada = new Devolucao();
+
     }
 
     public long getId() {
@@ -104,12 +104,16 @@ public class DevolucaoMB implements Serializable {
     public void devolverLivro(Retiradas retirada){
         Livro l = retirada.getLivro();
         Cliente c = retirada.getCliente();
-        l.setDisponivel(true);
-        l.setDataLiberacao(dataAtual);
-        livroRN.salvar(l);
+        atualizaLivroDevolucao(l);
         atrasoCliente(c, retirada);
         adicionarDevolucao(retirada);
         retiradaRN.remover(retirada);
+    }
+    
+    public void atualizaLivroDevolucao(Livro l){
+        l.setDisponivel(true);
+        l.setDataLiberacao(dataAtual);
+        livroRN.salvar(l);
     }
 
     public void atrasoCliente(Cliente c, Retiradas r){
@@ -127,14 +131,10 @@ public class DevolucaoMB implements Serializable {
     }
 
     public String adicionarDevolucao(Retiradas retirada) {
-            devolucaoSelecionada.setCliente(retirada.getCliente());
-            devolucaoSelecionada.setLivro(retirada.getLivro());
-            devolucaoSelecionada.setDataRetirada(retirada.getDataRetirada());
-            devolucaoSelecionada.setDataDevolucao(retirada.getDataDevolucao());
-            devolucaoSelecionada.setDataDevolvido(dataAtual);
-            devolucaoRN.salvar(devolucaoSelecionada);
-            return (this.novaDevolucao());
-        }
+        devolucaoSelecionada = new Devolucao(retirada.getCliente(), retirada.getLivro(), retirada.getDataRetirada(), retirada.getDataDevolucao(), dataAtual);
+        devolucaoRN.salvar(devolucaoSelecionada);
+        return (this.novaDevolucao());
+    }
 
    public String formataData(Date data) {
         this.dtFormatada = dateToString(data);
