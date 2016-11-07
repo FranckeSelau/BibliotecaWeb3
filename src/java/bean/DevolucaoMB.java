@@ -43,7 +43,6 @@ public class DevolucaoMB implements Serializable {
     private long idLivro;
     private String dtFormatada;
     long DAY_IN_MS = 1000 * 60 * 60 * 24; // formatar data entrega
-    private List<Devolucao> listaDevolucao;
     private Devolucao devolucaoSelecionada;
       private Date dataAtual = new Date(System.currentTimeMillis());
 
@@ -107,7 +106,7 @@ public class DevolucaoMB implements Serializable {
         Livro l = retirada.getLivro();
         Cliente c = retirada.getCliente();
         l.setDisponivel(true);
-        l.setDataLiberacao(RetiradasMB.getDataLiberacao());
+        l.setDataLiberacao(dataAtual);
         livroRN.salvar(l);
         atrasoCliente(c, retirada);
         adicionarDevolucao(retirada);
