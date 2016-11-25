@@ -8,12 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Francke
  */
 @Entity
+@XmlRootElement // elemento xml para web service
 public class Livro implements Serializable {
 
     private static final long serialVersionUID = 1L;
