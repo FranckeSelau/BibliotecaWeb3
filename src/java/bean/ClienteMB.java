@@ -112,7 +112,7 @@ public class ClienteMB implements Serializable {
 
     public String editarCliente(Cliente c){
         clienteSelecionado = c;
-        return("/admin/clientes/edicaoClientes?faces-redirect=true");        
+        return("/admin/clientes/edicaoClientes?faces-redirect=true");
     }
 
     public String atualizarCliente(){
@@ -121,7 +121,7 @@ public class ClienteMB implements Serializable {
     }
 
     public String adicionarPesquisa() {
-        pesquisaNome = buscarCliente(this.nomeBusca);        
+        pesquisaNome = buscarCliente(this.nomeBusca);
         if(loginMB!=null && loginMB.estaLogado() && loginMB.eAdmin())
             return ("/admin/clientes/buscaCliente?faces-redirect=true");
         return ("/usuario/clientes/buscaCliente?faces-redirect=true");        
