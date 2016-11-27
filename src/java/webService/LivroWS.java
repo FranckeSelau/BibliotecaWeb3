@@ -71,7 +71,9 @@ public class LivroWS {
     public void alterarLivro(@PathParam("id") long id, Livro livro) {
         Livro l =livroRN.buscar(id);
         l.setNome(livro.getNome());
-        l.//inserir os parametros
+        l.setAutor(livro.getAutor());
+        l.setEditora(livro.getEditora());
+        l.setAno(livro.getAno());
         livroRN.atualizar(l);
     }
 
