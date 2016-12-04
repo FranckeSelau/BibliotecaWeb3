@@ -49,7 +49,7 @@ public class ClienteWS {
     public Cliente getCliente(@PathParam("matricula") long matricula) {
         return clienteRN.buscar(matricula);
     }
-
+   
     @POST
     @Consumes(MediaType.APPLICATION_XML)
     public void adicionarCliente(Cliente u, @Context final HttpServletResponse response) {
@@ -83,4 +83,11 @@ public class ClienteWS {
         clienteRN.remover(u);
         return u;
     }
+    /*
+    @GET
+    @Path("/{matricula}")
+    @Produces(MediaType.APPLICATION_XML)
+    public List<Cliente> getClienteNome(@PathParam("matricula") long matricula, String nome) {
+        return clienteRN.buscarPorNome(nome);
+    }*/
 }

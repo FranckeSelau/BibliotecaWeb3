@@ -10,12 +10,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Francke
  */
 @Entity
+@XmlRootElement // elemento xml para  consumir web service
 @Table(name="devolucao")
 public class Devolucao implements Serializable {
     
